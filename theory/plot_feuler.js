@@ -12,7 +12,7 @@ var y = d3.scaleLinear()
           .domain([0,1])
           .range([ height, 0 ]);
 
-svg = d3.select("#ODE")
+svg = d3.select("#feuler")
         .append("svg")
           .attr("width", max_w)
           .attr("height", max_h)
@@ -129,27 +129,75 @@ function plot_sol(x0,y0){
 }
 sol = plot_sol(x0,y0)
 
- var drag1 = d3.drag().on("drag", dragmove1);
 
 
 
-function dragmove1(d) {
- if ((x.invert(d3.event.x)<0.)||(x.invert(d3.event.x)>xmax)){return}
- if ((y.invert(d3.event.y)<0.)||(y.invert(d3.event.y)>1.)){return}
- x0 = x.invert(d3.event.x);
- y0 = y.invert(d3.event.y);
- sol.remove();
- sol = plot_sol(x0,y0)
- d3.select(this)
-     .attr("cx",x(x0))
-     .attr("cy",y(y0));
+
+var Nt = 8;
+var T = xmax;
+
+
+function forward_euler(x0,y0){
+  var DT = (T-x0) / Nt ;
+  var t = linspace(x0,T,Nt+1);
+  var y_e = new Array(Nt);
+  y_e[0] = y0;
+  euler = svg.append('g');
+  euler.append("circle")
+        .attr("cx",x(t[0]))
+        .attr("cy",y(y_e[0]))
+        .attr("r",3)
+        .attr("fill","red")
+        .attr("stroke","black");
+
+  for(i=0; i<Nt;i++){
+    y_e[i+1] = y_e[i] + DT*(y_e[i]*(1-y_e[i]));
+    euler.append("path")
+         .datum([{x: t[i],       y: y_e[i]},
+                 {x: t[i+1],       y: y_e[i+1]}])
+         .attr("stroke", "red")
+         .attr("stroke-width", 1.5)
+         .attr("d", d3.line()
+           .x(function(d) { return x(d.x) })
+           .y(function(d) { return y(d.y) })
+            )
+    euler.append("circle")
+          .attr("cx",x(t[i+1]))
+          .attr("cy",y(y_e[i+1]))
+          .attr("r",3)
+          .attr("fill","red")
+          .attr("stroke","black");
+
+  }
+  return euler
+}
+
+euler = forward_euler(x0,y0);
+
+var drag2 = d3.drag().on("drag", dragmove2);
+
+
+
+function dragmove2(d) {
+if ((x.invert(d3.event.x)<0.)||(x.invert(d3.event.x)>xmax)){return}
+if ((y.invert(d3.event.y)<0.)||(y.invert(d3.event.y)>1.)){return}
+x0 = x.invert(d3.event.x);
+y0 = y.invert(d3.event.y);
+sol.remove();
+sol = plot_sol(x0,y0)
+euler.remove();
+euler = forward_euler(x0,y0)
+d3.select(this)
+    .attr("cx",x(x0))
+    .attr("cy",y(y0));
 };
 
 svg.append("circle")
      .attr("cx",x(x0))
      .attr("cy",y(y0))
      .attr("r",6)
+     .attr("opacity",0.5)
      .attr("fill","white")
      .attr("stroke","black")
      .attr("cursor","move")
-     .call(drag1);
+     .call(drag2);

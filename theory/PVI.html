@@ -19,8 +19,21 @@
   </div>
   <div class="plot" id="ODE">
   </div>
+  <p align="center">El método Euler explícito consiste en aproximar la integral:
+  $$\int_{t_i}^{t_i+1}F\left(y\left(t\right),t\right)\,\mathrm{d}t\approx\int_{t_i}^{t_i+1}F\left(y\left(t_i\right),t_i\right)\,\mathrm{d}t$$
+  con lo que se obtiene la siguiente regla de recurrencia:
+  $$
+  \begin{array}{l}
+  y_0 &= y(0)\\
+  y_{i+1} &= y_i + \Delta tF\left(y_i,t_i\right)
+  \end{array}
+  $$
+</p>
+  <div class="plot" id="feuler">
+  </div>
 <!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
 <script src="./d3.js">
 </script>
 <script src="./plot_ODE.js"></script>
+<script src="./plot_feuler.js"></script>
 </body>
