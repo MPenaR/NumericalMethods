@@ -133,7 +133,7 @@ sol2 = plot_sol(svg2,x0,y0)
 
 
 
-var Nt = 5;
+var Nt = 50;
 var T = xmax;
 
 
