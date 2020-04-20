@@ -12,7 +12,7 @@ var y = d3.scaleLinear()
           .domain([0,1])
           .range([ height, 0 ]);
 
-svg = d3.select("#ODE")
+svg1 = d3.select("#ODE")
         .append("svg")
           .attr("width", max_w)
           .attr("height", max_h)
@@ -20,20 +20,20 @@ svg = d3.select("#ODE")
           .attr("transform",
                 "translate(" + margin.left + "," + margin.top + ")");
 
-svg.append("g")
+svg1.append("g")
     .attr("transform", "translate(0," + height + ")")
     .call(d3.axisBottom(x));
 
-svg.append("text")
+svg1.append("text")
      .attr("transform",
            "translate(" + (width/2) + " ," +
                           (height + margin.top + 20) + ")")
      .style("text-anchor", "middle")
      .text("t")
 
-svg.append("g")
+svg1.append("g")
    .call(d3.axisLeft(y));
-svg.append("text")
+svg1.append("text")
     .attr("transform", "rotate(-90)")
     .attr("y", 0 - margin.left)
     .attr("x",0 - (height / 2))
@@ -77,14 +77,14 @@ for (i=0; i<Ny; i++){
     Vy[i][j] = lambda*(Y[i][j]*(1-Y[i][j]));
     angle = Math.atan2(Vy[i][j],Vx[i][j]);
     angle = -2*angle*180./Math.PI + 90;
-    svg.append("g")
+    svg1.append("g")
        .append("path")
         .attr("d", "M" + x(0) + " " + y(0) + " L" + x(Vx[i][j]) + " " + y(Vy[i][j]))
         .attr("stroke", "black")
         .attr("stroke-width", 2)
         .attr("fill", "none")
         .attr("transform", "translate(" + (x(X[i][j]) - x(0)) + "," + (y(Y[i][j]) - y(0)) + ")");
-    svg.append("path")
+    svg1.append("path")
         .attr("d", TriSymb)
         .attr("fill", "black")
         .attr("stroke", "black")
@@ -113,7 +113,7 @@ function solution(x0,y0,x){
 var x0 = 0.;
 var y0 = 0.5;
 
-function plot_sol(x0,y0){
+function plot_sol(svg,x0,y0){
   var xy = linspace(x0,xmax,N).map(x=>solution(x0,y0,x));
 
   sol = svg.append("path")
@@ -127,7 +127,7 @@ function plot_sol(x0,y0){
          );
   return sol
 }
-sol = plot_sol(x0,y0)
+sol1 = plot_sol(svg1,x0,y0)
 
  var drag1 = d3.drag().on("drag", dragmove1);
 
@@ -138,14 +138,14 @@ function dragmove1(d) {
  if ((y.invert(d3.event.y)<0.)||(y.invert(d3.event.y)>1.)){return}
  x0 = x.invert(d3.event.x);
  y0 = y.invert(d3.event.y);
- sol.remove();
- sol = plot_sol(x0,y0)
+ sol1.remove();
+ sol1 = plot_sol(svg1,x0,y0)
  d3.select(this)
      .attr("cx",x(x0))
      .attr("cy",y(y0));
 };
 
-svg.append("circle")
+svg1.append("circle")
      .attr("cx",x(x0))
      .attr("cy",y(y0))
      .attr("r",6)
