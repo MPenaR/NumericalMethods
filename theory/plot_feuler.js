@@ -143,12 +143,6 @@ function forward_euler(x0,y0){
   var y_e = new Array(Nt);
   y_e[0] = y0;
   euler = svg2.append('g');
-  euler.append("circle")
-        .attr("cx",x(t[0]))
-        .attr("cy",y(y_e[0]))
-        .attr("r",3)
-        .attr("fill","red")
-        .attr("stroke","black");
 
   for(i=0; i<Nt;i++){
     y_e[i+1] = y_e[i] + DT*(y_e[i]*(1-y_e[i]));
@@ -196,7 +190,7 @@ svg2.append("circle")
      .attr("cx",x(x0))
      .attr("cy",y(y0))
      .attr("r",6)
-     .attr("opacity",0.5)
+     .attr("opacity",1)
      .attr("fill","white")
      .attr("stroke","black")
      .attr("cursor","move")
