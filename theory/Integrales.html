@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<script src="./d3.js"></script>
+<script src="./d3-simple-slider.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+
+
+<title>Ejemplos de integración numérica.</title>
+
+</head>
+
+<body>
+  <h2>Sumas por la izquierda:</h2>
+  <div>$$I=\int_{a}^{b}f\left(x\right)\,\mathrm{d}x$$</div>
+  <div>$$L=\frac{b-a}{N}\sum_{i=1}^{N}f\left(x_{i-1}\right)$$</div>
+  <div id="plot_L" align="center"></div>
+  <script src="./plotter.js"></script>
+</body>
