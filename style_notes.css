@@ -17,3 +17,5 @@ p{
   width: 800px;
   line-height: 1.5;
 }
+
+.MathJax p {line-height: inherit}
