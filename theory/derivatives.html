@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="../style_notes.css">
+  <title>Métodos Directos</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <h1 class="text">Derivación numérica.</h1>
+<p>Existen ocasiones en las que se puede disponer de un método para calcular el valor de una función \(f\) pero no su derivada.</p>
+<p>Si la derivada de la función \(f\) existe en el punto \(x\) se podría aplicar la definición para calcular su valor a través del límite:</p>
+<div class="formula">
+  \[
+  \label{eq:def_der}
+  f'\left(x\right)=\lim_{\Delta x\to0}\frac{\Delta f}{\Delta x}=\lim_{h\to0}\frac{ f\left(x+h\right)-f\left(x\right)}{h}
+  \tag{1}
+  \]
+</div>
+<p>para aproximar su valor numéricamente.</p>
+<p>Puesto que alcanzar un límite es un proceso infinito, en vez de calcular el límite exacto, se puede aproximar su valor evaluando el cociente (\ref{eq:def_der}) para un valor de \(h\) suficientemente pequeño:
+</p>
+<div class="formula">
+  \[
+  f'\left(x\right)\approx\frac{ f\left(x+h\right)-f\left(x\right)}{h}
+  \]
+</div>
+<h2 class="text">Diferencias finitas de primer orden: adelantadas, atrasadas y centradas.</h2>
+<p>Al cociente:</p>
+<div class="formula">
+  \[
+  \label{eq:dfa}
+  \frac{ f\left(x+h\right)-f\left(x\right)}{h}
+  \tag{2}
+  \]
+</div>
+<p>con \(h>0\) se le conoce como diferencia finita adelantada. Diferencia porque es la diferencia entre \(f\left(x\right)\) y \(f\left(x+h\right)\), finita porque \(h\) es no es infinitamente pequeño, sino que es un valor finito, y adelantada porque al ser \(h>0\) se tiene que \(x+h\) está "delante" de \(x\).
+</p>
+<p>Dependiendo del lo grande que sea \(h\), el cociente (\ref{eq:dfa}) aproximará mejor o peor el valor de la derivada en el punto \(x\). Para estimar el error cometido en función de \(h\) basta con utilizar el desarrollo de Taylor de la función \(f\) en torno a \(x\):
+</p>
+<div class="formula">
+  \[
+  f\left(x+h\right)=f\left(x\right)+f'\left(x\right)h+ \frac{1}{2}f''\left(x\right)h^2+ o\left(h^2\right)
+  \]
+</div>
+<p>donde \(o\left(h^2\right)\) hace referencia, según la notación de Landau, a un infinitésimo con respecto a \(h^2\) es decir, una función que cumple:</p>
+<div class="formula">
+  \[
+  \lim_{h\to0}\frac{o\left(h^2\right)}{h^2}=0
+  \]
+</div>
+<p>Si se despeja el cociente (\ref{eq:dfa}) a partir de la expresión del desarrollo de Taylor se obtiene:
+</p>
+<div class="formula">
+  \[
+  \frac{ f\left(x+h\right)-f\left(x\right)}{h}=f'\left(x\right)+\frac{1}{2}f''\left(x\right)h+\frac{o\left(h^2\right)}{h}=f'\left(x\right)+\mathcal{O}\left(h\right)
+  \]
+</div>
+<p>donde \(\mathcal{O}\left(h\right)\) hace referencia, según la notación de Landau, a una función del orden de \(h\), es decir, una función que cumple:
+  <!-- ASD(\footnote{$|\frac{1}{2}f''\left(x\right)h|<|f''\left(x\right)|h$ cuando $h$ tiende a $0$, de ahí que $\frac{1}{2}f''\left(x\right)h=\mathcal{O}\left(h\right)$.}) -->
+</p>
+<div class="formula">
+  \[
+  \lim_{h\to0}\vert O\left(h\right)\vert\le Kh,\quad\text{para algún valor de $K$}
+  \]
+</div>
+<p>Con esto queda demostrado que, siempre que la función \(f\) sea suficientemente derivable; utilizando la fórmula de las diferencias finitas adelantadas:
+</p>
+\<div class="formula">
+  \[
+  \boxed{\frac{ f\left(x+h\right)-f\left(x\right)}{h}}
+  \]
+</div>
+<p>para un valor de \(h\) dado se comete un error \(\mathcal{O}\left(h\right)\) en la aproximación de la derivada en \(x\).
+</p>
+<p>Esto implica que reducir el valor de \(h\) a la mitad supone reducir el valor del error también a la mitad.
+</p>
+<p>Si en vez de haber utilizado el valor por delante de \(x\) se hubiese utilizado el valor por detrás, es decir \(x-h\), se tendría el siguiente desarrollo:
+</p>
+<div class="formula">
+  \[
+    f\left(x-h\right)=f\left(x\right)-f'\left(x\right)h+ \frac{1}{2}f''\left(x\right))h^2+ o\left(h^2\right)
+  \]
+</div>
+<p>lo cuál aporta la fórmula de las diferencias finitas atrasadas junto con la estimación de su error.
+</p>
+<div class="formula">
+  \[
+  \frac{f\left(x\right)-f\left(x-h\right)}{h}=f'\left(x\right) - \frac{1}{2}f''\left(x\right))h+ \frac{o\left(h^2\right)}{h}=f'\left(x\right) + \mathcal{O}\left(h\right)
+  \]
+</div>
+<p>Es decir, las diferencias finitas atrasadas:</p>
+<div class="formula">
+  \[
+  \boxed{\frac{ f\left(x\right)-f\left(x-h\right)}{h}}
+  \]
+</div>
+<p>también cometen un error de orden \(h\) en la estimación de la derivada en el punto \(x\).
+</p>
+<p>Por último, se podrían restar los desarrollos en \(x+h\) y en \(x-h\) obteniéndose lo que se conoce como diferencias finitas centradas. Si se escriben los desarrollos de Taylor hasta tercer orden:
+</p>
+<div class="formula">
+  \[
+  f\left(x+h\right)=f\left(x\right)+f'\left(x\right)h+ \frac{1}{2}f''\left(x\right))h^2 + \frac{1}{6}f'''\left(x\right)h^3+o\left(h^3\right)
+  \]
+</div>
+<div class="formula">
+  \[
+  f\left(x-h\right)=f\left(x\right)-f'\left(x\right)h+ \frac{1}{2}f''\left(x\right))h^2 - \frac{1}{6}f'''\left(x\right)h^3+o\left(h^3\right)
+  \]
+</div>
+<p>se observa que el siguiente cociente</p>
+<div class="formula">
+  \[
+  \frac{f\left(x+h\right)-f\left(x-h\right)}{2h}=f'\left(x\right) + \frac{1}{6}f'''\left(x\right)h^2+\frac{o\left(h^3\right)}{2h}=f'\left(x\right) + \mathcal{O}\left(h^2\right)
+  \]
+</div>
+<p>aproxima la derivada en \(x\) con un error de orden \(\mathcal{O}\left(h^2\right)\).</p>
+<p>Es decir, utilizando las diferencias finitas centradas</p>
+<div class="formula">
+  \[
+  \boxed{\frac{ f\left(x+h\right)-f\left(x-h\right)}{2h}}
+  \]
+</div>
+<p>dividir el tamaño de \(h\) por la mitad implica dividr por cuatro el error cometido en la aproximación.</p>
+<h2 class="text">Aproximación centrada a la derivada segunda.</h2>
+<p>Utilizando los valores en \(x+h\) y en \(x-h\) también se puede aproximar la derivada segunda. Si se expresan hasta cuarto orden:</p>
+<div class="formula">
+  \[
+  f\left(x+h\right)=f\left(x\right)+f'\left(x\right)h+ \frac{1}{2}f''\left(x\right))h^2 + \frac{1}{6}f'''\left(x\right)h^3+\frac{1}{24}f^{IV}\left(x\right)h^4+o\left(h^4\right)
+  \]
+</div>
+<div class="">
+  \[
+  f\left(x-h\right)=f\left(x\right)-f'\left(x\right)h+ \frac{1}{2}f''\left(x\right))h^2 - \frac{1}{6}f'''\left(x\right)h^3+\frac{1}{24}f^{IV}\left(x\right)h^4+o\left(h^4\right)
+  \]
+</div>
+<p>se ve que se puede despejar la derivada segunda como</p>
+<div class="formula">
+  \[
+  \frac{f\left(x+h\right)-2f\left(x\right)+f\left(x-h\right)}{h^2}= f''\left(x\right) +\frac{1}{12}f^{IV}\left(x\right)h^2+\frac{o\left(h^4\right)}{h^2}=f''\left(x\right) +\mathcal{O}\left(h^2\right)
+  \]
+</div>
+<p>es decir, la diferencia centrada:</p>
+<div class="formula">
+  \[
+  \boxed{\frac{f\left(x+h\right)-2f\left(x\right)+f\left(x-h\right)}{h^2}}
+  \]
+</div>
+<p>aproxima la derivada segunda en \(x\) con un error de orden \(h^2\).</p>
+<!-- <h3 class="text">Ejercicio propuesto:</h3>
+<p></p>Utilizando los valores de $f$ en $x$, $x+h$ y $x+2h$ es posible obtener una aproximación de la derivada de $f$ en $x$ cometiendo un error de aproximación de orden $\mathcal{O}\left(h^2\right)$.
+
+  Esto puede resultar útil cuando sólo se conoce la función en un intervalo $x\in[a,b]$ y se quiere calcular la derivada en el punto $x=a$.
+
+  Calcular los valores de $\alpha$, $\beta$, $\gamma$ y $\delta$ que hacen que:
+  \[
+  \frac{\alpha f\left(x\right)+\beta f\left(x+h\right)+\gamma f\left(x+2h\right)}{\delta h}=f'\left(x\right)+\mathcal{O}\left(h\right)
+  \]
+  Se sugiere desarrollar $f\left(x+h\right)$ y $f\left(x+2h\right)$ en torno a $x$ y operar para eliminar los términos de orden $\mathcal{O}\left(h\right)$.
+
+  De manera análoga se puede encontrar una expresión en función de $f\left(x\right)$, $f\left(x-h\right)$ y $f\left(x-2h\right)$ que aproxima la derivada en $x$ con un error de orden $\mathcal{O}\left(h^2\right)$ utilizando únicamente valores "atrasados". Esta expresión sería útil para aproximar la derivada en el punto $x=b$. -->
+
+</body>
