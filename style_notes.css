@@ -18,4 +18,7 @@ p{
   line-height: 1.5;
 }
 
+.formula{
+  align: center;
+}
 .MathJax p {line-height: inherit}

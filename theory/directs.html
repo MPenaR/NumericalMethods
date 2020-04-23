@@ -97,5 +97,88 @@ utilizar un método completamente análogo. De la primera fila se obtendría que
   \boxed{x_i=\frac{b_i-\sum_{k=1}^{i-1} l_{ik}x_k}{l_{ii}}}
   \]
 </div>
+<h2 class="text">Triangularización de
+Gauss</h2>
+<p>Dado un sistema \(\mathbf{A}\mathbf{x}=\mathbf{b}\) el método de
+triangularización de Gauss trata de convertir la parte
+correspondiente a \(\mathbf{A}\) de la matriz ampliada:</p>
+<div align="center">
+  \[
+  \mathbf{M}=
+  \begin{pmatrix}
+  a_{11} & a_{12} & \dots & a_{1N}&|&b_1\\
+  a_{21} & a_{22} & \dots & a_{2N}&|&b_2\\
+  \vdots & \ddots & \ddots & \vdots&|&\vdots\\
+  a_{N1}  & \dots &  a_{N\,N-1}     &  a_{NN}&|&b_N
+  \end{pmatrix}
+  \]
+</div>
+<p>en una matriz triangular superior operando por filas:</p>
+<div class="formula">
+  \[
+  \mathbf{Q}\mathbf{M}=
+  \begin{pmatrix}
+  u_{11} & u_{12} & \dots & u_{1N}&|&w_1\\
+  0 & u_{22} & \dots & u_{2N}&|&w_2\\
+  \vdots & \ddots & \ddots & \vdots&|&\vdots\\
+  0  & \dots &  0     &  u_{NN}&|&w_N
+  \end{pmatrix}
+  \]
+</div>
+<p>donde \(\mathbf{U}=\mathbf{Q}\mathbf{A}\) y
+\(\mathbf{w}=\mathbf{Q}\mathbf{b}\) siendo \(\mathbf{Q}\) una matriz
+triangular inferior que contiene la información de las operaciones
+realizadas por filas.</p>
+<p>De este modo el sistema
+\(\mathbf{U}\mathbf{x}=\mathbf{w}\) posee las mismas soluciones que el
+sistema \(\mathbf{A}\mathbf{x}=\mathbf{b}\) y sin embargo es mucho más fácil de resolver.</p>
+
+<h2 class="text">Algoritmo de
+triangularización.</h2>
+<p>El proceso de triangularización consiste en ir haciendo ceros por debajo
+de la diagonal, columna a columna. Para hacer ceros en la primera
+columna, utilizaremos la primera fila, restándosela al resto de filas
+multiplicada por un cierto factor. Así si queremos hacer cero el
+elemento \(m_{i1}\) con \(2\le i\le N\) le restaremos a la fila \(i\)
+</p>
+<div class="formula">
+  \[
+  \left\lbrace m_{ij}\right\rbrace_{j=1}^{N+1}=\left(a_{i1},a_{i2},\dots,a_{iN},b_i\right)
+  \]
+</div>
+<p>la primera fila,</p>
+<div class="formula">
+  \[
+  \left\lbrace m_{1j}\right\rbrace_{j=1}^{N+1}=\left(a_{11},a_{12},\dots,a_{1N},b_1\right)
+  \]
+</div>
+<p>multiplicada por \(q=\frac{a_{i1}}{a_{11}}\), de modo, que ahora, la
+nueva fila \(i\) será:</p>
+<div class="formula">
+  \[
+  \left\lbrace m_{ij}\right\rbrace_{j=1}^{N+1}=\left(0,a_{i2}-qa_{12},\dots,a_{iN}-qa_{1N},b_i-qb_{1}\right)
+  \]
+</div>
+<p>En general, siempre que no aparezcan ceros en la diagonal, la matriz
+\(\mathbf{M}\) se podrá triangularizar mediante este proceso, columna a
+columna, utilizando la diagonal para anular los valores por debajo de
+ésta.
+</p>
+<p>Si durante el proceso de triangularización alguno de los elementos de la
+diagonal es \(0\), el algoritmo dejará de funcionar. Para solucionar
+esto basta con permutar las fila que contenga el cero en la diagonal,
+con una fila inferior a esta que contenga un valor distinto de cero.
+</p>
+<p>En coma flotante el concepto de cero puede ser un tanto relativo, por
+ejemplo \(1.0\times10^{00}\) comparado con \(1.0\times10^{8}\) es 0 en
+simple precisión, como se puede comprobar con el siguiente código:
+</p>
+<p>Por lo tanto, en vez de comprobar si un elemento es cero, es mejor
+(ayuda a reducir los errores de redondeo) intercambiar siempre la fila
+de la diagonal, por aquella que tenga el elemento de mayor magnitud
+(valor absoluto) en esa columna.
+</p>
+
+
 
 </body>
