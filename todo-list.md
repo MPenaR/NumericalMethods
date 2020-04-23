@@ -6,3 +6,4 @@
 - animaciones no lineales
 - animaciones iterativos
 - animación condición de una matriz.
+- add navigation "next", "previous", "index"
