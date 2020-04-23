@@ -79,7 +79,7 @@ solución exacta será aquella que cumpla que:</p>
   \]
 </div>
 <p>Teniendo en cuenta la definición de la norma \(2\) de una matriz se
-puede acotar la norma del error en la aproximación $i+1$ a partir del
+puede acotar la norma del error en la aproximación \(i+1\) a partir del
 error inicial \(\mathbf{e}_0\):
 </p>
 <div class="formula">
@@ -114,7 +114,7 @@ como máximo se realicen \(N_\mathrm{max}\) iteraciones.
 alcance una solución aproximada suficientemente buena antes de realizar
 \(N_\mathrm{max}\).
 </p>
-<p>En primer lugar se puede comprobar si $\mathbf{x}_{n+1}$ está
+<p>En primer lugar se puede comprobar si \(\mathbf{x}_{n+1}\) está
 suficientemente cerca del límite. Para ello se comprueba si la
 diferencia es menor que un cierto valor pequeño en términos absolutos</p>
 <div class="formula">
@@ -132,7 +132,7 @@ diferencia es menor que un cierto valor pequeño en términos absolutos</p>
 vectoriales explicadas. Dependiendo del problema puede ser interesante
 una norma u otra.</p>
 <p>Otra opción es comprobar que el residuo de la ecuación es
-suficientemente pequeño. El residuo en la iteración $n$ se define
+suficientemente pequeño. El residuo en la iteración \(n\) se define
 como:</p>
 <div class="formula">
   \[
@@ -197,7 +197,7 @@ inferior, una diagonal, y una triangular superior:
   \]
 </div>
 <p>El método de Jacobi utiliza precisamente la expresión anterior para
-iterar, es decir, dada la primera solución aproximada $\mathbf{x}_0$,
+iterar, es decir, dada la primera solución aproximada \(\mathbf{x}_0\),
 el método de Jacobi construye la sucesión mediante la relación de
 recurrencia:
 </p>
@@ -251,7 +251,7 @@ método de Jacobi convergerá a la solución independientemente de la aproximaci
 \end{lstlisting} -->
 
 <h2 class="text">Método de Gauss-Seidel.</h2>
-<p>Si en cambio se separa la matriz $\mathbf{A}$ como suma de una
+<p>Si en cambio se separa la matriz \(\mathbf{A}\) como suma de una
 triangular superior y una triangular inferior, quedándose la diagonal en
 la inferior:</p>
 <div class="formula">
@@ -293,7 +293,7 @@ recurrencia:
   \left(\mathbf{L}+\mathbf{D}\right)\mathbf{x}_{i+1}=-\mathbf{U}\mathbf{x}_i+\mathbf{b}
   \]
 </div>
-<p>es decir, en cada iteración resuelve el sistema anterior para obtener $\mathbf{x}_{i+1}$ a partir $\mathbf{x}_i$.
+<p>es decir, en cada iteración resuelve el sistema anterior para obtener \(\mathbf{x}_{i+1}\) a partir \(\mathbf{x}_i\).
 </p>
 <p>Si se identifican términos con la expresión genérica de los métodos
 iterativos lineales, se observa que</p>
