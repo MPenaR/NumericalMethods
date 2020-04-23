@@ -8,22 +8,22 @@
 </head>
 <body>
 <h1 class="text">Métodos directos.</h1>
-<p class="text">  Son aquellos algoritmos en los que mediante una serie de operaciones se
+<p>  Son aquellos algoritmos en los que mediante una serie de operaciones se
   obtiene una solución que, en caso de poder operar con precisión
   infinitamente pequeña, sería la solución exacta. Se explicarán el método de
   triangulación Gauss y el método de factorización LU.
 </p>
 <h2 class="text">Resolución de un sistema
 triangular:</h2>
-<p class="text">Un sistema triangular superior es un sistema el cuál, cuando es escrito
+<p>Un sistema triangular superior es un sistema el cuál, cuando es escrito
 matricialmente, es de la forma:</p>
 <div class="text">
   \[
  \mathbf{U}\mathbf{x}=\mathbf{b}
  \]
 </div>
-<p class="text">siendo \(\mathbf{U}\) una matriz triangular superior.</p>
-<p class="text">El valor de \(x_N\) se puede obtener de manera inmediata, pues de la
+<p>siendo \(\mathbf{U}\) una matriz triangular superior.</p>
+<p>El valor de \(x_N\) se puede obtener de manera inmediata, pues de la
   última fila del sistema se obtiene:</p>
 <div class="text">
   \[
@@ -39,13 +39,13 @@ matricialmente, es de la forma:</p>
     =b_N
     \]
 </div>
-<p class="text">de donde se deduce que</p>
+<p>de donde se deduce que</p>
 <div class="text">
   \[
     \boxed{x_N=\frac{b_N}{U_N}}
   \]
 </div>
-<p class="text"> Por otra parte, si se supiesen los valores de
+<p> Por otra parte, si se supiesen los valores de
 \(x_N,x_{N-1},\dots,x_{i+1}\) se podría obtener el valor de \(x_i\), pues
 de la fila \(i\) se obtiene:</p>
 <div class="text">
@@ -69,12 +69,33 @@ de la fila \(i\) se obtiene:</p>
     u_{ii}x_i+\sum_{k=i+1}^N u_{ik}x_k=b_i
   \]
 </div>
-<p class="text">de donde se deduce que</p>
+<p>de donde se deduce que</p>
 <div class="text">
   \[
     \boxed{x_i  = \frac{b_i-\sum_{k=i+1}^N u_{ik}x_k}{u_{ii}}}
   \]
 </div>
-<p class="text"> Juntando ambas partes se tiene, por una parte el valor de \(x_N\) y por otra parte de una fórmula que da el valor de \(x_i\) a partir de los valores de
-\(x_{i+1},\dots,x_{N}\) con lo que ya se puede obtener cualquier valor.</p>
+<p> Juntando todo se tiene por una parte el valor de \(x_N\) y por otra parte una fórmula que da el valor de \(x_i\) a partir de los valores de
+\(x_{i+1},\dots,x_{N}\) con lo que ya se tiene un método para obtener el vector completo \(\mathbf{x}\); con \(x_N\) se obtendría \(x_{N-1}\), con \(x_N\) y \(x_{N-1}\) se obtendría \(x_{N-2}\), etc...</p>
+
+<p>Si el sistema fuese triangular inferior, es decir:</p>
+<div class="text">
+  \[
+  \mathbf{L}\mathbf{x}=\mathbf{b}
+  \]
+</div>
+<p>siendo \(\mathbf{L}\) una matriz triangular inferior, se podría
+utilizar un método completamente análogo. De la primera fila se obtendría que</p>
+<div class="text">
+  \[
+  \boxed{x_1=\frac{b_1}{l_{11}}}
+  \]
+</div>
+<p>y análogamente de la fila \(i\) se obtendría:</p>
+<div class="text">
+  \[
+  \boxed{x_i=\frac{b_i-\sum_{k=1}^{i-1} l_{ik}x_k}{l_{ii}}}
+  \]
+</div>
+
 </body>

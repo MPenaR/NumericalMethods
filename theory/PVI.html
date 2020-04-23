@@ -8,21 +8,21 @@
 </head>
 <body>
   <h1 class="text" align="center">Problemas de valor inicial.</h1>
-  <p class="text">Se llama ecuación diferencial ordinaria a una ecuación en la que están involucradas una función incógnita y una o más de sus derivadas totales. Éstas se podrán escribir como</p>
+  <p>Se llama ecuación diferencial ordinaria a una ecuación en la que están involucradas una función incógnita y una o más de sus derivadas totales. Éstas se podrán escribir como</p>
   <div align="center">
     $$G\left(t,y,\frac{dy}{dt},\frac{d^2y}{dt^2},\dots,\frac{d^ny}{dt^n}\right)=0$$
   </div>
-  <p class="text">Donde \(t\) es la variable independiente, \(y=f\left(t\right)\) es la función incógnita y \(\frac{d^iy}{dt^i}\) es su derivada de orden \(i\).</p>
+  <p>Donde \(t\) es la variable independiente, \(y=f\left(t\right)\) es la función incógnita y \(\frac{d^iy}{dt^i}\) es su derivada de orden \(i\).</p>
   <div class="formula">
     $$m\frac{d\mathbf{r}}{dt^2}=-\frac{GMm}{\vert\mathbf{r}-\mathbf{r}_0\vert^3}\mathbf{r}$$
   </div>
-  <p class="text">Al máximo orden de la derivadas que aparecen en el una ecuación diferencial se le conoce como orden de la ecuación diferencial.
+  <p>Al máximo orden de la derivadas que aparecen en el una ecuación diferencial se le conoce como orden de la ecuación diferencial.
     De este modo una ecuación diferencial de primer orden será una ecuación en la que solo estarán involucradas
     la variable independiente \(t\), la función incógnita \(y\) y su derivada primera:</p>
     <div align="center">
       $$G\left(t,y,\frac{dy}{dt}\right)=0$$
     </div>
-  <p class="text">Este tema se centrará en la resolución de ecuaciones diferenciales ordinarias de primer orden en las cuales la derivada se podrá despejar de forma explícita, es decir, serán ecuaciones que se podrán expresar como:</p>
+  <p>Este tema se centrará en la resolución de ecuaciones diferenciales ordinarias de primer orden en las cuales la derivada se podrá despejar de forma explícita, es decir, serán ecuaciones que se podrán expresar como:</p>
   <div align="center">
     $$\frac{dy}{dt}=F\left(y,t\right)$$
   </div>
@@ -31,9 +31,9 @@
   </div>
   <div class="plot" id="ODE">
   </div>
-  <p class="text">El método Euler explícito consiste en aproximar la integral:</p>
+  <p>El método Euler explícito consiste en aproximar la integral:</p>
   $$\int_{t_i}^{t_i+1}F\left(y\left(t\right),t\right)\,\mathrm{d}t\approx\int_{t_i}^{t_i+1}F\left(y_i,t_i\right)\,\mathrm{d}t$$
-  <p class="text">con lo que se obtiene la siguiente regla de recurrencia:</p>
+  <p>con lo que se obtiene la siguiente regla de recurrencia:</p>
   $$
   \begin{array}{l}
   y_0 &= y(0)\\
