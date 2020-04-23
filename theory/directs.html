@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../style_notes.css">
+  <title>Métodos Directos</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+<h1 class="text">Métodos directos.</h1>
+<p class="text">  Son aquellos algoritmos en los que mediante una serie de operaciones se
+  obtiene una solución que, en caso de poder operar con precisión
+  infinitamente pequeña, sería la solución exacta. Se explicarán el método de
+  triangulación Gauss y el método de factorización LU.
+</p>
+<h2 class="text">Resolución de un sistema
+triangular:</h2>
+<p class="text">Un sistema triangular superior es un sistema el cuál, cuando es escrito
+matricialmente, es de la forma:</p>
+<div class="text">
+  \[
+ \mathbf{U}\mathbf{x}=\mathbf{b}
+ \]
+</div>
+<p class="text">siendo \(\mathbf{U}\) una matriz triangular superior.</p>
+<p class="text">El valor de \(x_N\) se puede obtener de manera inmediata, pues de la
+  última fila del sistema se obtiene:</p>
+<div class="text">
+  \[
+    \begin{pmatrix}
+    0  & \dots & 0 & u_{NN}
+    \end{pmatrix}
+    \begin{pmatrix}
+    x_1\\
+    x_2\\
+    \vdots\\
+    x_N
+    \end{pmatrix}
+    =b_N
+    \]
+</div>
+<p class="text">de donde se deduce que</p>
+<div class="text">
+  \[
+    \boxed{x_N=\frac{b_N}{U_N}}
+  \]
+</div>
+<p class="text"> Por otra parte, si se supiesen los valores de
+\(x_N,x_{N-1},\dots,x_{i+1}\) se podría obtener el valor de \(x_i\), pues
+de la fila \(i\) se obtiene:</p>
+<div class="text">
+  \[
+    \begin{pmatrix}
+    0 & \dots & 0  & u_{ii} & \dots& u_{iN}
+    \end{pmatrix}
+    \begin{pmatrix}
+    x_1\\
+    \vdots\\
+    x_{i-1}\\
+    x_{i}\\
+    \vdots\\
+    x_N
+    \end{pmatrix}
+    =b_i
+    \]
+</div>
+<div class="text">
+  \[
+    u_{ii}x_i+\sum_{k=i+1}^N u_{ik}x_k=b_i
+  \]
+</div>
+<p class="text">de donde se deduce que</p>
+<div class="text">
+  \[
+    \boxed{x_i  = \frac{b_i-\sum_{k=i+1}^N u_{ik}x_k}{u_{ii}}}
+  \]
+</div>
+<p class="text"> Juntando ambas partes se tiene, por una parte el valor de \(x_N\) y por otra parte de una fórmula que da el valor de \(x_i\) a partir de los valores de
+\(x_{i+1},\dots,x_{N}\) con lo que ya se puede obtener cualquier valor.</p>
+</body>
