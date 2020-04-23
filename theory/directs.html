@@ -17,7 +17,7 @@
 triangular:</h2>
 <p>Un sistema triangular superior es un sistema el cuál, cuando es escrito
 matricialmente, es de la forma:</p>
-<div class="text">
+<div align="center>
   \[
  \mathbf{U}\mathbf{x}=\mathbf{b}
  \]
@@ -25,7 +25,7 @@ matricialmente, es de la forma:</p>
 <p>siendo \(\mathbf{U}\) una matriz triangular superior.</p>
 <p>El valor de \(x_N\) se puede obtener de manera inmediata, pues de la
   última fila del sistema se obtiene:</p>
-<div class="text">
+<div align="center>
   \[
     \begin{pmatrix}
     0  & \dots & 0 & u_{NN}
@@ -40,7 +40,7 @@ matricialmente, es de la forma:</p>
     \]
 </div>
 <p>de donde se deduce que</p>
-<div class="text">
+<div align="center>
   \[
     \boxed{x_N=\frac{b_N}{U_N}}
   \]
@@ -48,7 +48,7 @@ matricialmente, es de la forma:</p>
 <p> Por otra parte, si se supiesen los valores de
 \(x_N,x_{N-1},\dots,x_{i+1}\) se podría obtener el valor de \(x_i\), pues
 de la fila \(i\) se obtiene:</p>
-<div class="text">
+<div align="center>
   \[
     \begin{pmatrix}
     0 & \dots & 0  & u_{ii} & \dots& u_{iN}
@@ -64,13 +64,13 @@ de la fila \(i\) se obtiene:</p>
     =b_i
     \]
 </div>
-<div class="text">
+<div align="center>
   \[
     u_{ii}x_i+\sum_{k=i+1}^N u_{ik}x_k=b_i
   \]
 </div>
 <p>de donde se deduce que</p>
-<div class="text">
+<div align="center>
   \[
     \boxed{x_i  = \frac{b_i-\sum_{k=i+1}^N u_{ik}x_k}{u_{ii}}}
   \]
@@ -79,20 +79,20 @@ de la fila \(i\) se obtiene:</p>
 \(x_{i+1},\dots,x_{N}\) con lo que ya se tiene un método para obtener el vector completo \(\mathbf{x}\); con \(x_N\) se obtendría \(x_{N-1}\), con \(x_N\) y \(x_{N-1}\) se obtendría \(x_{N-2}\), etc...</p>
 
 <p>Si el sistema fuese triangular inferior, es decir:</p>
-<div class="text">
+<div align="center>
   \[
   \mathbf{L}\mathbf{x}=\mathbf{b}
   \]
 </div>
 <p>siendo \(\mathbf{L}\) una matriz triangular inferior, se podría
 utilizar un método completamente análogo. De la primera fila se obtendría que</p>
-<div class="text">
+<div align="center>
   \[
   \boxed{x_1=\frac{b_1}{l_{11}}}
   \]
 </div>
 <p>y análogamente de la fila \(i\) se obtendría:</p>
-<div class="text">
+<div align="center>
   \[
   \boxed{x_i=\frac{b_i-\sum_{k=1}^{i-1} l_{ik}x_k}{l_{ii}}}
   \]

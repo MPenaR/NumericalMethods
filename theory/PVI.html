@@ -32,15 +32,18 @@
   <div class="plot" id="ODE">
   </div>
   <p>El método Euler explícito consiste en aproximar la integral:</p>
-  $$\int_{t_i}^{t_i+1}F\left(y\left(t\right),t\right)\,\mathrm{d}t\approx\int_{t_i}^{t_i+1}F\left(y_i,t_i\right)\,\mathrm{d}t$$
+  <div align="center">
+    $$\int_{t_i}^{t_i+1}F\left(y\left(t\right),t\right)\,\mathrm{d}t\approx\int_{t_i}^{t_i+1}F\left(y_i,t_i\right)\,\mathrm{d}t$$
+  </div>
   <p>con lo que se obtiene la siguiente regla de recurrencia:</p>
-  $$
-  \begin{array}{l}
-  y_0 &= y(0)\\
-  y_{i+1} &= y_i + \Delta tF\left(y_i,t_i\right)
-  \end{array}
-  $$
-</p>
+  <div align="center">
+    $$
+    \begin{array}{l}
+    y_0 &= y(0)\\
+    y_{i+1} &= y_i + \Delta tF\left(y_i,t_i\right)
+    \end{array}
+    $$
+  </div>
   <div class="plot" id="feuler">
   </div>
 <!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
