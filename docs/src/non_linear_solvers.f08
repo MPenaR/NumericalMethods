@@ -12,7 +12,7 @@ contains
   function Bisection(f,a,b,err_x) result(x)
     !! Solves the scalar non-linear equation:
     !! $$ f(x)=0 $$
-    !! using the bisection method on the interval [a,b]
+    !! using the bisection method on the interval \([a,b]\)
     interface
       function f(x) result(y)
         !! function defining the non-linear equation
@@ -28,7 +28,7 @@ contains
     !! right boundary of the interval
     real, intent(in) :: err_x
     !! admisible error in the solution, that is:
-    !! $$ x_\mathrm{true} = x \pm \frac{\eps_{x}}{2} $$
+    !! $$ x_\mathrm{true} = x \pm \frac{\epsilon_{x}}{2} $$
     real :: x
     !! numerical aproximation to the solution
 
@@ -159,7 +159,7 @@ contains
      end function
    end interface
    real, intent(in) :: x0(:)
-   !! initial aproximation to the solution: (x0,y0)
+   !! initial aproximation to the solution: \((x_0,y_0)\)
    real, intent(in) :: err_x
    !! admisible error in the solution
    real, intent(in) :: err_f
