@@ -22,3 +22,9 @@ p{
   align: center;
 }
 .MathJax p {line-height: inherit}
+/* p {
+   text-indent: 20px;
+} */
+a {
+   text-decoration: none;
+}

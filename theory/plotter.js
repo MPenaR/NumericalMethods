@@ -1,5 +1,5 @@
 
-var max_w = 460;
+var max_w = 600;
 var max_h = 400;
 var margin = {top: 10, right: 30, bottom: 30, left: 60};
 var width = max_w - margin.left - margin.right;
