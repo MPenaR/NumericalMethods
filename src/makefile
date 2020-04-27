@@ -22,9 +22,9 @@ test_integrals: test_integrals.f08 integrals.o
 integrals.o: integrals.f08
 	$(FC) $<
 
-test_non_linear_solvers: test_non_linear_solvers.f08 non_linear_solvers.o
+test_non_linear_solvers: test_non_linear_solvers.f08 non_linear_solvers.o linear_solvers.o
 	$(FL)  $^ -o $@
-non_linear_solvers.o: non_linear_solvers.f08
+non_linear_solvers.o: non_linear_solvers.f08 linear_solvers.o
 	$(FC) $<
 
 
