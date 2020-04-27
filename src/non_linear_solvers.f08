@@ -13,6 +13,7 @@ contains
     !! using the bisection method on the interval [a,b]
     interface
       function f(x) result(y)
+        !! function defining the non-linear equation
         real, intent(in) :: x
         !! independent variable
         real :: y
@@ -47,7 +48,7 @@ contains
      do i = 1, N
        x = (x_l+x_r)/2
        if ( f(x)==0)then
-         return
+         exit
        else if(f(x)*f(x_l)>0) then
          x_l = x
        else
@@ -55,4 +56,89 @@ contains
        end if
      end do
    end function
+
+   function Newton(f, df, x0, err_x, err_f, max_iter) result(x)
+     !! Solves the scalar non-linear equation:
+     !! $$ f(x) = 0 $$
+     !! using Newton's method.
+     interface
+       function f(x) result(y)
+         !! function defining the non-linear equation
+         real, intent(in) :: x
+         !! independent variable
+         real :: y
+         !! dependent variable
+       end function
+       function df(x) result(y)
+         !! derivative of function \(f\)
+         real, intent(in) :: x
+         !! independent variable
+         real :: y
+         !! dependent variable
+       end function
+     end interface
+     real, intent(in) :: x0
+     !! initial aproximation to the solution
+     real, intent(in) :: err_x
+     !! admisible error in the solution
+     real, intent(in) :: err_f
+     !! admisible error in the equation
+     integer, intent(in) :: max_iter
+     !! maximum number of iterations
+     real :: x
+     !! numerical aproximation to the solution
+
+     integer :: i
+     real :: x_old
+
+     x_old = x0
+     do i = 1, max_iter
+       x  = x_old - f(x_old)/df(x_old)
+       if ( ( abs(f(x))<err_f ) .or. ( abs(x-x_old) < err_x) ) then
+         exit
+       end if
+       x_old = x
+     end do
+     if(i>max_iter) print*, "maximum number of iterations reached without convergence"
+  end function
+
+  function Secant(f, x0, err_x, err_f, max_iter) result(x)
+    !! Solves the scalar non-linear equation:
+    !! $$ f(x) = 0 $$
+    !! using the secant method.
+    interface
+      function f(x) result(y)
+        !! function defining the non-linear equation
+        real, intent(in) :: x
+        !! independent variable
+        real :: y
+        !! dependent variable
+      end function
+    end interface
+    real, intent(in) :: x0(2)
+    !! array containing the first and second aproximations to the solution
+    real, intent(in) :: err_x
+    !! admisible error in the solution
+    real, intent(in) :: err_f
+    !! admisible error in the equation
+    integer, intent(in) :: max_iter
+    !! maximum number of iterations
+    real :: x
+    !! numerical aproximation to the solution
+
+    integer :: i
+    real :: x_old(2)
+
+    x_old = x0
+    do i = 1, max_iter
+      x  = x_old(2) - f(x_old(2))* (x_old(2) - x_old(1)) / ( f(x_old(2))-f(x_old(1)))
+      if ( ( abs(f(x))<err_f ) .or. ( abs(x-x_old(2)) < err_x) ) then
+        exit
+      end if
+      x_old = [ x_old(2), x ]
+    end do
+    if(i>max_iter) print*, "maximum number of iterations reached without convergence"
+ end function
+
+
  end module
