@@ -10,7 +10,7 @@
     <meta name="author" content="Manuel Pena" >
     <link rel="icon" href="../favicon.png">
 
-    <title>utilities.f08 &ndash; Numerical Methods</title>
+    <title>Bisection &ndash; Numerical Methods</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -108,8 +108,8 @@
     
   
   <div class="row">
-    <h1>utilities.f08
-    <small>Source File</small>
+    <h1>Bisection
+      <small>Function</small>
     
     </h1>
     
@@ -126,20 +126,24 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 2.7% of total for source files.">15 statements</a>
+    title=" 8.3% of total for procedures.">35 statements</a>
      </li> 
      
      
      
-    <li><i class="fa fa-code"></i><a href="../src/utilities.f08"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/non_linear_solvers.f08"> Source File</a></li>
      
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
     
+     <li><a href='../sourcefile/non_linear_solvers.f08.html'>non_linear_solvers.f08</a></li>
+    
+     <li><a href='../module/non_linear_solvers.html'>non_linear_solvers</a></li>
+    
   
-     <li class="active">utilities.f08</li>
+     <li class="active">Bisection</li>
   </ol>
 </div>
 </div>
@@ -151,6 +155,7 @@
 </script>
 
   </div>
+  
   <div class="row">
     <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
     
@@ -165,16 +170,6 @@
 
 
 
-<div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#mods-0">Modules</a></h3></div>
-  <div id="mods-0" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../module/utilities.html">utilities</a>
-      
-    </div>
-  </div>
-</div>
 
 
 
@@ -189,28 +184,180 @@
 
 
 
-
-
-<div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
-  <div class="list-group">
-    <a class="list-group-item" href="../sourcefile/utilities.f08.html#src">utilities.f08</a>
-  </div>
-</div>
-
+<em>None</em>
 
 
 </div>
 
     </div>
+    
     <div class="col-md-9" id='text'>
-      
-      <br>
+    <h2>
+public function Bisection(f, a, b, err_x) result(x)
+    
+    
+   
+</h2>
+    
+  
+
+
+    
+    <p>Solves the scalar non-linear equation:
+ <script type="math/tex; mode=display"> f(x)=0 </script>
+ using the bisection method on the interval [a,b]</p>
+    
+
+    <h3>Arguments</h3>
     
       
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td colspan="7">
+      <small>
+    
+    <h5>
+public function f(x) result(y)
+    
+    
+   
+</h5>
+    
+
+
+
+<p>function defining the non-linear equation</p>
+    
+    <h6>Arguments</h6>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>x</strong></td><td><p>independent variable</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h6>Return Value <small>real
+  </small></h6>
+  <p>dependent variable</p>
+    
+</small>
+  </td> 
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-a"></span>real,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>a</strong></td><td><p>left boundary of the interval</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-b~8"></span>real,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>b</strong></td><td><p>right boundary of the interval</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-err_x~3"></span>real,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>err_x</strong></td><td><p>admisible error in the solution, that is:
+ <script type="math/tex; mode=display"> x_\mathrm{true} = x \pm \frac{\eps_{x}}{2} </script>
+</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+    
+    
+    
+    
+    
+    
+    
+   <h3>Return Value <small><span class="anchor" id="variable-x~12"></span>real
+  </small></h3>
+    <p>numerical aproximation to the solution</p>
+    
+    
+    <br>
+    
+    
+     
     <div class="panel panel-default">
       <div class="panel-heading">
-  <h3 class="panel-title">Files dependent on this one</h3>
+  <h3 class="panel-title">Called by</h3>
       </div>
       <div class="panel-body">
   <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -218,32 +365,32 @@
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.40.1 (20161225.0304)
  -->
-<!-- Title: sourcefile~~utilities.f08~~AfferentGraph Pages: 1 -->
-<svg id="sourcefileutilitiesf08AfferentGraph" width="193pt" height="32pt"
- viewBox="0.00 0.00 193.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="sourcefile~~utilities.f08~~AfferentGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
-<title>sourcefile~~utilities.f08~~AfferentGraph</title>
-<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-28 189,-28 189,4 -4,4"/>
-<!-- sourcefile~utilities.f08 -->
-<g id="sourcefile~~utilities.f08~~AfferentGraph_node1" class="node">
-<title>sourcefile~utilities.f08</title>
-<polygon fill="none" stroke="#000000" points="63,-24 0,-24 0,0 63,0 63,-24"/>
-<text text-anchor="middle" x="31.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#000000">utilities.f08</text>
+<!-- Title: proc~~bisection~~CalledByGraph Pages: 1 -->
+<svg id="procbisectionCalledByGraph" width="225pt" height="32pt"
+ viewBox="0.00 0.00 225.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~bisection~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>proc~~bisection~~CalledByGraph</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-28 221,-28 221,4 -4,4"/>
+<!-- proc~bisection -->
+<g id="proc~~bisection~~CalledByGraph_node1" class="node">
+<title>proc~bisection</title>
+<polygon fill="none" stroke="#000000" points="217,-24 162,-24 162,0 217,0 217,-24"/>
+<text text-anchor="middle" x="189.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#000000">Bisection</text>
 </g>
-<!-- sourcefile~test_utilities.f08 -->
-<g id="sourcefile~~utilities.f08~~AfferentGraph_node2" class="node">
-<title>sourcefile~test_utilities.f08</title>
-<g id="a_sourcefile~~utilities.f08~~AfferentGraph_node2"><a xlink:href=".././sourcefile/test_utilities.f08.html" xlink:title="test_utilities.f08">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="185,-24 99,-24 99,0 185,0 185,-24"/>
-<text text-anchor="middle" x="142" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">test_utilities.f08</text>
+<!-- program~test_non_linear_solvers -->
+<g id="proc~~bisection~~CalledByGraph_node2" class="node">
+<title>program~test_non_linear_solvers</title>
+<g id="a_proc~~bisection~~CalledByGraph_node2"><a xlink:href=".././program/test_non_linear_solvers.html" xlink:title="test_non_linear_solvers">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="126,-24 0,-24 0,0 126,0 126,-24"/>
+<text text-anchor="middle" x="63" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">test_non_linear_solvers</text>
 </a>
 </g>
 </g>
-<!-- sourcefile~test_utilities.f08&#45;&gt;sourcefile~utilities.f08 -->
-<g id="sourcefile~~utilities.f08~~AfferentGraph_edge1" class="edge">
-<title>sourcefile~test_utilities.f08&#45;&gt;sourcefile~utilities.f08</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M98.9614,-12C90.6101,-12 81.867,-12 73.5481,-12"/>
-<polygon fill="#000000" stroke="#000000" points="73.2991,-8.5001 63.299,-12 73.299,-15.5001 73.2991,-8.5001"/>
+<!-- program~test_non_linear_solvers&#45;&gt;proc~bisection -->
+<g id="proc~~bisection~~CalledByGraph_edge1" class="edge">
+<title>program~test_non_linear_solvers&#45;&gt;proc~bisection</title>
+<path fill="none" stroke="#000000" d="M126.25,-12C134.9254,-12 143.6009,-12 151.6235,-12"/>
+<polygon fill="#000000" stroke="#000000" points="151.7391,-15.5001 161.739,-12 151.739,-8.5001 151.7391,-15.5001"/>
 </g>
 </g>
 </svg>
@@ -255,36 +402,61 @@
 <!-- Generated by graphviz version 2.40.1 (20161225.0304)
  -->
 <!-- Title: Graph Key Pages: 1 -->
-<svg width="190pt" height="32pt"
- viewBox="0.00 0.00 190.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="560pt" height="32pt"
+ viewBox="0.00 0.00 559.50 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
 <title>Graph Key</title>
-<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-28 186,-28 186,4 -4,4"/>
-<!-- Source File -->
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-28 555.5,-28 555.5,4 -4,4"/>
+<!-- Subroutine -->
 <g id="node1" class="node">
-<title>Source File</title>
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="67,-24 0,-24 0,0 67,0 67,-24"/>
-<text text-anchor="middle" x="33.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Source File</text>
+<title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="64,-24 0,-24 0,0 64,0 64,-24"/>
+<text text-anchor="middle" x="32" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node2" class="node">
+<title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="136,-24 82,-24 82,0 136,0 136,-24"/>
+<text text-anchor="middle" x="109" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Function</text>
+</g>
+<!-- Interface -->
+<g id="node3" class="node">
+<title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="209.5,-24 154.5,-24 154.5,0 209.5,0 209.5,-24"/>
+<text text-anchor="middle" x="182" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Interface</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node4" class="node">
+<title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="364,-24 228,-24 228,0 364,0 364,-24"/>
+<text text-anchor="middle" x="296" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node5" class="node">
+<title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="436,-24 382,-24 382,0 436,0 436,-24"/>
+<text text-anchor="middle" x="409" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Program</text>
 </g>
 <!-- This Page&#39;s Entity -->
-<g id="node2" class="node">
+<g id="node6" class="node">
 <title>This Page&#39;s Entity</title>
-<polygon fill="none" stroke="#000000" points="182,-24 85,-24 85,0 182,0 182,-24"/>
-<text text-anchor="middle" x="133.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#000000">This Page&#39;s Entity</text>
+<polygon fill="none" stroke="#000000" points="551.5,-24 454.5,-24 454.5,0 551.5,0 551.5,-24"/>
+<text text-anchor="middle" x="503" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#000000">This Page&#39;s Entity</text>
 </g>
 </g>
 </svg>
 
     
-    <p>Solid arrows point from a file to a file which it depends on. A file
-    is dependent upon another if the latter must be compiled before the former
-    can be.
+    <p>Solid arrows point from a procedure to one which it calls. Dashed 
+    arrows point from an interface to procedures which implement that interface.
+    This could include the module procedures in a generic interface or the
+    implementation in a submodule of an interface in a parent module.
     </p>
     </div></div></div></div>
       </div>
     </div>
-      
-      <br>
+     
+    <br>
 
     <section class="visible-xs visible-sm hidden-md">
       
@@ -297,16 +469,6 @@
 
 
 
-<div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#mods-1">Modules</a></h3></div>
-  <div id="mods-1" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../module/utilities.html">utilities</a>
-      
-    </div>
-  </div>
-</div>
 
 
 
@@ -321,55 +483,35 @@
 
 
 
-
-
-<div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
-  <div class="list-group">
-    <a class="list-group-item" href="../sourcefile/utilities.f08.html#src">utilities.f08</a>
-  </div>
-</div>
-
+<em>None</em>
 
 
     </section>
     <br class="visible-xs visible-sm hidden-md">
 
-    <section>
-      <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="hl"><pre><span></span><a name="ln-1"></a><span class="k">module </span><span class="n">utilities</span>
-<a name="ln-2"></a>      <span class="c">!! module with utilities like printing a matrix, or some constants</span>
-<a name="ln-3"></a>      
-<a name="ln-4"></a>      <span class="k">implicit none</span>
-<a name="ln-5"></a>
-<a name="ln-6"></a>
-<a name="ln-7"></a><span class="k">      </span><span class="kt">real</span> <span class="kd">::</span> <span class="n">pi</span> <span class="o">=</span> <span class="nb">acos</span><span class="p">(</span><span class="o">-</span><span class="mf">1.</span><span class="p">)</span>
-<a name="ln-8"></a>      <span class="c">!! mathematical constant pi</span>
-<a name="ln-9"></a>      <span class="kt">real</span> <span class="kd">::</span> <span class="n">e</span> <span class="o">=</span> <span class="nb">exp</span><span class="p">(</span><span class="mf">1.</span><span class="p">)</span>
-<a name="ln-10"></a>      <span class="c">!! mathematical constante e</span>
-<a name="ln-11"></a>
-<a name="ln-12"></a><span class="k">contains</span>
-<a name="ln-13"></a>
-<a name="ln-14"></a><span class="k">      subroutine </span><span class="n">print_matrix</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
-<a name="ln-15"></a>      <span class="c">!! Prints a matrix in a tabular form        </span>
-<a name="ln-16"></a>              <span class="kt">real</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">A</span><span class="p">(:,:)</span>
-<a name="ln-17"></a>              <span class="kt">integer</span> <span class="kd">::</span> <span class="n">M</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">i</span>
-<a name="ln-18"></a>
-<a name="ln-19"></a>              <span class="n">M</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<a name="ln-20"></a>              <span class="n">N</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-<a name="ln-21"></a>
-<a name="ln-22"></a>              <span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">M</span>
-<a name="ln-23"></a>                <span class="k">print</span> <span class="s1">&#39;(*(1x,F5.2,:,&quot;,&quot;))&#39;</span><span class="p">,</span> <span class="n">A</span><span class="p">(</span><span class="n">i</span><span class="p">,:)</span>
-<a name="ln-24"></a>              <span class="k">end do</span>
-<a name="ln-25"></a><span class="k">      end subroutine</span>
-<a name="ln-26"></a><span class="k">end module</span>
-</pre></div>
+    
 
-    </section>
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+
+    
+    
+    
+    
     </div>
   </div>
 
-  
+
     <hr>    
     </div> <!-- /container -->
     <footer>

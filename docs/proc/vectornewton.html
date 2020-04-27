@@ -10,7 +10,7 @@
     <meta name="author" content="Manuel Pena" >
     <link rel="icon" href="../favicon.png">
 
-    <title>solve_LU &ndash; Numerical Methods</title>
+    <title>VectorNewton &ndash; Numerical Methods</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -108,7 +108,7 @@
     
   
   <div class="row">
-    <h1>solve_LU
+    <h1>VectorNewton
       <small>Function</small>
     
     </h1>
@@ -126,24 +126,24 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 1.7% of total for procedures.">7 statements</a>
+    title=" 6.4% of total for procedures.">27 statements</a>
      </li> 
      
      
      
-    <li><i class="fa fa-code"></i><a href="../src/linear_solvers.f08"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/non_linear_solvers.f08"> Source File</a></li>
      
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
     
-     <li><a href='../sourcefile/linear_solvers.f08.html'>linear_solvers.f08</a></li>
+     <li><a href='../sourcefile/non_linear_solvers.f08.html'>non_linear_solvers.f08</a></li>
     
-     <li><a href='../module/linear_solvers.html'>linear_solvers</a></li>
+     <li><a href='../module/non_linear_solvers.html'>non_linear_solvers</a></li>
     
   
-     <li class="active">solve_LU</li>
+     <li class="active">VectorNewton</li>
   </ol>
 </div>
 </div>
@@ -193,7 +193,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-public function solve_LU(L, U, b) result(x)
+public function VectorNewton(f, J, x0, err_x, err_f, max_iter) result(x)
     
     
    
@@ -203,10 +203,9 @@ public function solve_LU(L, U, b) result(x)
 
 
     
-    <p>Computes the solution to the system:
- <script type="math/tex; mode=display">\mathbf{L}\mathbf{U}\mathbf{x}=\mathbf{b}</script>
- where <strong>L</strong> and <strong>U</strong> are the matrices obtained from
- a LU factorization.</p>
+    <p>Solves the vector non-linear equation:
+ <script type="math/tex; mode=display"> f(x) = 0 </script>
+ using Newton's method.</p>
     
 
     <h3>Arguments</h3>
@@ -227,12 +226,66 @@ public function solve_LU(L, U, b) result(x)
   
 <tr>
   
-  <td><span class="anchor" id="variable-l~2"></span>real,</td>
+  <td colspan="7">
+      <small>
+    
+    <h5>
+public function f(x) result(y)
+    
+    
+   
+</h5>
+    
+
+
+
+<p>function defining the non-linear equation</p>
+    
+    <h6>Arguments</h6>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real,</td>
   <td>intent(in)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>L</strong>(:,:)</td><td><p>Lower triangular matrix</p></td>
+  <td><strong>x</strong>(:)</td><td><p>independent variable</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h6>Return Value <small>real
+  (size(x))</small></h6>
+  <p>dependent variable</p>
+    
+</small>
+  </td> 
   
 </tr>
 
@@ -242,12 +295,67 @@ public function solve_LU(L, U, b) result(x)
   
 <tr>
   
-  <td><span class="anchor" id="variable-u~2"></span>real,</td>
+  <td colspan="7">
+      <small>
+    
+    <h5>
+public function J(x) result(y)
+    
+    
+   
+</h5>
+    
+
+
+
+<p>jacobian of function <script type="math/tex">f</script>
+</p>
+    
+    <h6>Arguments</h6>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real,</td>
   <td>intent(in)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>U</strong>(:,:)</td><td><p>Upper triangular matrix</p></td>
+  <td><strong>x</strong>(:)</td><td><p>independent variable</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h6>Return Value <small>real
+  (size(x),size(x))</small></h6>
+  <p>dependent variable</p>
+    
+</small>
+  </td> 
   
 </tr>
 
@@ -257,12 +365,57 @@ public function solve_LU(L, U, b) result(x)
   
 <tr>
   
-  <td><span class="anchor" id="variable-b~4"></span>real,</td>
+  <td><span class="anchor" id="variable-x0~3"></span>real,</td>
   <td>intent(in)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>b</strong>(:)</td><td><p>Right hand side vector</p></td>
+  <td><strong>x0</strong>(:)</td><td><p>initial aproximation to the solution: (x0,y0)</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-err_x~6"></span>real,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>err_x</strong></td><td><p>admisible error in the solution</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-err_f~3"></span>real,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>err_f</strong></td><td><p>admisible error in the equation</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-max_iter~3"></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>max_iter</strong></td><td><p>maximum number of iterations</p></td>
   
 </tr>
 
@@ -276,9 +429,9 @@ public function solve_LU(L, U, b) result(x)
     
     
     
-   <h3>Return Value <small><span class="anchor" id="variable-x~8"></span>real
-  (size(b))</small></h3>
-    <p>Solution vector <strong>x</strong></p>
+   <h3>Return Value <small><span class="anchor" id="variable-x~15"></span>real
+  (size(x0))</small></h3>
+    <p>numerical aproximation to the solution</p>
     
     
     <br>
@@ -294,47 +447,92 @@ public function solve_LU(L, U, b) result(x)
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.40.1 (20161225.0304)
  -->
-<!-- Title: proc~~solve_lu~~CallsGraph Pages: 1 -->
-<svg id="procsolve_luCallsGraph" width="155pt" height="74pt"
- viewBox="0.00 0.00 155.00 74.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~solve_lu~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 70)">
-<title>proc~~solve_lu~~CallsGraph</title>
-<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-70 151,-70 151,4 -4,4"/>
+<!-- Title: proc~~vectornewton~~CallsGraph Pages: 1 -->
+<svg id="procvectornewtonCallsGraph" width="362pt" height="95pt"
+ viewBox="0.00 0.00 362.00 95.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~vectornewton~~CallsGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 91)">
+<title>proc~~vectornewton~~CallsGraph</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-91 358,-91 358,4 -4,4"/>
+<!-- proc~vectornewton -->
+<g id="proc~~vectornewton~~CallsGraph_node1" class="node">
+<title>proc~vectornewton</title>
+<polygon fill="none" stroke="#000000" points="79,-45 0,-45 0,-21 79,-21 79,-45"/>
+<text text-anchor="middle" x="39.5" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#000000">VectorNewton</text>
+</g>
+<!-- proc~solve -->
+<g id="proc~~vectornewton~~CallsGraph_node2" class="node">
+<title>proc~solve</title>
+<g id="a_proc~~vectornewton~~CallsGraph_node2"><a xlink:href=".././proc/solve.html" xlink:title="solve">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="169,-45 115,-45 115,-21 169,-21 169,-45"/>
+<text text-anchor="middle" x="142" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">solve</text>
+</a>
+</g>
+</g>
+<!-- proc~vectornewton&#45;&gt;proc~solve -->
+<g id="proc~~vectornewton~~CallsGraph_edge1" class="edge">
+<title>proc~vectornewton&#45;&gt;proc~solve</title>
+<path fill="none" stroke="#000000" d="M79.1292,-33C87.5266,-33 96.3634,-33 104.672,-33"/>
+<polygon fill="#000000" stroke="#000000" points="104.8409,-36.5001 114.8409,-33 104.8408,-29.5001 104.8409,-36.5001"/>
+</g>
 <!-- proc~solve_lu -->
-<g id="proc~~solve_lu~~CallsGraph_node1" class="node">
+<g id="proc~~vectornewton~~CallsGraph_node3" class="node">
 <title>proc~solve_lu</title>
-<polygon fill="none" stroke="#000000" points="57,-45 0,-45 0,-21 57,-21 57,-45"/>
-<text text-anchor="middle" x="28.5" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#000000">solve_LU</text>
+<g id="a_proc~~vectornewton~~CallsGraph_node3"><a xlink:href=".././proc/solve_lu.html" xlink:title="solve_LU">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="263,-66 206,-66 206,-42 263,-42 263,-66"/>
+<text text-anchor="middle" x="234.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">solve_LU</text>
+</a>
+</g>
+</g>
+<!-- proc~solve&#45;&gt;proc~solve_lu -->
+<g id="proc~~vectornewton~~CallsGraph_edge2" class="edge">
+<title>proc~solve&#45;&gt;proc~solve_lu</title>
+<path fill="none" stroke="#000000" d="M169.2528,-39.1871C177.6162,-41.0858 186.9827,-43.2123 195.9517,-45.2485"/>
+<polygon fill="#000000" stroke="#000000" points="195.3075,-48.6912 205.8343,-47.4921 196.8574,-41.865 195.3075,-48.6912"/>
+</g>
+<!-- proc~factor_lu -->
+<g id="proc~~vectornewton~~CallsGraph_node4" class="node">
+<title>proc~factor_lu</title>
+<g id="a_proc~~vectornewton~~CallsGraph_node4"><a xlink:href=".././proc/factor_lu.html" xlink:title="factor_LU">
+<polygon fill="#d9534f" stroke="#d9534f" points="264,-24 205,-24 205,0 264,0 264,-24"/>
+<text text-anchor="middle" x="234.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">factor_LU</text>
+</a>
+</g>
+</g>
+<!-- proc~solve&#45;&gt;proc~factor_lu -->
+<g id="proc~~vectornewton~~CallsGraph_edge3" class="edge">
+<title>proc~solve&#45;&gt;proc~factor_lu</title>
+<path fill="none" stroke="#000000" d="M169.2528,-26.8129C177.2964,-24.9868 186.268,-22.95 194.9213,-20.9854"/>
+<polygon fill="#000000" stroke="#000000" points="195.8818,-24.3565 204.8587,-18.7294 194.332,-17.5302 195.8818,-24.3565"/>
 </g>
 <!-- proc~solve_l -->
-<g id="proc~~solve_lu~~CallsGraph_node2" class="node">
+<g id="proc~~vectornewton~~CallsGraph_node5" class="node">
 <title>proc~solve_l</title>
-<g id="a_proc~~solve_lu~~CallsGraph_node2"><a xlink:href=".././proc/solve_l.html" xlink:title="solve_L">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="147,-66 93,-66 93,-42 147,-42 147,-66"/>
-<text text-anchor="middle" x="120" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">solve_L</text>
+<g id="a_proc~~vectornewton~~CallsGraph_node5"><a xlink:href=".././proc/solve_l.html" xlink:title="solve_L">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="354,-87 300,-87 300,-63 354,-63 354,-87"/>
+<text text-anchor="middle" x="327" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">solve_L</text>
 </a>
 </g>
 </g>
 <!-- proc~solve_lu&#45;&gt;proc~solve_l -->
-<g id="proc~~solve_lu~~CallsGraph_edge1" class="edge">
+<g id="proc~~vectornewton~~CallsGraph_edge4" class="edge">
 <title>proc~solve_lu&#45;&gt;proc~solve_l</title>
-<path fill="none" stroke="#000000" d="M57.4512,-39.6445C65.4912,-41.4898 74.335,-43.5195 82.7773,-45.4571"/>
-<polygon fill="#000000" stroke="#000000" points="82.2652,-48.9305 92.7947,-47.7562 83.8311,-42.1079 82.2652,-48.9305"/>
+<path fill="none" stroke="#000000" d="M263.0078,-60.472C271.4929,-62.3984 280.917,-64.5379 289.8668,-66.5698"/>
+<polygon fill="#000000" stroke="#000000" points="289.1678,-70.0001 299.6946,-68.8009 290.7176,-63.1738 289.1678,-70.0001"/>
 </g>
 <!-- proc~solve_u -->
-<g id="proc~~solve_lu~~CallsGraph_node3" class="node">
+<g id="proc~~vectornewton~~CallsGraph_node6" class="node">
 <title>proc~solve_u</title>
-<g id="a_proc~~solve_lu~~CallsGraph_node3"><a xlink:href=".././proc/solve_u.html" xlink:title="solve_U">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="147,-24 93,-24 93,0 147,0 147,-24"/>
-<text text-anchor="middle" x="120" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">solve_U</text>
+<g id="a_proc~~vectornewton~~CallsGraph_node6"><a xlink:href=".././proc/solve_u.html" xlink:title="solve_U">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="354,-45 300,-45 300,-21 354,-21 354,-45"/>
+<text text-anchor="middle" x="327" y="-30.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">solve_U</text>
 </a>
 </g>
 </g>
 <!-- proc~solve_lu&#45;&gt;proc~solve_u -->
-<g id="proc~~solve_lu~~CallsGraph_edge2" class="edge">
+<g id="proc~~vectornewton~~CallsGraph_edge5" class="edge">
 <title>proc~solve_lu&#45;&gt;proc~solve_u</title>
-<path fill="none" stroke="#000000" d="M57.4512,-26.3555C65.4912,-24.5102 74.335,-22.4805 82.7773,-20.5429"/>
-<polygon fill="#000000" stroke="#000000" points="83.8311,-23.8921 92.7947,-18.2438 82.2652,-17.0695 83.8311,-23.8921"/>
+<path fill="none" stroke="#000000" d="M263.0078,-47.528C271.4929,-45.6016 280.917,-43.4621 289.8668,-41.4302"/>
+<polygon fill="#000000" stroke="#000000" points="290.7176,-44.8262 299.6946,-39.1991 289.1678,-37.9999 290.7176,-44.8262"/>
 </g>
 </g>
 </svg>
@@ -411,107 +609,32 @@ public function solve_LU(L, U, b) result(x)
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.40.1 (20161225.0304)
  -->
-<!-- Title: proc~~solve_lu~~CalledByGraph Pages: 1 -->
-<svg id="procsolve_luCalledByGraph" width="454pt" height="116pt"
- viewBox="0.00 0.00 454.00 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~solve_lu~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 112)">
-<title>proc~~solve_lu~~CalledByGraph</title>
-<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-112 450,-112 450,4 -4,4"/>
-<!-- proc~solve_lu -->
-<g id="proc~~solve_lu~~CalledByGraph_node1" class="node">
-<title>proc~solve_lu</title>
-<polygon fill="none" stroke="#000000" points="446,-87 389,-87 389,-63 446,-63 446,-87"/>
-<text text-anchor="middle" x="417.5" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#000000">solve_LU</text>
-</g>
-<!-- proc~eigen_inv -->
-<g id="proc~~solve_lu~~CalledByGraph_node2" class="node">
-<title>proc~eigen_inv</title>
-<g id="a_proc~~solve_lu~~CalledByGraph_node2"><a xlink:href=".././proc/eigen_inv.html" xlink:title="eigen_inv">
-<polygon fill="#d9534f" stroke="#d9534f" points="353,-108 295,-108 295,-84 353,-84 353,-108"/>
-<text text-anchor="middle" x="324" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">eigen_inv</text>
-</a>
-</g>
-</g>
-<!-- proc~eigen_inv&#45;&gt;proc~solve_lu -->
-<g id="proc~~solve_lu~~CalledByGraph_edge1" class="edge">
-<title>proc~eigen_inv&#45;&gt;proc~solve_lu</title>
-<path fill="none" stroke="#000000" d="M353.0715,-89.4706C361.2399,-87.636 370.2529,-85.6117 378.8841,-83.6731"/>
-<polygon fill="#000000" stroke="#000000" points="379.7778,-87.0597 388.7677,-81.4532 378.2437,-80.2298 379.7778,-87.0597"/>
-</g>
-<!-- proc~solve -->
-<g id="proc~~solve_lu~~CalledByGraph_node3" class="node">
-<title>proc~solve</title>
-<g id="a_proc~~solve_lu~~CalledByGraph_node3"><a xlink:href=".././proc/solve.html" xlink:title="solve">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="351,-66 297,-66 297,-42 351,-42 351,-66"/>
-<text text-anchor="middle" x="324" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">solve</text>
-</a>
-</g>
-</g>
-<!-- proc~solve&#45;&gt;proc~solve_lu -->
-<g id="proc~~solve_lu~~CalledByGraph_edge2" class="edge">
-<title>proc~solve&#45;&gt;proc~solve_lu</title>
-<path fill="none" stroke="#000000" d="M351.0441,-60.0741C359.7578,-62.0312 369.5894,-64.2393 378.9658,-66.3453"/>
-<polygon fill="#000000" stroke="#000000" points="378.3632,-69.797 388.8871,-68.5736 379.8972,-62.9672 378.3632,-69.797"/>
-</g>
-<!-- program~test_eigenvectors -->
-<g id="proc~~solve_lu~~CalledByGraph_node4" class="node">
-<title>program~test_eigenvectors</title>
-<g id="a_proc~~solve_lu~~CalledByGraph_node4"><a xlink:href=".././program/test_eigenvectors.html" xlink:title="test_eigenvectors">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="259,-108 162,-108 162,-84 259,-84 259,-108"/>
-<text text-anchor="middle" x="210.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">test_eigenvectors</text>
-</a>
-</g>
-</g>
-<!-- program~test_eigenvectors&#45;&gt;proc~eigen_inv -->
-<g id="proc~~solve_lu~~CalledByGraph_edge3" class="edge">
-<title>program~test_eigenvectors&#45;&gt;proc~eigen_inv</title>
-<path fill="none" stroke="#000000" d="M259.2929,-96C267.8265,-96 276.6051,-96 284.8359,-96"/>
-<polygon fill="#000000" stroke="#000000" points="284.9091,-99.5001 294.9091,-96 284.9091,-92.5001 284.9091,-99.5001"/>
-</g>
+<!-- Title: proc~~vectornewton~~CalledByGraph Pages: 1 -->
+<svg id="procvectornewtonCalledByGraph" width="249pt" height="32pt"
+ viewBox="0.00 0.00 249.00 32.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~vectornewton~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 28)">
+<title>proc~~vectornewton~~CalledByGraph</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-28 245,-28 245,4 -4,4"/>
 <!-- proc~vectornewton -->
-<g id="proc~~solve_lu~~CalledByGraph_node5" class="node">
+<g id="proc~~vectornewton~~CalledByGraph_node1" class="node">
 <title>proc~vectornewton</title>
-<g id="a_proc~~solve_lu~~CalledByGraph_node5"><a xlink:href=".././proc/vectornewton.html" xlink:title="VectorNewton">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="250,-66 171,-66 171,-42 250,-42 250,-66"/>
-<text text-anchor="middle" x="210.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">VectorNewton</text>
-</a>
-</g>
-</g>
-<!-- proc~vectornewton&#45;&gt;proc~solve -->
-<g id="proc~~solve_lu~~CalledByGraph_edge4" class="edge">
-<title>proc~vectornewton&#45;&gt;proc~solve</title>
-<path fill="none" stroke="#000000" d="M250.1968,-54C262.0411,-54 274.9779,-54 286.6655,-54"/>
-<polygon fill="#000000" stroke="#000000" points="286.9807,-57.5001 296.9806,-54 286.9806,-50.5001 286.9807,-57.5001"/>
-</g>
-<!-- program~test -->
-<g id="proc~~solve_lu~~CalledByGraph_node6" class="node">
-<title>program~test</title>
-<g id="a_proc~~solve_lu~~CalledByGraph_node6"><a xlink:href=".././program/test.html" xlink:title="test">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="237.5,-24 183.5,-24 183.5,0 237.5,0 237.5,-24"/>
-<text text-anchor="middle" x="210.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">test</text>
-</a>
-</g>
-</g>
-<!-- program~test&#45;&gt;proc~solve -->
-<g id="proc~~solve_lu~~CalledByGraph_edge5" class="edge">
-<title>program~test&#45;&gt;proc~solve</title>
-<path fill="none" stroke="#000000" d="M237.6861,-22.06C252.4584,-27.5265 270.9388,-34.365 287.0053,-40.3103"/>
-<polygon fill="#000000" stroke="#000000" points="286.0492,-43.6884 296.6424,-43.8765 288.4786,-37.1235 286.0492,-43.6884"/>
+<polygon fill="none" stroke="#000000" points="241,-24 162,-24 162,0 241,0 241,-24"/>
+<text text-anchor="middle" x="201.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#000000">VectorNewton</text>
 </g>
 <!-- program~test_non_linear_solvers -->
-<g id="proc~~solve_lu~~CalledByGraph_node7" class="node">
+<g id="proc~~vectornewton~~CalledByGraph_node2" class="node">
 <title>program~test_non_linear_solvers</title>
-<g id="a_proc~~solve_lu~~CalledByGraph_node7"><a xlink:href=".././program/test_non_linear_solvers.html" xlink:title="test_non_linear_solvers">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="126,-66 0,-66 0,-42 126,-42 126,-66"/>
-<text text-anchor="middle" x="63" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">test_non_linear_solvers</text>
+<g id="a_proc~~vectornewton~~CalledByGraph_node2"><a xlink:href=".././program/test_non_linear_solvers.html" xlink:title="test_non_linear_solvers">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="126,-24 0,-24 0,0 126,0 126,-24"/>
+<text text-anchor="middle" x="63" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">test_non_linear_solvers</text>
 </a>
 </g>
 </g>
 <!-- program~test_non_linear_solvers&#45;&gt;proc~vectornewton -->
-<g id="proc~~solve_lu~~CalledByGraph_edge6" class="edge">
+<g id="proc~~vectornewton~~CalledByGraph_edge1" class="edge">
 <title>program~test_non_linear_solvers&#45;&gt;proc~vectornewton</title>
-<path fill="none" stroke="#000000" d="M126.4093,-54C137.7701,-54 149.4649,-54 160.3864,-54"/>
-<polygon fill="#000000" stroke="#000000" points="160.5844,-57.5001 170.5844,-54 160.5843,-50.5001 160.5844,-57.5001"/>
+<path fill="none" stroke="#000000" d="M126.1705,-12C134.6983,-12 143.3501,-12 151.603,-12"/>
+<polygon fill="#000000" stroke="#000000" points="151.8042,-15.5001 161.8042,-12 151.8042,-8.5001 151.8042,-15.5001"/>
 </g>
 </g>
 </svg>

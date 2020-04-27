@@ -115,13 +115,23 @@ All Procedures &ndash; Numerical Methods
 			 <thead><tr><th>Procedure</th><th>Location</th><th>Procedure Type</th><th>Description</th></tr></thead>
 			 <tbody>
 			 
+			   <tr><td><a href='../proc/bisection.html'>Bisection</a></td><td><a href='../module/non_linear_solvers.html'>non_linear_solvers</a></td><td>Function</td><td><p>Solves the scalar non-linear equation:
+ <script type="math/tex; mode=display"> f(x)=0 </script>
+ using the bisection method on the interval [a,b]</p></td></tr>
+			 
+			   <tr><td><a href='../proc/df.html'>df</a></td><td><a href='../program/test_non_linear_solvers.html'>test_non_linear_solvers</a></td><td>Function</td><td></td></tr>
+			 
 			   <tr><td><a href='../proc/eigen_inv.html'>eigen_inv</a></td><td><a href='../module/eigenvectors.html'>eigenvectors</a></td><td>Subroutine</td><td><p>Given the matrix <strong>A</strong>, computes the eigenvector <strong>v</strong> associated to the eivenvalue
  <strong>lambda</strong> closer to the value <strong>p</strong> using the inverse power method.</p></td></tr>
 			 
 			   <tr><td><a href='../proc/eigen_max.html'>eigen_max</a></td><td><a href='../module/eigenvectors.html'>eigenvectors</a></td><td>Subroutine</td><td><p>Given the matrix <strong>A</strong>, computes the eigenvector <strong>v</strong> associated to
  the eivenvalue of maximum modulus <strong>lambda</strong>  using the power method.</p></td></tr>
 			 
-			   <tr><td><a href='../proc/f.html'>f</a></td><td><a href='../program/test_integrals.html'>test_integrals</a></td><td>Function</td><td></td></tr>
+			   <tr><td><a href='../proc/f.html'>f</a></td><td><a href='../program/test_non_linear_solvers.html'>test_non_linear_solvers</a></td><td>Function</td><td></td></tr>
+			 
+			   <tr><td><a href='../proc/f~2.html'>f</a></td><td><a href='../program/test_integrals.html'>test_integrals</a></td><td>Function</td><td></td></tr>
+			 
+			   <tr><td><a href='../proc/f_vec.html'>f_vec</a></td><td><a href='../program/test_non_linear_solvers.html'>test_non_linear_solvers</a></td><td>Function</td><td></td></tr>
 			 
 			   <tr><td><a href='../proc/factor_lu.html'>factor_LU</a></td><td><a href='../module/linear_solvers.html'>linear_solvers</a></td><td>Subroutine</td><td><p>Computes de LU factorization of a non-singular matrix <strong>A</strong>
  <script type="math/tex; mode=display">\mathbf{A}=\mathbf{L}\mathbf{U}</script>
@@ -137,12 +147,18 @@ All Procedures &ndash; Numerical Methods
  <script type="math/tex; mode=display">\mathbf{A}\mathbf{x}=\mathbf{b}</script>
  using the Gauss-Seidel iterative method.</p></td></tr>
 			 
+			   <tr><td><a href='../proc/j.html'>J</a></td><td><a href='../program/test_non_linear_solvers.html'>test_non_linear_solvers</a></td><td>Function</td><td></td></tr>
+			 
 			   <tr><td><a href='../proc/jacobi.html'>Jacobi</a></td><td><a href='../module/linear_solvers.html'>linear_solvers</a></td><td>Function</td><td><p>Computes the solution to the system
  <script type="math/tex; mode=display">\mathbf{A}\mathbf{x}=\mathbf{b}</script>
  using the Jacobi iterative method.</p></td></tr>
 			 
 			   <tr><td><a href='../proc/make_u.html'>make_U</a></td><td><a href='../module/linear_solvers.html'>linear_solvers</a></td><td>Subroutine</td><td><p>Takes the extended matrix M = (A|b)
  and makes it upper triangular.</p></td></tr>
+			 
+			   <tr><td><a href='../proc/newton.html'>Newton</a></td><td><a href='../module/non_linear_solvers.html'>non_linear_solvers</a></td><td>Function</td><td><p>Solves the scalar non-linear equation:
+ <script type="math/tex; mode=display"> f(x) = 0 </script>
+ using Newton's method.</p></td></tr>
 			 
 			   <tr><td><a href='../proc/print_matrix.html'>print_matrix</a></td><td><a href='../module/utilities.html'>utilities</a></td><td>Subroutine</td><td><p>Prints a matrix in a tabular form        </p></td></tr>
 			 
@@ -160,6 +176,10 @@ All Procedures &ndash; Numerical Methods
  <script type="math/tex; mode=display"> \int_{a}^{b}f\left(x\right)\,\mathrm{d}x</script>
  using the trapezoidal rule on a linearly spaced
  set of points.</p></td></tr>
+			 
+			   <tr><td><a href='../proc/secant.html'>Secant</a></td><td><a href='../module/non_linear_solvers.html'>non_linear_solvers</a></td><td>Function</td><td><p>Solves the scalar non-linear equation:
+ <script type="math/tex; mode=display"> f(x) = 0 </script>
+ using the secant method.</p></td></tr>
 			 
 			   <tr><td><a href='../proc/solve.html'>solve</a></td><td><a href='../module/linear_solvers.html'>linear_solvers</a></td><td>Function</td><td><p>Computes the solution to the system:
  <script type="math/tex; mode=display">\mathbf{A}\mathbf{x}=\mathbf{b}</script>
@@ -186,6 +206,10 @@ All Procedures &ndash; Numerical Methods
  The points do not need to be linearly spaced along the
  integration domain.</p></td></tr>
 			 
+			   <tr><td><a href='../proc/vectornewton.html'>VectorNewton</a></td><td><a href='../module/non_linear_solvers.html'>non_linear_solvers</a></td><td>Function</td><td><p>Solves the vector non-linear equation:
+ <script type="math/tex; mode=display"> f(x) = 0 </script>
+ using Newton's method.</p></td></tr>
+			 
 			 </tbody></table>
              <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
@@ -193,322 +217,433 @@ All Procedures &ndash; Numerical Methods
 <!-- Generated by graphviz version 2.40.1 (20161225.0304)
  -->
 <!-- Title: call~~graph~~CallGraph Pages: 1 -->
-<svg id="callgraphCallGraph" width="421pt" height="468pt"
- viewBox="0.00 0.00 421.00 468.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="call~~graph~~CallGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 464)">
+<svg id="callgraphCallGraph" width="584pt" height="599pt"
+ viewBox="0.00 0.00 584.00 599.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="call~~graph~~CallGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 595)">
 <title>call~~graph~~CallGraph</title>
-<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-464 417,-464 417,4 -4,4"/>
-<!-- proc~solve_l -->
-<g id="call~~graph~~CallGraph_node1" class="node">
-<title>proc~solve_l</title>
-<g id="a_call~~graph~~CallGraph_node1"><a xlink:href=".././proc/solve_l.html" xlink:title="solve_L">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="413,-84 359,-84 359,-60 413,-60 413,-84"/>
-<text text-anchor="middle" x="386" y="-69.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">solve_L</text>
-</a>
-</g>
-</g>
-<!-- proc~quad_simpson -->
-<g id="call~~graph~~CallGraph_node2" class="node">
-<title>proc~quad_simpson</title>
-<g id="a_call~~graph~~CallGraph_node2"><a xlink:href=".././proc/quad_simpson.html" xlink:title="quad_simpson">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="323,-323 241,-323 241,-299 323,-299 323,-323"/>
-<text text-anchor="middle" x="282" y="-308.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">quad_simpson</text>
-</a>
-</g>
-</g>
-<!-- proc~solve -->
-<g id="call~~graph~~CallGraph_node3" class="node">
-<title>proc~solve</title>
-<g id="a_call~~graph~~CallGraph_node3"><a xlink:href=".././proc/solve.html" xlink:title="solve">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="196,-146 142,-146 142,-122 196,-122 196,-146"/>
-<text text-anchor="middle" x="169" y="-131.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">solve</text>
-</a>
-</g>
-</g>
-<!-- proc~solve_lu -->
-<g id="call~~graph~~CallGraph_node11" class="node">
-<title>proc~solve_lu</title>
-<g id="a_call~~graph~~CallGraph_node11"><a xlink:href=".././proc/solve_lu.html" xlink:title="solve_LU">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="310.5,-105 253.5,-105 253.5,-81 310.5,-81 310.5,-105"/>
-<text text-anchor="middle" x="282" y="-90.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">solve_LU</text>
-</a>
-</g>
-</g>
-<!-- proc~solve&#45;&gt;proc~solve_lu -->
-<g id="call~~graph~~CallGraph_edge2" class="edge">
-<title>proc~solve&#45;&gt;proc~solve_lu</title>
-<path fill="none" stroke="#000000" d="M196.0663,-124.1795C210.341,-119.0002 228.0934,-112.559 243.7508,-106.878"/>
-<polygon fill="#000000" stroke="#000000" points="244.9726,-110.158 253.1792,-103.4571 242.5851,-103.5778 244.9726,-110.158"/>
-</g>
-<!-- proc~factor_lu -->
-<g id="call~~graph~~CallGraph_node13" class="node">
-<title>proc~factor_lu</title>
-<g id="a_call~~graph~~CallGraph_node13"><a xlink:href=".././proc/factor_lu.html" xlink:title="factor_LU">
-<polygon fill="#d9534f" stroke="#d9534f" points="311.5,-147 252.5,-147 252.5,-123 311.5,-123 311.5,-147"/>
-<text text-anchor="middle" x="282" y="-132.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">factor_LU</text>
-</a>
-</g>
-</g>
-<!-- proc~solve&#45;&gt;proc~factor_lu -->
-<g id="call~~graph~~CallGraph_edge1" class="edge">
-<title>proc~solve&#45;&gt;proc~factor_lu</title>
-<path fill="none" stroke="#000000" d="M196.0663,-134.2395C209.8595,-134.3616 226.8997,-134.5124 242.1593,-134.6474"/>
-<polygon fill="#000000" stroke="#000000" points="242.3469,-138.1491 252.3775,-134.7379 242.4089,-131.1494 242.3469,-138.1491"/>
-</g>
-<!-- proc~g -->
-<g id="call~~graph~~CallGraph_node4" class="node">
-<title>proc~g</title>
-<g id="a_call~~graph~~CallGraph_node4"><a xlink:href=".././proc/g.html" xlink:title="g">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="75.5,-334 21.5,-334 21.5,-310 75.5,-310 75.5,-334"/>
-<text text-anchor="middle" x="48.5" y="-319.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">g</text>
-</a>
-</g>
-</g>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-595 580,-595 580,4 -4,4"/>
 <!-- proc~eigen_max -->
-<g id="call~~graph~~CallGraph_node5" class="node">
+<g id="call~~graph~~CallGraph_node1" class="node">
 <title>proc~eigen_max</title>
-<g id="a_call~~graph~~CallGraph_node5"><a xlink:href=".././proc/eigen_max.html" xlink:title="eigen_max">
-<polygon fill="#d9534f" stroke="#d9534f" points="201.5,-24 136.5,-24 136.5,0 201.5,0 201.5,-24"/>
-<text text-anchor="middle" x="169" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">eigen_max</text>
-</a>
-</g>
-</g>
-<!-- proc~eigen_inv -->
-<g id="call~~graph~~CallGraph_node6" class="node">
-<title>proc~eigen_inv</title>
-<g id="a_call~~graph~~CallGraph_node6"><a xlink:href=".././proc/eigen_inv.html" xlink:title="eigen_inv">
-<polygon fill="#d9534f" stroke="#d9534f" points="198,-104 140,-104 140,-80 198,-80 198,-104"/>
-<text text-anchor="middle" x="169" y="-89.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">eigen_inv</text>
-</a>
-</g>
-</g>
-<!-- proc~eigen_inv&#45;&gt;proc~solve_lu -->
-<g id="call~~graph~~CallGraph_edge4" class="edge">
-<title>proc~eigen_inv&#45;&gt;proc~solve_lu</title>
-<path fill="none" stroke="#000000" d="M198.1003,-92.2575C211.7817,-92.3786 228.2913,-92.5247 243.0332,-92.6552"/>
-<polygon fill="#000000" stroke="#000000" points="243.3589,-96.1581 253.3895,-92.7468 243.4209,-89.1584 243.3589,-96.1581"/>
-</g>
-<!-- proc~eigen_inv&#45;&gt;proc~factor_lu -->
-<g id="call~~graph~~CallGraph_edge3" class="edge">
-<title>proc~eigen_inv&#45;&gt;proc~factor_lu</title>
-<path fill="none" stroke="#000000" d="M198.1003,-103.0736C211.7255,-108.2584 228.1557,-114.5106 242.8515,-120.1028"/>
-<polygon fill="#000000" stroke="#000000" points="241.6203,-123.3791 252.2113,-123.6645 244.1099,-116.8367 241.6203,-123.3791"/>
-</g>
-<!-- proc~quad -->
-<g id="call~~graph~~CallGraph_node7" class="node">
-<title>proc~quad</title>
-<g id="a_call~~graph~~CallGraph_node7"><a xlink:href=".././proc/quad.html" xlink:title="quad">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="196,-292 142,-292 142,-268 196,-268 196,-292"/>
-<text text-anchor="middle" x="169" y="-277.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">quad</text>
-</a>
-</g>
-</g>
-<!-- proc~quad&#45;&gt;proc~quad_simpson -->
-<g id="call~~graph~~CallGraph_edge6" class="edge">
-<title>proc~quad&#45;&gt;proc~quad_simpson</title>
-<path fill="none" stroke="#000000" d="M196.0663,-287.4253C206.4724,-290.28 218.7266,-293.6418 230.6701,-296.9183"/>
-<polygon fill="#000000" stroke="#000000" points="230.0125,-300.3672 240.5821,-299.6376 231.8644,-293.6166 230.0125,-300.3672"/>
-</g>
-<!-- proc~quad_trapz -->
-<g id="call~~graph~~CallGraph_node17" class="node">
-<title>proc~quad_trapz</title>
-<g id="a_call~~graph~~CallGraph_node17"><a xlink:href=".././proc/quad_trapz.html" xlink:title="quad_trapz">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="315.5,-281 248.5,-281 248.5,-257 315.5,-257 315.5,-281"/>
-<text text-anchor="middle" x="282" y="-266.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">quad_trapz</text>
-</a>
-</g>
-</g>
-<!-- proc~quad&#45;&gt;proc~quad_trapz -->
-<g id="call~~graph~~CallGraph_edge5" class="edge">
-<title>proc~quad&#45;&gt;proc~quad_trapz</title>
-<path fill="none" stroke="#000000" d="M196.0663,-277.3652C208.676,-276.1377 223.9995,-274.6461 238.1954,-273.2642"/>
-<polygon fill="#000000" stroke="#000000" points="238.6642,-276.7352 248.278,-272.2827 237.9859,-269.7681 238.6642,-276.7352"/>
-</g>
-<!-- proc~solve_u -->
-<g id="call~~graph~~CallGraph_node8" class="node">
-<title>proc~solve_u</title>
-<g id="a_call~~graph~~CallGraph_node8"><a xlink:href=".././proc/solve_u.html" xlink:title="solve_U">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="413,-126 359,-126 359,-102 413,-102 413,-126"/>
-<text text-anchor="middle" x="386" y="-111.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">solve_U</text>
-</a>
-</g>
-</g>
-<!-- proc~make_u -->
-<g id="call~~graph~~CallGraph_node9" class="node">
-<title>proc~make_u</title>
-<g id="a_call~~graph~~CallGraph_node9"><a xlink:href=".././proc/make_u.html" xlink:title="make_U">
-<polygon fill="#d9534f" stroke="#d9534f" points="309,-190 255,-190 255,-166 309,-166 309,-190"/>
-<text text-anchor="middle" x="282" y="-175.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">make_U</text>
+<g id="a_call~~graph~~CallGraph_node1"><a xlink:href=".././proc/eigen_max.html" xlink:title="eigen_max">
+<polygon fill="#d9534f" stroke="#d9534f" points="368.5,-276 303.5,-276 303.5,-252 368.5,-252 368.5,-276"/>
+<text text-anchor="middle" x="336" y="-261.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">eigen_max</text>
 </a>
 </g>
 </g>
 <!-- proc~f -->
-<g id="call~~graph~~CallGraph_node10" class="node">
+<g id="call~~graph~~CallGraph_node2" class="node">
 <title>proc~f</title>
-<g id="a_call~~graph~~CallGraph_node10"><a xlink:href=".././proc/f.html" xlink:title="f">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="75.5,-376 21.5,-376 21.5,-352 75.5,-352 75.5,-376"/>
-<text text-anchor="middle" x="48.5" y="-361.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">f</text>
+<g id="a_call~~graph~~CallGraph_node2"><a xlink:href=".././proc/f.html" xlink:title="f">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="90,-213 36,-213 36,-189 90,-189 90,-213"/>
+<text text-anchor="middle" x="63" y="-198.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">f</text>
 </a>
 </g>
 </g>
-<!-- proc~solve_lu&#45;&gt;proc~solve_l -->
-<g id="call~~graph~~CallGraph_edge8" class="edge">
-<title>proc~solve_lu&#45;&gt;proc~solve_l</title>
-<path fill="none" stroke="#000000" d="M310.6938,-87.2061C322.4367,-84.8349 336.179,-82.06 348.6864,-79.5345"/>
-<polygon fill="#000000" stroke="#000000" points="349.7218,-82.8961 358.8312,-77.486 348.3363,-76.0346 349.7218,-82.8961"/>
-</g>
-<!-- proc~solve_lu&#45;&gt;proc~solve_u -->
-<g id="call~~graph~~CallGraph_edge7" class="edge">
-<title>proc~solve_lu&#45;&gt;proc~solve_u</title>
-<path fill="none" stroke="#000000" d="M310.6938,-98.7939C322.4367,-101.1651 336.179,-103.94 348.6864,-106.4655"/>
-<polygon fill="#000000" stroke="#000000" points="348.3363,-109.9654 358.8312,-108.514 349.7218,-103.1039 348.3363,-109.9654"/>
-</g>
-<!-- proc~jacobi -->
-<g id="call~~graph~~CallGraph_node12" class="node">
-<title>proc~jacobi</title>
-<g id="a_call~~graph~~CallGraph_node12"><a xlink:href=".././proc/jacobi.html" xlink:title="Jacobi">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="196,-188 142,-188 142,-164 196,-164 196,-188"/>
-<text text-anchor="middle" x="169" y="-173.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Jacobi</text>
+<!-- proc~make_u -->
+<g id="call~~graph~~CallGraph_node3" class="node">
+<title>proc~make_u</title>
+<g id="a_call~~graph~~CallGraph_node3"><a xlink:href=".././proc/make_u.html" xlink:title="make_U">
+<polygon fill="#d9534f" stroke="#d9534f" points="476.5,-108 422.5,-108 422.5,-84 476.5,-84 476.5,-108"/>
+<text text-anchor="middle" x="449.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">make_U</text>
 </a>
 </g>
 </g>
 <!-- proc~print_matrix -->
-<g id="call~~graph~~CallGraph_node14" class="node">
+<g id="call~~graph~~CallGraph_node4" class="node">
 <title>proc~print_matrix</title>
-<g id="a_call~~graph~~CallGraph_node14"><a xlink:href=".././proc/print_matrix.html" xlink:title="print_matrix">
-<polygon fill="#d9534f" stroke="#d9534f" points="203.5,-418 134.5,-418 134.5,-394 203.5,-394 203.5,-418"/>
-<text text-anchor="middle" x="169" y="-403.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">print_matrix</text>
+<g id="a_call~~graph~~CallGraph_node4"><a xlink:href=".././proc/print_matrix.html" xlink:title="print_matrix">
+<polygon fill="#d9534f" stroke="#d9534f" points="245,-297 176,-297 176,-273 245,-273 245,-297"/>
+<text text-anchor="middle" x="210.5" y="-282.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">print_matrix</text>
 </a>
 </g>
 </g>
-<!-- proc~gaussseidel -->
-<g id="call~~graph~~CallGraph_node15" class="node">
-<title>proc~gaussseidel</title>
-<g id="a_call~~graph~~CallGraph_node15"><a xlink:href=".././proc/gaussseidel.html" xlink:title="GaussSeidel">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="318.5,-63 245.5,-63 245.5,-39 318.5,-39 318.5,-63"/>
-<text text-anchor="middle" x="282" y="-48.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">GaussSeidel</text>
+<!-- proc~newton -->
+<g id="call~~graph~~CallGraph_node5" class="node">
+<title>proc~newton</title>
+<g id="a_call~~graph~~CallGraph_node5"><a xlink:href=".././proc/newton.html" xlink:title="Newton">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="237.5,-108 183.5,-108 183.5,-84 237.5,-84 237.5,-108"/>
+<text text-anchor="middle" x="210.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Newton</text>
 </a>
 </g>
 </g>
-<!-- proc~gaussseidel&#45;&gt;proc~solve_l -->
-<g id="call~~graph~~CallGraph_edge9" class="edge">
-<title>proc~gaussseidel&#45;&gt;proc~solve_l</title>
-<path fill="none" stroke="#000000" d="M318.6665,-58.4038C328.4758,-60.3845 339.0845,-62.5267 348.9161,-64.5119"/>
-<polygon fill="#000000" stroke="#000000" points="348.3193,-67.962 358.8142,-66.5106 349.7049,-61.1004 348.3193,-67.962"/>
-</g>
-<!-- proc~trapz -->
-<g id="call~~graph~~CallGraph_node16" class="node">
-<title>proc~trapz</title>
-<g id="a_call~~graph~~CallGraph_node16"><a xlink:href=".././proc/trapz.html" xlink:title="trapz">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="75.5,-460 21.5,-460 21.5,-436 75.5,-436 75.5,-460"/>
-<text text-anchor="middle" x="48.5" y="-445.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">trapz</text>
+<!-- proc~jacobi -->
+<g id="call~~graph~~CallGraph_node6" class="node">
+<title>proc~jacobi</title>
+<g id="a_call~~graph~~CallGraph_node6"><a xlink:href=".././proc/jacobi.html" xlink:title="Jacobi">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="363,-111 309,-111 309,-87 363,-87 363,-111"/>
+<text text-anchor="middle" x="336" y="-96.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Jacobi</text>
 </a>
 </g>
 </g>
 <!-- proc~gauss_solve -->
-<g id="call~~graph~~CallGraph_node18" class="node">
+<g id="call~~graph~~CallGraph_node7" class="node">
 <title>proc~gauss_solve</title>
-<g id="a_call~~graph~~CallGraph_node18"><a xlink:href=".././proc/gauss_solve.html" xlink:title="gauss_solve">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="205,-230 133,-230 133,-206 205,-206 205,-230"/>
-<text text-anchor="middle" x="169" y="-215.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">gauss_solve</text>
+<g id="a_call~~graph~~CallGraph_node7"><a xlink:href=".././proc/gauss_solve.html" xlink:title="gauss_solve">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="372,-69 300,-69 300,-45 372,-45 372,-69"/>
+<text text-anchor="middle" x="336" y="-54.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">gauss_solve</text>
+</a>
+</g>
+</g>
+<!-- proc~gauss_solve&#45;&gt;proc~make_u -->
+<g id="call~~graph~~CallGraph_edge2" class="edge">
+<title>proc~gauss_solve&#45;&gt;proc~make_u</title>
+<path fill="none" stroke="#000000" d="M370.9799,-69.0195C384.1636,-73.5496 399.1948,-78.7145 412.5525,-83.3044"/>
+<polygon fill="#000000" stroke="#000000" points="411.788,-86.7425 422.3827,-86.6822 414.0628,-80.1224 411.788,-86.7425"/>
+</g>
+<!-- proc~solve_u -->
+<g id="call~~graph~~CallGraph_node13" class="node">
+<title>proc~solve_u</title>
+<g id="a_call~~graph~~CallGraph_node13"><a xlink:href=".././proc/solve_u.html" xlink:title="solve_U">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="576,-130 522,-130 522,-106 576,-106 576,-130"/>
+<text text-anchor="middle" x="549" y="-115.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">solve_U</text>
 </a>
 </g>
 </g>
 <!-- proc~gauss_solve&#45;&gt;proc~solve_u -->
-<g id="call~~graph~~CallGraph_edge11" class="edge">
+<g id="call~~graph~~CallGraph_edge1" class="edge">
 <title>proc~gauss_solve&#45;&gt;proc~solve_u</title>
-<path fill="none" stroke="#000000" d="M205.1538,-221.2823C238.0819,-222.5605 286.9283,-220.0315 323,-199 348.1132,-184.3578 366.2535,-155.3339 376.4445,-135.3061"/>
-<polygon fill="#000000" stroke="#000000" points="379.7235,-136.5648 380.9244,-126.0382 373.4212,-133.5183 379.7235,-136.5648"/>
+<path fill="none" stroke="#000000" d="M372.2901,-56.5746C403.3973,-57.3179 448.9222,-61.0789 486,-75 501.0163,-80.6379 515.9263,-90.567 527.4691,-99.4644"/>
+<polygon fill="#000000" stroke="#000000" points="525.596,-102.4489 535.5855,-105.979 529.9777,-96.9899 525.596,-102.4489"/>
 </g>
-<!-- proc~gauss_solve&#45;&gt;proc~make_u -->
-<g id="call~~graph~~CallGraph_edge10" class="edge">
-<title>proc~gauss_solve&#45;&gt;proc~make_u</title>
-<path fill="none" stroke="#000000" d="M202.9037,-205.9987C216.2957,-201.2582 231.7154,-195.7998 245.3634,-190.9687"/>
-<polygon fill="#000000" stroke="#000000" points="246.6748,-194.2174 254.9337,-187.581 244.3389,-187.6186 246.6748,-194.2174"/>
+<!-- proc~trapz -->
+<g id="call~~graph~~CallGraph_node8" class="node">
+<title>proc~trapz</title>
+<g id="a_call~~graph~~CallGraph_node8"><a xlink:href=".././proc/trapz.html" xlink:title="trapz">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="90,-339 36,-339 36,-315 90,-315 90,-339"/>
+<text text-anchor="middle" x="63" y="-324.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">trapz</text>
+</a>
 </g>
-<!-- program~test -->
+</g>
+<!-- proc~solve_l -->
+<g id="call~~graph~~CallGraph_node9" class="node">
+<title>proc~solve_l</title>
+<g id="a_call~~graph~~CallGraph_node9"><a xlink:href=".././proc/solve_l.html" xlink:title="solve_L">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="576,-192 522,-192 522,-168 576,-168 576,-192"/>
+<text text-anchor="middle" x="549" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">solve_L</text>
+</a>
+</g>
+</g>
+<!-- proc~quad_trapz -->
+<g id="call~~graph~~CallGraph_node10" class="node">
+<title>proc~quad_trapz</title>
+<g id="a_call~~graph~~CallGraph_node10"><a xlink:href=".././proc/quad_trapz.html" xlink:title="quad_trapz">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="369.5,-402 302.5,-402 302.5,-378 369.5,-378 369.5,-402"/>
+<text text-anchor="middle" x="336" y="-387.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">quad_trapz</text>
+</a>
+</g>
+</g>
+<!-- proc~quad_simpson -->
+<g id="call~~graph~~CallGraph_node11" class="node">
+<title>proc~quad_simpson</title>
+<g id="a_call~~graph~~CallGraph_node11"><a xlink:href=".././proc/quad_simpson.html" xlink:title="quad_simpson">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="377,-360 295,-360 295,-336 377,-336 377,-360"/>
+<text text-anchor="middle" x="336" y="-345.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">quad_simpson</text>
+</a>
+</g>
+</g>
+<!-- proc~j -->
+<g id="call~~graph~~CallGraph_node12" class="node">
+<title>proc~j</title>
+<g id="a_call~~graph~~CallGraph_node12"><a xlink:href=".././proc/j.html" xlink:title="J">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="90,-423 36,-423 36,-399 90,-399 90,-423"/>
+<text text-anchor="middle" x="63" y="-408.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">J</text>
+</a>
+</g>
+</g>
+<!-- proc~eigen_inv -->
+<g id="call~~graph~~CallGraph_node14" class="node">
+<title>proc~eigen_inv</title>
+<g id="a_call~~graph~~CallGraph_node14"><a xlink:href=".././proc/eigen_inv.html" xlink:title="eigen_inv">
+<polygon fill="#d9534f" stroke="#d9534f" points="365,-234 307,-234 307,-210 365,-210 365,-234"/>
+<text text-anchor="middle" x="336" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">eigen_inv</text>
+</a>
+</g>
+</g>
+<!-- proc~solve_lu -->
 <g id="call~~graph~~CallGraph_node19" class="node">
-<title>program~test</title>
-<g id="a_call~~graph~~CallGraph_node19"><a xlink:href=".././program/test.html" xlink:title="test">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="75.5,-167 21.5,-167 21.5,-143 75.5,-143 75.5,-167"/>
-<text text-anchor="middle" x="48.5" y="-152.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">test</text>
+<title>proc~solve_lu</title>
+<g id="a_call~~graph~~CallGraph_node19"><a xlink:href=".././proc/solve_lu.html" xlink:title="solve_LU">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="478,-234 421,-234 421,-210 478,-210 478,-234"/>
+<text text-anchor="middle" x="449.5" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">solve_LU</text>
 </a>
 </g>
 </g>
-<!-- program~test&#45;&gt;proc~solve -->
-<g id="call~~graph~~CallGraph_edge13" class="edge">
-<title>program~test&#45;&gt;proc~solve</title>
-<path fill="none" stroke="#000000" d="M75.5426,-150.2872C92.093,-147.4029 113.5052,-143.6713 131.6578,-140.5078"/>
-<polygon fill="#000000" stroke="#000000" points="132.3802,-143.9347 141.6308,-138.7697 131.1783,-137.0387 132.3802,-143.9347"/>
+<!-- proc~eigen_inv&#45;&gt;proc~solve_lu -->
+<g id="call~~graph~~CallGraph_edge3" class="edge">
+<title>proc~eigen_inv&#45;&gt;proc~solve_lu</title>
+<path fill="none" stroke="#000000" d="M365.2291,-222C378.971,-222 395.5536,-222 410.3608,-222"/>
+<polygon fill="#000000" stroke="#000000" points="410.7629,-225.5001 420.7629,-222 410.7629,-218.5001 410.7629,-225.5001"/>
 </g>
-<!-- program~test&#45;&gt;proc~jacobi -->
-<g id="call~~graph~~CallGraph_edge15" class="edge">
-<title>program~test&#45;&gt;proc~jacobi</title>
-<path fill="none" stroke="#000000" d="M75.5426,-159.7128C92.093,-162.5971 113.5052,-166.3287 131.6578,-169.4922"/>
-<polygon fill="#000000" stroke="#000000" points="131.1783,-172.9613 141.6308,-171.2303 132.3802,-166.0653 131.1783,-172.9613"/>
+<!-- proc~factor_lu -->
+<g id="call~~graph~~CallGraph_node25" class="node">
+<title>proc~factor_lu</title>
+<g id="a_call~~graph~~CallGraph_node25"><a xlink:href=".././proc/factor_lu.html" xlink:title="factor_LU">
+<polygon fill="#d9534f" stroke="#d9534f" points="479,-192 420,-192 420,-168 479,-168 479,-192"/>
+<text text-anchor="middle" x="449.5" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">factor_LU</text>
+</a>
 </g>
-<!-- program~test&#45;&gt;proc~gaussseidel -->
-<g id="call~~graph~~CallGraph_edge12" class="edge">
-<title>program~test&#45;&gt;proc~gaussseidel</title>
-<path fill="none" stroke="#000000" d="M56.6909,-142.797C70.1436,-123.8595 98.8603,-87.8266 133,-71 164.6221,-55.4143 204.3557,-50.7077 234.8374,-49.7389"/>
-<polygon fill="#000000" stroke="#000000" points="235.2737,-53.2313 245.2048,-49.5404 235.1396,-46.2326 235.2737,-53.2313"/>
 </g>
-<!-- program~test&#45;&gt;proc~gauss_solve -->
-<g id="call~~graph~~CallGraph_edge14" class="edge">
-<title>program~test&#45;&gt;proc~gauss_solve</title>
-<path fill="none" stroke="#000000" d="M71.7336,-167.147C90.2375,-176.8213 116.3467,-190.4717 136.856,-201.1944"/>
-<polygon fill="#000000" stroke="#000000" points="135.3542,-204.3587 145.8377,-205.8903 138.5974,-198.1553 135.3542,-204.3587"/>
+<!-- proc~eigen_inv&#45;&gt;proc~factor_lu -->
+<g id="call~~graph~~CallGraph_edge4" class="edge">
+<title>proc~eigen_inv&#45;&gt;proc~factor_lu</title>
+<path fill="none" stroke="#000000" d="M365.2291,-211.184C379.0223,-206.0798 395.6775,-199.9167 410.5266,-194.4219"/>
+<polygon fill="#000000" stroke="#000000" points="411.8117,-197.6784 419.9755,-190.9254 409.3823,-191.1134 411.8117,-197.6784"/>
 </g>
-<!-- program~test_eigenvectors -->
+<!-- proc~f_vec -->
+<g id="call~~graph~~CallGraph_node15" class="node">
+<title>proc~f_vec</title>
+<g id="a_call~~graph~~CallGraph_node15"><a xlink:href=".././proc/f_vec.html" xlink:title="f_vec">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="90,-465 36,-465 36,-441 90,-441 90,-465"/>
+<text text-anchor="middle" x="63" y="-450.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">f_vec</text>
+</a>
+</g>
+</g>
+<!-- proc~f~2 -->
+<g id="call~~graph~~CallGraph_node16" class="node">
+<title>proc~f~2</title>
+<g id="a_call~~graph~~CallGraph_node16"><a xlink:href=".././proc/f~2.html" xlink:title="f">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="90,-507 36,-507 36,-483 90,-483 90,-507"/>
+<text text-anchor="middle" x="63" y="-492.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">f</text>
+</a>
+</g>
+</g>
+<!-- proc~df -->
+<g id="call~~graph~~CallGraph_node17" class="node">
+<title>proc~df</title>
+<g id="a_call~~graph~~CallGraph_node17"><a xlink:href=".././proc/df.html" xlink:title="df">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="90,-549 36,-549 36,-525 90,-525 90,-549"/>
+<text text-anchor="middle" x="63" y="-534.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">df</text>
+</a>
+</g>
+</g>
+<!-- proc~vectornewton -->
+<g id="call~~graph~~CallGraph_node18" class="node">
+<title>proc~vectornewton</title>
+<g id="a_call~~graph~~CallGraph_node18"><a xlink:href=".././proc/vectornewton.html" xlink:title="VectorNewton">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="250,-192 171,-192 171,-168 250,-168 250,-192"/>
+<text text-anchor="middle" x="210.5" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">VectorNewton</text>
+</a>
+</g>
+</g>
+<!-- proc~solve -->
+<g id="call~~graph~~CallGraph_node23" class="node">
+<title>proc~solve</title>
+<g id="a_call~~graph~~CallGraph_node23"><a xlink:href=".././proc/solve.html" xlink:title="solve">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="363,-192 309,-192 309,-168 363,-168 363,-192"/>
+<text text-anchor="middle" x="336" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">solve</text>
+</a>
+</g>
+</g>
+<!-- proc~vectornewton&#45;&gt;proc~solve -->
+<g id="call~~graph~~CallGraph_edge5" class="edge">
+<title>proc~vectornewton&#45;&gt;proc~solve</title>
+<path fill="none" stroke="#000000" d="M250.209,-180C265.7293,-180 283.4334,-180 298.7122,-180"/>
+<polygon fill="#000000" stroke="#000000" points="298.8457,-183.5001 308.8457,-180 298.8456,-176.5001 298.8457,-183.5001"/>
+</g>
+<!-- proc~solve_lu&#45;&gt;proc~solve_l -->
+<g id="call~~graph~~CallGraph_edge6" class="edge">
+<title>proc~solve_lu&#45;&gt;proc~solve_l</title>
+<path fill="none" stroke="#000000" d="M478.0127,-209.9645C488.7801,-205.4195 501.1813,-200.1848 512.5757,-195.3751"/>
+<polygon fill="#000000" stroke="#000000" points="514.0005,-198.5728 521.8523,-191.4593 511.2783,-192.1237 514.0005,-198.5728"/>
+</g>
+<!-- proc~solve_lu&#45;&gt;proc~solve_u -->
+<g id="call~~graph~~CallGraph_edge7" class="edge">
+<title>proc~solve_lu&#45;&gt;proc~solve_u</title>
+<path fill="none" stroke="#000000" d="M473.6049,-209.9724C477.944,-207.3062 482.2685,-204.2848 486,-201 497.1687,-191.1684 519.997,-159.7007 534.8888,-138.4622"/>
+<polygon fill="#000000" stroke="#000000" points="537.8844,-140.2852 540.728,-130.0792 532.1404,-136.2843 537.8844,-140.2852"/>
+</g>
+<!-- proc~g -->
 <g id="call~~graph~~CallGraph_node20" class="node">
-<title>program~test_eigenvectors</title>
-<g id="a_call~~graph~~CallGraph_node20"><a xlink:href=".././program/test_eigenvectors.html" xlink:title="test_eigenvectors">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="97,-64 0,-64 0,-40 97,-40 97,-64"/>
-<text text-anchor="middle" x="48.5" y="-49.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">test_eigenvectors</text>
+<title>proc~g</title>
+<g id="a_call~~graph~~CallGraph_node20"><a xlink:href=".././proc/g.html" xlink:title="g">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="90,-591 36,-591 36,-567 90,-567 90,-591"/>
+<text text-anchor="middle" x="63" y="-576.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">g</text>
 </a>
 </g>
 </g>
-<!-- program~test_eigenvectors&#45;&gt;proc~eigen_max -->
-<g id="call~~graph~~CallGraph_edge16" class="edge">
-<title>program~test_eigenvectors&#45;&gt;proc~eigen_max</title>
-<path fill="none" stroke="#000000" d="M84.654,-39.9987C97.8191,-35.6285 112.8219,-30.6483 126.488,-26.1119"/>
-<polygon fill="#000000" stroke="#000000" points="127.7693,-29.3744 136.1574,-22.9021 125.564,-22.7309 127.7693,-29.3744"/>
-</g>
-<!-- program~test_eigenvectors&#45;&gt;proc~eigen_inv -->
-<g id="call~~graph~~CallGraph_edge17" class="edge">
-<title>program~test_eigenvectors&#45;&gt;proc~eigen_inv</title>
-<path fill="none" stroke="#000000" d="M84.654,-64.0013C98.9608,-68.7505 115.4378,-74.22 130.0112,-79.0577"/>
-<polygon fill="#000000" stroke="#000000" points="129.1528,-82.4604 139.7462,-82.2892 131.3581,-75.8169 129.1528,-82.4604"/>
-</g>
-<!-- program~test_utilities -->
+<!-- proc~gaussseidel -->
 <g id="call~~graph~~CallGraph_node21" class="node">
-<title>program~test_utilities</title>
-<g id="a_call~~graph~~CallGraph_node21"><a xlink:href=".././program/test_utilities.html" xlink:title="test_utilities">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="82.5,-418 14.5,-418 14.5,-394 82.5,-394 82.5,-418"/>
-<text text-anchor="middle" x="48.5" y="-403.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">test_utilities</text>
+<title>proc~gaussseidel</title>
+<g id="a_call~~graph~~CallGraph_node21"><a xlink:href=".././proc/gaussseidel.html" xlink:title="GaussSeidel">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="486,-150 413,-150 413,-126 486,-126 486,-150"/>
+<text text-anchor="middle" x="449.5" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">GaussSeidel</text>
 </a>
 </g>
 </g>
-<!-- program~test_utilities&#45;&gt;proc~print_matrix -->
-<g id="call~~graph~~CallGraph_edge18" class="edge">
-<title>program~test_utilities&#45;&gt;proc~print_matrix</title>
-<path fill="none" stroke="#000000" d="M82.7081,-406C95.5718,-406 110.3966,-406 124.0891,-406"/>
-<polygon fill="#000000" stroke="#000000" points="124.2879,-409.5001 134.2879,-406 124.2878,-402.5001 124.2879,-409.5001"/>
+<!-- proc~gaussseidel&#45;&gt;proc~solve_l -->
+<g id="call~~graph~~CallGraph_edge8" class="edge">
+<title>proc~gaussseidel&#45;&gt;proc~solve_l</title>
+<path fill="none" stroke="#000000" d="M478.0127,-150.0355C488.7801,-154.5805 501.1813,-159.8152 512.5757,-164.6249"/>
+<polygon fill="#000000" stroke="#000000" points="511.2783,-167.8763 521.8523,-168.5407 514.0005,-161.4272 511.2783,-167.8763"/>
+</g>
+<!-- proc~quad -->
+<g id="call~~graph~~CallGraph_node22" class="node">
+<title>proc~quad</title>
+<g id="a_call~~graph~~CallGraph_node22"><a xlink:href=".././proc/quad.html" xlink:title="quad">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="237.5,-381 183.5,-381 183.5,-357 237.5,-357 237.5,-381"/>
+<text text-anchor="middle" x="210.5" y="-366.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">quad</text>
+</a>
+</g>
+</g>
+<!-- proc~quad&#45;&gt;proc~quad_trapz -->
+<g id="call~~graph~~CallGraph_edge9" class="edge">
+<title>proc~quad&#45;&gt;proc~quad_trapz</title>
+<path fill="none" stroke="#000000" d="M237.7316,-373.5567C253.5945,-376.211 273.9726,-379.6209 292.0552,-382.6467"/>
+<polygon fill="#000000" stroke="#000000" points="291.662,-386.1295 302.1025,-384.3279 292.8173,-379.2255 291.662,-386.1295"/>
+</g>
+<!-- proc~quad&#45;&gt;proc~quad_simpson -->
+<g id="call~~graph~~CallGraph_edge10" class="edge">
+<title>proc~quad&#45;&gt;proc~quad_simpson</title>
+<path fill="none" stroke="#000000" d="M237.7316,-364.4433C251.5821,-362.1257 268.8749,-359.2321 285.0764,-356.5211"/>
+<polygon fill="#000000" stroke="#000000" points="285.6974,-359.9659 294.9826,-354.8635 284.5421,-353.0619 285.6974,-359.9659"/>
+</g>
+<!-- proc~solve&#45;&gt;proc~solve_lu -->
+<g id="call~~graph~~CallGraph_edge11" class="edge">
+<title>proc~solve&#45;&gt;proc~solve_lu</title>
+<path fill="none" stroke="#000000" d="M363.1861,-190.06C377.6326,-195.4059 395.6252,-202.064 411.4386,-207.9156"/>
+<polygon fill="#000000" stroke="#000000" points="410.3587,-211.2479 420.9519,-211.4359 412.7881,-204.683 410.3587,-211.2479"/>
+</g>
+<!-- proc~solve&#45;&gt;proc~factor_lu -->
+<g id="call~~graph~~CallGraph_edge12" class="edge">
+<title>proc~solve&#45;&gt;proc~factor_lu</title>
+<path fill="none" stroke="#000000" d="M363.1861,-180C377.0403,-180 394.1559,-180 409.4831,-180"/>
+<polygon fill="#000000" stroke="#000000" points="409.7464,-183.5001 419.7464,-180 409.7464,-176.5001 409.7464,-183.5001"/>
+</g>
+<!-- proc~secant -->
+<g id="call~~graph~~CallGraph_node24" class="node">
+<title>proc~secant</title>
+<g id="a_call~~graph~~CallGraph_node24"><a xlink:href=".././proc/secant.html" xlink:title="Secant">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="237.5,-66 183.5,-66 183.5,-42 237.5,-42 237.5,-66"/>
+<text text-anchor="middle" x="210.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Secant</text>
+</a>
+</g>
+</g>
+<!-- proc~bisection -->
+<g id="call~~graph~~CallGraph_node26" class="node">
+<title>proc~bisection</title>
+<g id="a_call~~graph~~CallGraph_node26"><a xlink:href=".././proc/bisection.html" xlink:title="Bisection">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="238,-24 183,-24 183,0 238,0 238,-24"/>
+<text text-anchor="middle" x="210.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">Bisection</text>
+</a>
+</g>
 </g>
 <!-- program~test_integrals -->
-<g id="call~~graph~~CallGraph_node22" class="node">
+<g id="call~~graph~~CallGraph_node27" class="node">
 <title>program~test_integrals</title>
-<g id="a_call~~graph~~CallGraph_node22"><a xlink:href=".././program/test_integrals.html" xlink:title="test_integrals">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="86.5,-292 10.5,-292 10.5,-268 86.5,-268 86.5,-292"/>
-<text text-anchor="middle" x="48.5" y="-277.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">test_integrals</text>
+<g id="a_call~~graph~~CallGraph_node27"><a xlink:href=".././program/test_integrals.html" xlink:title="test_integrals">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="101,-381 25,-381 25,-357 101,-357 101,-381"/>
+<text text-anchor="middle" x="63" y="-366.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">test_integrals</text>
 </a>
 </g>
 </g>
 <!-- program~test_integrals&#45;&gt;proc~quad -->
-<g id="call~~graph~~CallGraph_edge19" class="edge">
+<g id="call~~graph~~CallGraph_edge13" class="edge">
 <title>program~test_integrals&#45;&gt;proc~quad</title>
-<path fill="none" stroke="#000000" d="M86.627,-280C101.0527,-280 117.4434,-280 131.7844,-280"/>
-<polygon fill="#000000" stroke="#000000" points="131.8072,-283.5001 141.8072,-280 131.8072,-276.5001 131.8072,-283.5001"/>
+<path fill="none" stroke="#000000" d="M101.3688,-369C123.5221,-369 151.2571,-369 173.2231,-369"/>
+<polygon fill="#000000" stroke="#000000" points="173.4932,-372.5001 183.4932,-369 173.4931,-365.5001 173.4932,-372.5001"/>
+</g>
+<!-- program~test -->
+<g id="call~~graph~~CallGraph_node28" class="node">
+<title>program~test</title>
+<g id="a_call~~graph~~CallGraph_node28"><a xlink:href=".././program/test.html" xlink:title="test">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="237.5,-150 183.5,-150 183.5,-126 237.5,-126 237.5,-150"/>
+<text text-anchor="middle" x="210.5" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">test</text>
+</a>
+</g>
+</g>
+<!-- program~test&#45;&gt;proc~jacobi -->
+<g id="call~~graph~~CallGraph_edge17" class="edge">
+<title>program~test&#45;&gt;proc~jacobi</title>
+<path fill="none" stroke="#000000" d="M237.7316,-129.5376C255.7397,-123.9414 279.567,-116.5369 299.2488,-110.4207"/>
+<polygon fill="#000000" stroke="#000000" points="300.3107,-113.7559 308.8215,-107.4459 298.2333,-107.0712 300.3107,-113.7559"/>
+</g>
+<!-- program~test&#45;&gt;proc~gauss_solve -->
+<g id="call~~graph~~CallGraph_edge14" class="edge">
+<title>program~test&#45;&gt;proc~gauss_solve</title>
+<path fill="none" stroke="#000000" d="M237.7427,-128.5575C244.9787,-125.4337 252.564,-121.5656 259,-117 278.2397,-103.3516 276.2121,-92.2639 295,-78 296.7596,-76.6641 298.6169,-75.3719 300.5303,-74.1297"/>
+<polygon fill="#000000" stroke="#000000" points="302.3311,-77.131 309.1495,-69.0217 298.7623,-71.109 302.3311,-77.131"/>
+</g>
+<!-- program~test&#45;&gt;proc~gaussseidel -->
+<g id="call~~graph~~CallGraph_edge16" class="edge">
+<title>program~test&#45;&gt;proc~gaussseidel</title>
+<path fill="none" stroke="#000000" d="M237.9163,-138C278.0954,-138 353.5142,-138 402.6058,-138"/>
+<polygon fill="#000000" stroke="#000000" points="402.6597,-141.5001 412.6596,-138 402.6596,-134.5001 402.6597,-141.5001"/>
+</g>
+<!-- program~test&#45;&gt;proc~solve -->
+<g id="call~~graph~~CallGraph_edge15" class="edge">
+<title>program~test&#45;&gt;proc~solve</title>
+<path fill="none" stroke="#000000" d="M237.7316,-147.1134C255.7397,-153.14 279.567,-161.1141 299.2488,-167.7008"/>
+<polygon fill="#000000" stroke="#000000" points="298.2277,-171.0498 308.8215,-170.9044 300.4492,-164.4117 298.2277,-171.0498"/>
+</g>
+<!-- program~test_eigenvectors -->
+<g id="call~~graph~~CallGraph_node29" class="node">
+<title>program~test_eigenvectors</title>
+<g id="a_call~~graph~~CallGraph_node29"><a xlink:href=".././program/test_eigenvectors.html" xlink:title="test_eigenvectors">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="259,-255 162,-255 162,-231 259,-231 259,-255"/>
+<text text-anchor="middle" x="210.5" y="-240.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">test_eigenvectors</text>
+</a>
+</g>
+</g>
+<!-- program~test_eigenvectors&#45;&gt;proc~eigen_max -->
+<g id="call~~graph~~CallGraph_edge19" class="edge">
+<title>program~test_eigenvectors&#45;&gt;proc~eigen_max</title>
+<path fill="none" stroke="#000000" d="M259.0216,-251.1191C270.2075,-252.9909 282.0303,-254.9692 292.9641,-256.7988"/>
+<polygon fill="#000000" stroke="#000000" points="292.6845,-260.3006 303.125,-258.499 293.8398,-253.3966 292.6845,-260.3006"/>
+</g>
+<!-- program~test_eigenvectors&#45;&gt;proc~eigen_inv -->
+<g id="call~~graph~~CallGraph_edge18" class="edge">
+<title>program~test_eigenvectors&#45;&gt;proc~eigen_inv</title>
+<path fill="none" stroke="#000000" d="M259.0216,-234.8809C271.5051,-232.792 284.7818,-230.5704 296.731,-228.5709"/>
+<polygon fill="#000000" stroke="#000000" points="297.5516,-231.9824 306.8368,-226.8799 296.3962,-225.0783 297.5516,-231.9824"/>
+</g>
+<!-- program~test_utilities -->
+<g id="call~~graph~~CallGraph_node30" class="node">
+<title>program~test_utilities</title>
+<g id="a_call~~graph~~CallGraph_node30"><a xlink:href=".././program/test_utilities.html" xlink:title="test_utilities">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="97,-297 29,-297 29,-273 97,-273 97,-297"/>
+<text text-anchor="middle" x="63" y="-282.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">test_utilities</text>
+</a>
+</g>
+</g>
+<!-- program~test_utilities&#45;&gt;proc~print_matrix -->
+<g id="call~~graph~~CallGraph_edge20" class="edge">
+<title>program~test_utilities&#45;&gt;proc~print_matrix</title>
+<path fill="none" stroke="#000000" d="M97.2102,-285C117.6344,-285 143.8027,-285 165.8427,-285"/>
+<polygon fill="#000000" stroke="#000000" points="165.9644,-288.5001 175.9644,-285 165.9643,-281.5001 165.9644,-288.5001"/>
+</g>
+<!-- program~test_non_linear_solvers -->
+<g id="call~~graph~~CallGraph_node31" class="node">
+<title>program~test_non_linear_solvers</title>
+<g id="a_call~~graph~~CallGraph_node31"><a xlink:href=".././program/test_non_linear_solvers.html" xlink:title="test_non_linear_solvers">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="126,-87 0,-87 0,-63 126,-63 126,-87"/>
+<text text-anchor="middle" x="63" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">test_non_linear_solvers</text>
+</a>
+</g>
+</g>
+<!-- program~test_non_linear_solvers&#45;&gt;proc~newton -->
+<g id="call~~graph~~CallGraph_edge24" class="edge">
+<title>program~test_non_linear_solvers&#45;&gt;proc~newton</title>
+<path fill="none" stroke="#000000" d="M126.4093,-84.0278C142.494,-86.3178 159.2482,-88.7031 173.5293,-90.7364"/>
+<polygon fill="#000000" stroke="#000000" points="173.0527,-94.2037 183.4462,-92.1483 174.0394,-87.2736 173.0527,-94.2037"/>
+</g>
+<!-- program~test_non_linear_solvers&#45;&gt;proc~vectornewton -->
+<g id="call~~graph~~CallGraph_edge21" class="edge">
+<title>program~test_non_linear_solvers&#45;&gt;proc~vectornewton</title>
+<path fill="none" stroke="#000000" d="M74.8841,-87.1512C92.5957,-104.7546 127.5406,-137.5817 162,-159 164.484,-160.5439 167.1013,-162.029 169.7803,-163.4458"/>
+<polygon fill="#000000" stroke="#000000" points="168.5031,-166.7179 179.0217,-167.9869 171.5903,-160.4354 168.5031,-166.7179"/>
+</g>
+<!-- program~test_non_linear_solvers&#45;&gt;proc~secant -->
+<g id="call~~graph~~CallGraph_edge22" class="edge">
+<title>program~test_non_linear_solvers&#45;&gt;proc~secant</title>
+<path fill="none" stroke="#000000" d="M126.4093,-65.9722C142.494,-63.6822 159.2482,-61.2969 173.5293,-59.2636"/>
+<polygon fill="#000000" stroke="#000000" points="174.0394,-62.7264 183.4462,-57.8517 173.0527,-55.7963 174.0394,-62.7264"/>
+</g>
+<!-- program~test_non_linear_solvers&#45;&gt;proc~bisection -->
+<g id="call~~graph~~CallGraph_edge23" class="edge">
+<title>program~test_non_linear_solvers&#45;&gt;proc~bisection</title>
+<path fill="none" stroke="#000000" d="M91.4395,-62.853C114.7481,-52.8974 147.9153,-38.7311 173.3258,-27.8778"/>
+<polygon fill="#000000" stroke="#000000" points="174.8265,-31.0428 182.648,-23.8961 172.077,-24.6054 174.8265,-31.0428"/>
 </g>
 </g>
 </svg>
