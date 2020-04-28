@@ -28,3 +28,9 @@ p{
 a {
    text-decoration: none;
 }
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

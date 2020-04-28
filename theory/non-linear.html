@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="../style_notes.css">
+  <script src="./d3.js"></script>
+  <script src="./d3-simple-slider.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+  <title>Ejemplos de integración numérica.</title>
+</head>
+
+<body>
+  <h1 class="text">Resolución numérica de ecuaciones no lineales.</h1>
+  <p>En este tema se estudiarán métodos para obtener soluciones a ecuaciones no lineales. Éstas son ecuaciones del tipo:
+  </p>
+  <div class="formula">
+    \[
+    f(x)=0
+    \]
+  </div>
+  <p>donde la dependencia de la función \(f\) con la variable \(x\) no es lineal.</p>
+  <h2 class="text">Método de la bisección.</h2>
+  <p>Este método es una consecuencia directa del siguiente teorema:</p>
+  <p class="theorem" author="Bolzano"> Sea \(f\) una función continua en un intervalo \([a,b]\), y tal que el signo de \(f(a)\) es distinto al signo de \(f(b)\), se puede asegurar que existe al menos un valor \(x\in(a,b)\) tal que \(f(x)=0\).</p>
+  <div>
+    <img src="./bolzano.png" alt="Bolzano">
+  </div>
+  <p>El método de la bisección se basa en aproximar \(x\) de manera iterativa. Dado el intervalo \(I_{0}=\left[a,b\right]\) en el cuál se sabe que existe al menos una solución de la ecuación \(f\left(0\right)=0\) se propone como candidato el punto medio \(x_0=\frac{a+b}{2}\) y se evalúa \(f\left(x_0\right)\).</p>
+  <p>Existen tres posibilidades:</p>
+  <ul>
+    <li class="text">Si \(f\left(x_0\right)=0\) ya se ha terminado.</li>
+    <div>
+      <img src="./bolzano_0.png" alt="Bolzano">
+    </div>
+    <li>Si el signo de \(f\left(x_0\right)\) es el mismo que el de \(f\left(a\right)\) el teorema de Bolzano es aplicable al intervalo \(\left[x_0,b\right]\).</li>
+    <div>
+      <img src="./bolzano_a.png" alt="Bolzano">
+    </div>
+    <li>Si el signo de \(f\left(x_0\right)\) es el mismo que el de \(f\left(b\right)\) el teorema de Bolzano es aplicable al intervalo \(\left[a,x_0\right]\).</li>
+    <div>
+      <img src="./bolzano_b.png" alt="Bolzano">
+    </div>
+
+  </ul>
+  <p>El método consiste en construir una sucesión de intervalos \(I_{0}\supset I_{1}\supset I_{2}\dots\) mediante la siguiente regla de recurrencia:</p>
+
+  <p>Sea \(I_{n}=\left[a_n,b_n\right]\) y sea \(x_n=\frac{a_n+b_n}{2}\) el punto medio:</p>
+  <ul>
+    <li>Si \(f\left(x_n\right)f\left(a_n\right)>0\) entonces \(I_{n+1}=\left[a_{n+1},b_{n+1}\right]=\left[a_n,x_n\right]\).</li>
+    <li>Si \(f\left(x_n\right)=0\) se para.</li>
+    <li>Si \(f\left(x_n\right)f\left(a_n\right)\lt 0\) entonces \(I_{n+1}=\left[a_{n+1},b_{n+1}\right]=\left[x_n,b_n\right]\).</li>
+  </ul>
+  <p>Como consecuencia del teorema de Bolzano, todo intervalo de la sucesión anterior contiene al menos una solución, y por cómo está construida esta sucesión, la medida del intervalo \(I_n\) es \(\frac{b-a}{2^{n}}\) con lo cual se puede asegurar que, de tratarse de una sucesión infinita, las tres sucesiones \(a_n\), \(b_n\) y \(x_n\) convergen a un único punto, en el que se tiene que:
+  </p>
+  <div class="formula">
+    \[
+    \lim_{n\to\infty} f\left(a_n\right)=\lim_{n\to\infty} f\left(x_n\right)=\lim_{n\to\infty} f\left(b_n\right)=0
+    \]
+  </div>
+  <p>es decir, mediante el método de la bisección las tres sucesiones convergen a la solución.
+</p>
+<p>Puesto que dado un intervalo \(I_n\) la solución exacta \(x\) se puede encontrar indistintamente en cualquier punto del intervalo, se puede asegurar para el punto medio \(x_n\) se tiene que
+</p>
+<div class="formula">
+  \[
+  \left| x-x_n\right|<\frac{b-a}{2^{n+1}}
+  \]
+</div>
+<p>es decir, el error \(e_n=\left| x-x_n\right|\) cometido al asumir como solución aproximada el punto medio del intervalo \(I_n\) es como máximo la mitad de la medida de dicho intervalo. Si se hubiese parado en el intervalo siguiente \(I_{n+1}\), el error sería \(e_{n+1}<\frac{b-a}{2^{n+2}}=\frac{1}{2}\frac{b-a}{2^{n+1}}\), por lo que se dice que es un método lineal, pues \(e_{n+1}=\mathcal{O}\left(e_{n}\right)\), es decir, el error en una iteración es comparable al error en la iteración anterior.
+</p>
+<h2 class="text">Método de Newton-Raphson.</h2>
+  Si la función $f$ es derivable y se conoce una forma de calcular esta derivada, se puede utilizar el método de Newton-Raphson para encontrar la solución. A diferencia del método de la bisección, este método no convergerá siempre, pero de converger, lo hará mucho mas rápido.
+
+  El método se apoya en el desarrollo de Taylor de la función para construir una sucesión cuyos valores se aproximan cada vez más a la solución exacta.
+
+  Sea $x_n$ el enésimo término de esa sucesión, si se desarrolla la función en torno a ese punto se tiene que:
+
+  \[
+  f\left(x\right) = f\left(x_n\right)+f'\left(x_n\right)\left(x-x_n\right)+\mathcal{O}\left(\left|x-x_n\right|^2\right)
+  \]
+  Si imponemos que $x$ sea la solución exacta, en la cual $f\left(x\right)=0$ se tiene que:
+  \[
+  0 = f\left(x_n\right)+f'\left(x_n\right)\left(x-x_n\right)+\mathcal{O}\left(\left|x-x_n\right|^2\right)
+  \]
+  de donde, siempre que $f'\left(x_n\right)\neq0$, se puede despejar $x$ como:
+  \[
+  x = x_n - \frac{f\left(x_n\right)}{f'\left(x_n\right)}+\mathcal{O}\left(\left|x-x_n\right|^2\right)
+  \]
+
+  El método consiste en aproximar $x$ por:
+  \[
+  x_{n+1} = x_n - \frac{f\left(x_n\right)}{f'\left(x_n\right)}
+  \]
+  de modo que el error cometido es:
+  \[
+  e_{n+1} = \left|x-x_{n+1}\right|=\mathcal{O}\left(\left|x-x_n\right|^2\right)=\mathcal{O}\left(e_n^2\right)
+  \]
+  es decir, es un método en el que el error decrece de modo cuadrático, mucho más rápido que en el método de la bisección.
+
+  El aproximar $x$ por el valor $x_{n+1}$ es equivalente a aproximar la función $f$ por los dos primero términos del desarrollo de Taylor en torno a $x_n$:
+  \[
+  f\left(x\right)\approx f\left(x_n\right)+f'\left(x_n\right)\left(x-x_n\right)
+  \]
+  La gráfica de la función aproximada se corresponde con la de una recta de pendiente $f'\left(x_n\right)$ y que pasa por el punto $\left(x_n,f\left(x_n\right)\right)$, es decir, la recta tangente; y el punto $x_{n+1}$ es el punto de corte de esta recta con el eje de abscisas, como se muestra en la siguiente figura.
+
+  \begin{center}
+  \includegraphics[scale=1]{Newton.pdf}
+  \end{center}
+
+  \subsection*{Método de la secante.}
+
+  En caso de que no se disponga de la derivada de la función, o calcularla sea muy costoso se puede utilizar una aproximación a la derivada numérica. Esto es lo que hace el método de la secante, llamado así porque al aproximar numéricamente la derivada, lo que se está haciendo es substituir la recta tangente del método de Newton-Raphson por la recta secante.
+
+  Dadas dos aproximaciones consecutivas, $x_{n-1}$ y $x_{n}$, el método de la secante aproxima la función $f$ por la recta que coincide con la función en esos dos puntos.
+
+  \begin{center}
+  \includegraphics[scale=1]{secante.pdf}
+  \end{center}
+
+  Toda recta se puede expresar como $y\left(x\right )=mx+n$, por lo que imponiendo que:
+  \[y\left (x_{n-1}\right ) = f\left (x_{n-1}\right )\]
+  \[y\left (x_{n}\right ) = f\left (x_{n}\right )\]
+  se obtiene la expresión de la recta secante como:
+  \[
+  y\left (x\right )=f\left (x_n\right )+\frac{f\left (x_n\right )-f\left (x_{n-1}\right )}{x_n-x_{n-1}}\left (x-x_n\right )
+  \]
+  donde se puede apreciar la similitud con la expresión de la recta tangente, sin mas que cambiar $f'\left(x_n\right)$ por su aproximación por diferencias finitas atrasadas:
+  \[
+  \frac{f\left (x_n\right )-f\left (x_{n-1}\right )}{x_n-x_{n-1}}
+  \]
+
+  La aproximación $x_{n+1}$ será aquel valor que haga que $y\left (x_{n+1}\right )=0$ es decir \[
+  x_{n+1}=x_n-f\left (x_n\right )\frac{x_n-x_{n-1}}{f\left (x_n\right )-f\left (x_{n-1}\right )}
+  \]
+  el cuál también es completamente análogo al del método de Newton-Raphson. Este método, al no requerir de información de la derivada exacta, no convergerá en general tan rápido como el de Newton-Raphson\footnote{El orden de convergencia es superlineal, pero menor que cuadrático, de hecho se tiene que $e_{n+1}=\mathcal{O}\left(e_n^\varphi\right)$ donde $\varphi=1.618\dots$ es el número áureo.}.
+
+  \subsection*{Método de Newton-Raphson para sistemas de ecuaciones.}
+  En el caso de tener que resolver un sistema de $N$ ecuaciones no lineales con $N$ incógnitas cada una:
+  \[
+  \begin{array}{c}
+  f_1\left(x_1,x_2,\dots,x_N\right)=0\\
+  f_2\left(x_1,x_2,\dots,x_N\right)=0\\
+  \vdots\\
+  f_N\left(x_1,x_2,\dots,x_N\right)=0
+  \end{array}
+  \]
+  se puede utilizar un método análogo al de Newton-Raphson explicado para ecuaciones escalares.
+
+  Si se agrupan las incógnitas y las funciones en dos vectores:
+  \[
+  \mathbf{x}=\begin{pmatrix}
+  x_1\\
+  x_2\\
+  \dots\\
+  x_N
+  \end{pmatrix},\quad
+  \mathbf{f}\left(\mathbf{x}\right)=\begin{pmatrix}
+  f_1\left(\mathbf{x}\right)\\
+  f_2\left(\mathbf{x}\right)\\
+  \dots\\
+  f_N\left(\mathbf{x}\right)
+  \end{pmatrix}
+  \]
+  se puede reescribir el sistema como una única ecuación no lineal vectorial
+  \[
+  \mathbf{f}(\mathbf{x})=\mathbf{0}
+  \]
+
+  La mayor diferencia con el caso escalar está en que el desarrollo de Taylor entorno a $\mathbf{x}_n$ de una función vectorial de varias variables tiene la forma:
+  \[
+  \mathbf{f}(\mathbf{x})=\mathbf{f}(\mathbf{x}_n)+\mathbf{J_f}\left(\mathbf{x}_n\right)\left(\mathbf{x}-\mathbf{x}_n\right)+\mathcal{O}\left(\left|\mathbf{x}-\mathbf{x}_n\right|^2\right)
+  \]
+  donde $\mathbf{J_f}\left(\mathbf{x}_n\right)$ es la matriz jacobiana de la función $\mathbf{f}$ evaluada en el punto $\mathbf{x}_n$, es decir:
+  \[
+  \mathbf{J_f}\left(\mathbf{x}_n\right)=
+  \begin{pmatrix}
+  \frac{\partial f_1}{\partial x_1}_{\vert\mathbf{x}_n} &\frac{\partial f_1}{\partial x_2}_{\vert\mathbf{x}_n} &\dots &\frac{\partial f_1}{\partial x_N}_{\vert\mathbf{x}_n} \\
+  \frac{\partial f_2}{\partial x_1}_{\vert\mathbf{x}_n} &\frac{\partial f_2}{\partial x_2}_{\vert\mathbf{x}_n} &\dots &\frac{\partial f_2}{\partial x_N}_{\vert\mathbf{x}_n} \\
+  \vdots\\
+  \frac{\partial f_N}{\partial x_1}_{\vert\mathbf{x}_n} &\frac{\partial f_N}{\partial x_2}_{\vert\mathbf{x}_n} &\dots &\frac{\partial f_N}{\partial x_N}_{\vert\mathbf{x}_n}
+  \end{pmatrix}
+  \]
+  Por lo tanto al despejar $\mathbf{x}_{n+1}$ en función de $\mathbf{x}_{n}$ se obtiene:
+  \[
+  \mathbf{x}_{n+1}=\mathbf{x}_{n}-\mathbf{J_f}\left(\mathbf{x}_{n}\right)^{-1}\mathbf{f}\left(\mathbf{x}_{n}\right)
+  \]
+  por lo que la cantidad $\mathbf{x}_{n+1}=\mathbf{x}_{n}+\Delta\mathbf{x}$ no se podrá calcular directamente, sino que será necesario resolver el sistema lineal de ecuaciones:
+  \[
+  \mathbf{J_f}\left(\mathbf{x}_{n}\right)\Delta\mathbf{x}=-\mathbf{f}\left(\mathbf{x}_{n}\right)
+  \]
+
+  Del mismo modo que en el caso escalar, el método de Newton-Raphson vectorial también presenta convergencia de orden cuadrático.
+
+
+</body>
