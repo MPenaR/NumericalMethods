@@ -2,18 +2,18 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="../style_notes.css">
-  <title>Métodos Directos</title>
+  <title>Métodos directos</title>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
-<h1 class="text">Métodos directos.</h1>
+<h1>Métodos directos.</h1>
 <p>  Son aquellos algoritmos en los que mediante una serie de operaciones se
   obtiene una solución que, en caso de poder operar con precisión
   infinitamente pequeña, sería la solución exacta. Se explicarán el método de
   triangulación Gauss y el método de factorización LU.
 </p>
-<h2 class="text">Resolución de un sistema
+<h2>Resolución de un sistema
 triangular:</h2>
 <p>Un sistema triangular superior es un sistema el cuál, cuando es escrito
 matricialmente, es de la forma:</p>
@@ -97,7 +97,7 @@ utilizar un método completamente análogo. De la primera fila se obtendría que
   \boxed{x_i=\frac{b_i-\sum_{k=1}^{i-1} l_{ik}x_k}{l_{ii}}}
   \]
 </div>
-<h2 class="text">Triangularización de
+<h2>Triangularización de
 Gauss</h2>
 <p>Dado un sistema \(\mathbf{A}\mathbf{x}=\mathbf{b}\) el método de
 triangularización de Gauss trata de convertir la parte
@@ -133,7 +133,7 @@ realizadas por filas.</p>
 \(\mathbf{U}\mathbf{x}=\mathbf{w}\) posee las mismas soluciones que el
 sistema \(\mathbf{A}\mathbf{x}=\mathbf{b}\) y sin embargo es mucho más fácil de resolver.</p>
 
-<h2 class="text">Algoritmo de
+<h2>Algoritmo de
 triangularización.</h2>
 <p>El proceso de triangularización consiste en ir haciendo ceros por debajo
 de la diagonal, columna a columna. Para hacer ceros en la primera
@@ -179,7 +179,7 @@ de la diagonal, por aquella que tenga el elemento de mayor magnitud
 (valor absoluto) en esa columna.
 </p>
 
-<h2 class="text">Factorización LU:</h2>
+<h2>Factorización LU:</h2>
 <p>En el caso en el que no es necesario intercambiar filas, el método de
 triangulación de Gauss nos permite convertir el sistema</p>
 <div class="formula">
@@ -446,7 +446,7 @@ con la misma matriz \(\mathbf{A}\) y distinto término independiente,
 sólo tendríamos que hallar las matriz \(\mathbf{L}\) y \(\mathbf{U}\)
 una única vez.
 </p>
-<h2 class="text">Algoritmo para la factorización LU sin
+<h2>Algoritmo para la factorización LU sin
 pivote.</h2>
 <p>Igualando se tiene que:</p>
 <div class="formula">

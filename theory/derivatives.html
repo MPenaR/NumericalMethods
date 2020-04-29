@@ -2,12 +2,12 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="../style_notes.css">
-  <title>Métodos Directos</title>
+  <title>Derivación numérica</title>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
-  <h1 class="text">Derivación numérica.</h1>
+  <h1>Derivación numérica.</h1>
 <p>Existen ocasiones en las que se puede disponer de un método para calcular el valor de una función \(f\) pero no su derivada.</p>
 <p>Si la derivada de la función \(f\) existe en el punto \(x\) se podría aplicar la definición para calcular su valor a través del límite:</p>
 <div class="formula">
@@ -25,7 +25,7 @@
   f'\left(x\right)\approx\frac{ f\left(x+h\right)-f\left(x\right)}{h}
   \]
 </div>
-<h2 class="text">Diferencias finitas de primer orden: adelantadas, atrasadas y centradas.</h2>
+<h2>Diferencias finitas de primer orden: adelantadas, atrasadas y centradas.</h2>
 <p>Al cociente:</p>
 <div class="formula">
   \[
@@ -123,7 +123,7 @@
   \]
 </div>
 <p>dividir el tamaño de \(h\) por la mitad implica dividr por cuatro el error cometido en la aproximación.</p>
-<h2 class="text">Aproximación centrada a la derivada segunda.</h2>
+<h2>Aproximación centrada a la derivada segunda.</h2>
 <p>Utilizando los valores en \(x+h\) y en \(x-h\) también se puede aproximar la derivada segunda. Si se expresan hasta cuarto orden:</p>
 <div class="formula">
   \[

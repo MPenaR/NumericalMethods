@@ -6,11 +6,11 @@
   <script src="./d3-simple-slider.js"></script>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
-  <title>Ejemplos de integración numérica.</title>
+  <title>Métodos no lineales</title>
 </head>
 
 <body>
-  <h1 class="text">Resolución numérica de ecuaciones no lineales.</h1>
+  <h1>Resolución numérica de ecuaciones no lineales.</h1>
   <p>En este tema se estudiarán métodos para obtener soluciones a ecuaciones no lineales. Éstas son ecuaciones del tipo:
   </p>
   <div class="formula">
@@ -19,7 +19,7 @@
     \]
   </div>
   <p>donde la dependencia de la función \(f\) con la variable \(x\) no es lineal.</p>
-  <h2 class="text">Método de la bisección.</h2>
+  <h2>Método de la bisección.</h2>
   <p>Este método es una consecuencia directa del siguiente teorema:</p>
   <p class="theorem" author="Bolzano"> Sea \(f\) una función continua en un
     intervalo \([a,b]\), y tal que el signo de \(f(a)\)
@@ -73,7 +73,7 @@
 </div>
 <p>es decir, el error \(e_n=\left| x-x_n\right|\) cometido al asumir como solución aproximada el punto medio del intervalo \(I_n\) es como máximo la mitad de la medida de dicho intervalo. Si se hubiese parado en el intervalo siguiente \(I_{n+1}\), el error sería \(e_{n+1}<\frac{b-a}{2^{n+2}}=\frac{1}{2}\frac{b-a}{2^{n+1}}\), por lo que se dice que es un método lineal, pues \(e_{n+1}=\mathcal{O}\left(e_{n}\right)\), es decir, el error en una iteración es comparable al error en la iteración anterior.
 </p>
-<h2 class="text">Método de Newton-Raphson.</h2>
+<h2>Método de Newton-Raphson.</h2>
   Si la función $f$ es derivable y se conoce una forma de calcular esta derivada, se puede utilizar el método de Newton-Raphson para encontrar la solución. A diferencia del método de la bisección, este método no convergerá siempre, pero de converger, lo hará mucho mas rápido.
 
   El método se apoya en el desarrollo de Taylor de la función para construir una sucesión cuyos valores se aproximan cada vez más a la solución exacta.

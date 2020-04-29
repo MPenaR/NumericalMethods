@@ -2,12 +2,12 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="../style_notes.css">
-  <title>Métodos Directos</title>
+  <title>Métodos iterativos</title>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
-<h1 class="text">Métodos iterativos.</h1>
+<h1>Métodos iterativos.</h1>
 <p>A diferencia de los métodos directos como la triangulación Gauss o la
 factorización LU que una vez que terminan nos dan el valor de la
 solución directamente (o con un error pequeño debido a la precisión
@@ -98,7 +98,7 @@ se tiene que:</p>
 <p>con lo que se puede asegurar que el método converge a la solución
 exacta. En general, cuanto menor sea la norma de la matriz
 \(\mathbf{M}\) más rápido se podrá asegurar que converge el método.</p>
-<h2 class="text">Criterios de parada.</h2>
+<h2>Criterios de parada.</h2>
 <p>En todo método iterativo es necesario establecer unos criterios de
 parada, pues sino el programa iteraría infinitamente.
 </p>
@@ -153,7 +153,7 @@ exacta \(\mathbf{x}\) el residuo es cero (en cualquier norma).</p>
 <p>En sistemas lineales ambos criterios son completamente equivalentes por lo que solo se usará uno,
 pero como se verá más adelante, en ecuaciones no lineales en general son criterios independientes.</p>
 
-<h2 class="text">Método de Jacobi.</h2>
+<h2>Método de Jacobi.</h2>
 <p>Si se tiene el sistema \(\mathbf{A}\mathbf{x} = \mathbf{b}\), se puede
 separar la matriz \(\mathbf{A}\) como suma de una matriz triangular
 inferior, una diagonal, y una triangular superior:
@@ -250,7 +250,7 @@ método de Jacobi convergerá a la solución independientemente de la aproximaci
     end function
 \end{lstlisting} -->
 
-<h2 class="text">Método de Gauss-Seidel.</h2>
+<h2>Método de Gauss-Seidel.</h2>
 <p>Si en cambio se separa la matriz \(\mathbf{A}\) como suma de una
 triangular superior y una triangular inferior, quedándose la diagonal en
 la inferior:</p>

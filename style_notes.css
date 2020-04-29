@@ -1,30 +1,24 @@
-.plot {
-  margin: auto;
-  width: 800px;
-}
-.text{
+
+/* .text{
   margin: auto;
   width: 800px;
   line-height: 1.5;
-}
-h1, h2, h3, h4, h5, h6{
+} */
+
+
+/* h1, h2, h3, h4, h5, h6{
   line-height: 1.5;
   margin-top:20px;
   margin-bottom:10px;
-}
-p{
-  margin: auto;
-  width: 800px;
-  line-height: 1.5;
-}
+} */
+
+
 
 .formula{
   align: center;
 }
 .MathJax p {line-height: inherit}
-/* p {
-   text-indent: 20px;
-} */
+
 a {
    text-decoration: none;
 }
@@ -48,3 +42,25 @@ body, html {
   width: 800px;
   line-height: 1.5;
 }
+h1{
+  line-height: 1.5;
+  margin-top:80px;
+  margin-bottom:10px;
+}
+
+h2{
+  line-height: 1.5;
+  margin-top: 30px;
+  margin-bottom: 5px;
+}
+
+/* p {
+   text-indent: 10px;
+} */
+
+
+
+/* .plot {
+  margin: auto;
+  width: 800px;
+} */
