@@ -175,46 +175,62 @@
 </div>
 <p>por lo que aproximando la integral por la regla del trapecio se comete un error de orden cuadrático.</p>
 
-<h2>Regla de Simpson.</h2>
-  El la regla de Simpson consiste en coger los subintervalos de dos en dos (por lo que es necesario que el número de subintervalos sea par) y teniendo en cuenta que dos intervalos consecutivos supone conocer tres valores de la función, $f\left(x_{i-1}\right)$, $f\left(x_{i}\right)$ y $f\left(x_{i+1}\right)$; aproximar la función en ellos por una función $\hat{f}$ parabólica.
-
-  Una parábola genérica se puede escribir como\footnote{Se utiliza $x-x_i$ para que los resultados salgan más fácilmente, pero la fórmula es igual de genérica que si se hubiese puesto $x$ en vez de $x-x_i$.}:
+<h2>Regla de de Simpson.</h2>
+<p>La regla de Simpson consiste en coger los subintervalos de dos en dos (por lo que es necesario que el número de subintervalos sea par) y teniendo en cuenta que dos intervalos consecutivos supone conocer tres valores de la función, \(f\left(x_{i-1}\right)\), \(f\left(x_{i}\right)\) y \(f\left(x_{i+1}\right)\); aproximar la función en \(\left[x_{i-1},x_{i+1}\right]\) por una función parabólica \(\hat{f}\) que pase por ellos.
+</p>
+<p>Una parábola genérica se puede escribir como:
+</p>
+<!-- \footnote{Se utiliza $x-x_i$ para que los resultados salgan más fácilmente, pero la fórmula es igual de genérica que si se hubiese puesto $x$ en vez de $x-x_i$.} -->
+<div class="formula">
   \[
   \hat{f}\left(x\right)=A\left(x-x_i\right)^2 + B\left(x-x_i\right)+C
   \]
-  Si se impone que en $x_i$ tiene que valer $f\left(x_i\right)$ se obtiene que
-  $C=f\left(x_i\right)$ mientras que en $x_{i-1}$ y $x_{i+1}$ se obtiene:
+</div>
+<p>Si se impone que en \(x_i\) tiene que valer \(f\left(x_i\right)\) se obtiene que
+  \(C=f\left(x_i\right)\) mientras que en \(x_{i-1}\) y \(x_{i+1}\) se obtiene:</p>
+<div class="formula">
   \[f\left(x_{i-1}\right)=Ah^2-Bh+C\]
+</div>
+<div class="formula">
   \[f\left(x_{i+1}\right)=Ah^2+Bh+C\]
-  donde $h=x_{i}-x_{i-1}$. Resolviendo el sistema de ecuaciones se obtiene que\footnote{Esta expresión no debería de resultar extraña, pues es exactamente el desarrollo de Taylor centrado en $x_i$ substituyendo $f'\left(x_i\right)$ y $f''\left(x_i\right)$ por sus aproximaciones numéricas centradas.}
-  \[
-  \hat{f}\left(x\right)=f\left(x_i\right)+\frac{f\left(x_{i+1}\right)-f\left(x_{i-1}\right)}{2h}\left(x-x_i\right)+\frac{1}{2}\frac{f\left(x_{i+1}\right)-2f\left(x_i\right)+f\left(x_{i+1}\right)}{h^2}\left(x-x_i\right)^2
-  \]
-
-  Si se integra la expresión anterior entre $x_{i-1}$ y $x_{i+1}$ se obtiene
-  \[
-  \int\limits_{x_{i-1}}^{x^{i+1}}\hat{f}\left(x\right)\,\mathrm{d}x=\frac{h}{3}\left(f\left(x_{i-1}\right)+4f\left(x_i\right)+f\left(x_{i+1}\right)\right)
-  \]
-  con lo que la integral completa queda aproximada por:
+</div>
+<p>donde \(h=x_{i}-x_{i-1}\). Resolviendo el sistema de ecuaciones se obtiene que</p>
+<!-- \footnote{Esta expresión no debería de resultar extraña, pues es exactamente el desarrollo de Taylor centrado en $x_i$ substituyendo $f'\left(x_i\right)$ y $f''\left(x_i\right)$ por sus aproximaciones numéricas centradas.}
+ -->
+ <div class="formula">
+   \[
+   \hat{f}\left(x\right)=f\left(x_i\right)+\frac{f\left(x_{i+1}\right)-f\left(x_{i-1}\right)}{2h}\left(x-x_i\right)+\frac{1}{2}\frac{f\left(x_{i+1}\right)-2f\left(x_i\right)+f\left(x_{i+1}\right)}{h^2}\left(x-x_i\right)^2
+   \]
+ </div>
+ <p>Si se integra la expresión anterior entre \(x_{i-1}\) y \(x_{i+1}\) se obtiene
+ </p>
+ <div class="">
+   \[
+   \int\limits_{x_{i-1}}^{x^{i+1}}\hat{f}\left(x\right)\,\mathrm{d}x=\frac{h}{3}\left(f\left(x_{i-1}\right)+4f\left(x_i\right)+f\left(x_{i+1}\right)\right)
+   \]
+ </div>
+<p>con lo que la integral completa queda aproximada por:</p>
+<div class="formula">
   \[
   \int\limits_{a}^{b}f\left(x\right)\,\mathrm{d}x\approx\sum_{i=1}^{\frac{N}{2}}\int\limits_{x_{2i-2}}^
-  {x_{2i}}\hat{f}\left(x\right)\,\mathrm{d}x=\frac{h}{3}\sum_{i=1}^{\frac{N}{2}}\left(f\left(x_{2i-2}\right)+4f\left(x_{2i-1}\right)+f\left(x_{2i}\right)\right)\]
-  es decir
+  {x_{2i}}\hat{f}\left(x\right)\,\mathrm{d}x=\frac{h}{3}\sum_{i=1}^{\frac{N}{2}}\left(f\left(x_{2i-2}\right)+4f\left(x_{2i-1}\right)+f\left(x_{2i}\right)\right)
+  \]
+</div>
+<p>es decir</p>
+<div class="formula">
   \[
-  \int\limits_{a}^{b}f\left(x\right)\,\mathrm{d}x\approx\frac{h}{3}\left(f\left(x_{0}\right)+4f\left(x_{1}\right)+2f\left(x_{2}\right)+4f\left(x_{3}\right)+2f\left(x_{4}\right)+\dots+4f\left(x_{N-1}\right)+f\left(x_{N}\right)\right)\]
-
-  Por último, siguiendo un desarrollo análogo al de la regla del trapecio, que se omite por brevedad, se obtiene que
+    \int\limits_{a}^{b}f\left(x\right)\,\mathrm{d}x\approx\frac{h}{3}\left(f\left(x_{0}\right)+4f\left(x_{1}\right)+2f\left(x_{2}\right)+4f\left(x_{3}\right)+2f\left(x_{4}\right)+\dots+4f\left(x_{N-1}\right)+f\left(x_{N}\right)\right)
+  \]
+</div>
+<p>Por último, siguiendo un desarrollo análogo al de la regla del trapecio, que se omite por brevedad, se obtiene que
+</p>
+<div class="formula">
   \[
   \boxed{
   \int\limits_{a}^{b}f\left(x\right)\,\mathrm{d}x=\frac{h}{3}\sum_{i=1}^{\frac{N}{2}}\left(f\left(x_{2i-2}\right)+4f\left(x_{2i-1}\right)+f\left(x_{2i}\right)\right)+\mathcal{O}\left(h^4\right)}
   \]
-  Es decir, el error cometido al aproximar la integral por la regla de Simpson con subintervalos de tamaño $h$ es de orden $\mathcal{O}\left(h^4\right)$.
-
-  \subsubsection*{Ejercicio propuesto.}
-  Se sugiere programar los tres métodos y calcular la integral
-  \[I=\int_{0}^{\pi}\sin\left(x\right)\,\mathrm{d}x\]
-  para diferentes valores de $h$. Si llamamos $e_h$ al valor absoluto de la diferencia entre obtenido para la integral para un cierto valor de $h$ y el valor exacto (2). Se tiene que cumplir que $e_h=\mathcal{O}\left(h\right)$ para el método de las sumas por la izquierda, $e_h=\mathcal{O}\left(h^2\right)$ para la regla del trapecio y $e_h=\mathcal{O}\left(h^4\right)$ para la regla de Simpson.
-
-
+</div>
+<p>Es decir, el error cometido al aproximar la integral por la regla de Simpson con subintervalos de tamaño $h$ es de orden $\mathcal{O}\left(h^4\right)$.
+</p>
   <script src="./plotter.js"></script>
 </body>
