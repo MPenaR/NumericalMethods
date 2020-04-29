@@ -34,3 +34,11 @@ img {
     margin-left: auto;
     margin-right: auto;
 }
+.theorem::before {
+  content:attr(author) ": ";
+  font-style: normal;
+  font-weight: bold;
+}
+.theorem{
+  font-style: italic;
+}
