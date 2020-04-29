@@ -10,9 +10,211 @@
 </head>
 
 <body>
-  <h2 aling="center">Sumas por la izquierda:</h2>
-  <div>$$I=\int_{a}^{b}f\left(x\right)\,\mathrm{d}x$$</div>
-  <div>$$L=\frac{b-a}{N}\sum_{i=1}^{N}f\left(x_{i-1}\right)$$</div>
+  <h1>Integración numérica.</h1>
+  <p>De manera análoga a lo que se hizo con la derivación numérica, el primer intento que se puede hacer para integrar una función \(f\) en el intervalo \(\left[a,b\right]\) es utilizar la definición:
+  </p>
+  <div class="formula">
+    \begin{equation}
+    \int_a^b f\left(x\right)\,\mathrm{d}x=\lim_{N\to\infty}\sum_{i=1}^N f\left(\xi_i\right)\left(x_i-x_{i-1}\right)
+    \end{equation}
+  </div>
+  <p>donde \(x_0,x_1,\dots,x_N\) es una partición equiespaciada del intervalo \(\left[a,b\right]\), es decir \(x_i=ih\) con \(h=\frac{b-a}{N}\), y \(\xi_i\in\left[x_{i-x},x_i\right]\), con lo que hacer el límite con \(N\to\infty\) es equivalente a hacer el límite \(h\to 0^+\).
+</p>
+<p>Si en vez de hacer el límite, se calcula el valor para un \(h\) suficientemente pequeño se obtiene
+</p>
+  <div class="formula">
+    \[
+    \int_a^b f\left(x\right)\,\mathrm{d}x\approx\sum_{i=1}^N f\left(\xi_i\right)h
+    \]
+  </div>
+<h2>Sumas por la izquierda o por la derecha</h2>
+<p>La expresión anterior también se puede obtener por otro camino. Primero se divide la el intervalo \(\left[a,b\right]\) en \(N\) subintervalos iguales, de modo que
+</p>
+<div class="formula">
+  \[
+  \int\limits_a^b f\left(x\right)\,\mathrm{d}x=\int\limits_{x_{0}}^{x_1}f\left(x\right)\,\mathrm{d}x+\int\limits_{x_{1}}^{x_2}f\left(x\right)\,\mathrm{d}x+\dots+\int\limits_{x_{N-1}}^{x_N}f\left(x\right)\,\mathrm{d}x=\sum_{i=1}^N\int\limits_{x_{i-1}}^{x_i}f\left(x\right)\,\mathrm{d}x
+  \]
+</div>
+<p>y a continuación se aproxima la función \(f\) por un valor constante en cada intervalo \(f\left(\xi_i\right)\):
+</p>
+<div class="formula">
+  \[
+  \sum_{i=1}^N\int\limits_{x_{i-1}}^{x_i}f\left(x\right)\,\mathrm{d}x\approx\sum_{i=1}^N\int\limits_{x_{i-1}}^{x_i}f\left(\xi_i\right)\,\mathrm{d}x=\sum_{i=1}^Nf\left(\xi_i\right)h
+  \]
+</div>
+<p>Esta forma de derivarlo permite obtener una aproximación del error que se comete al aproximar la integral por este método.
+</p>
+<p>Si se escoge \(\xi_i=x_{i-1}\), es decir, el valor de la izquierda de cada subintervalo. Utilizando el desarrollo de Taylor de la función \(f\) en cada intervalo, en torno a \(x=x_{i-x}\) se obtiene que:
+</p>
+<div class="formula">
+  \[
+  f\left(x\right)=f\left(x_i\right)+f'\left(x_i\right)\left(x-x_i\right)+o\left(x-x_i\right)
+  \]
+</div>
+<p>es decir</p>
+<div class="formula">
+  \[
+    \vert f\left(x\right)-f\left(x_{i-1}\right)\vert=\vert f'\left(x_i\right)\left(x-x_{i-1}\right)+o\left(x-x_{i-1}\right)\vert
+  \]
+</div>
+<p>Si la derivada de la función \(f\) está acotada en \([a,b]\) se puede asegurar que existe \(K>0\) tal que:</p>
+<div class="formula">
+  \[
+  \vert f\left(x\right)-f\left(x_{i-1}\right)\vert\le K\left(x-x_{i-1}\right)
+  \]
+</div>
+<p>y por lo tanto
+</p>
+<div class="formula">
+  \[
+  \left|\int\limits_{x_{i-1}}^{x_i}f\left(x\right)\,\mathrm{d}x-\int\limits_{x_{i-1}}^{x_i}f\left(x_{i-1}\right)\,\mathrm{d}x\right|=\left|\int\limits_{x_{i-1}}^{x_i}\left(f\left(x\right)-f\left(x_{i-1}\right)\right)\,\mathrm{d}x\right|\le K\int\limits_{x_{i-1}}^{x_i}\left(x-x_{i-1}\right)\,\mathrm{d}x\le \frac{Kh^2}{2}
+  \]
+</div>
+<p>Por último, si se suman todas las integrales, y se tiene en cuenta que \(Nh=\left(b-a\right)\) se obtiene una cota superior para el error cometido:</p>
+<div class="formula">
+  \[
+    \left|\int\limits_{a}^{b}f\left(x\right)\,\mathrm{d}x-\sum_{i=1}^{N}\int\limits_{x_{i-1}}^{x_i}f\left(x_{i-1}\right)\,\mathrm{d}x\right|\le NK\frac{h^2}{2}=\left(b-a\right)K\frac{h}{2}
+  \]
+</div>
+<p>o lo que es lo mismo:</p>
+<div class="formula">
+  \[\boxed{
+  \int\limits_{a}^{b}f\left(x\right)\,\mathrm{d}x=\sum_{i=1}^{N}f\left(x_{i-1}\right)h+\mathcal{O}\left(h\right)}
+  \]
+</div>
+<p>Es decir, dada una función derivable \(f\) y un intervalo \(\left[a,b\right]\) de integración fijos, el error que se comete cuando se utiliza \(\xi_i=x_{i-1}\) es de orden \(\mathcal{O}\left(h\right)\).
+</p>
+    <!-- <div>$$I=\int_{a}^{b}f\left(x\right)\,\mathrm{d}x$$</div>
+  <div>$$L=\frac{b-a}{N}\sum_{i=1}^{N}f\left(x_{i-1}\right)$$</div> -->
   <div class="plot" id="plot_L" align="center"></div>
+
+
+
+<h2>Regla del trapecio.</h2>
+<p>Manteniendo la idea del método anterior, se puede mejorar la aproximación de la función  \(f\) utilizando una función lineal en cada subintervalo.
+</p>
+<p>Es decir, se trata de encontrar la función \(\hat{f}\) del tipo \(\hat{f}\left(x\right)=mx+n\), que pasa por los puntos \(\left(x_{i-1},f\left(x_{i-1}\right)\right)\) y \(\left(x_i,f\left(x_i\right)\right)\). Se puede comprobar que esta función se puede escribir en general como:
+</p>
+<div class="formula">
+  \[
+  \hat{f}\left(x\right)=f\left(x_{i-1}\right)+\frac{f\left(x_i\right)-f\left(x_{i-1}\right)}{x_i-x_{i-1}}\left(x-x_{i-1}\right)\quad x\in\left[x_{i-1},x_i\right]
+  \]
+</div>
+<p>Si ahora se procede de manera análoga al caso anterior se tiene que:</p>
+<div class="formula">
+  \[
+  \int\limits_a^b f\left(x\right)\,\mathrm{d}x=\sum_{i=1}^N\int\limits_{x_{i-1}}^{x_i}f\left(x\right)\,\mathrm{d}x\approx\sum_{i=1}^{N}\int\limits_{x_{i-1}}^{x_i}\hat{f}\left(x\right)\,\mathrm{d}x
+  \]
+</div>
+<p>que substituyendo la expresión de \(\hat{f}\) e integrando da:</p>
+<div class="formula">
+  \[
+  \sum_{i=1}^{N}\int\limits_{x_{i-1}}^{x_i}\hat{f}\left(x\right)\,\mathrm{d}x=\sum_{i=1}^N\left(f\left(x_{i-1}\right)\left(x_i-x_{i-1}\right)+\frac{1}{2}\frac{f\left(x_i\right)-f\left(x_{i-1}\right)}{x_i-x_{i-1}}\left(x_i-x_{i-1}\right)^2\right)
+  \]
+</div>
+<p>es decir</p>
+<div class="formula">
+  \[
+  \int\limits_{a}^{b}f\left(x\right)\,\mathrm{d}x\approx\sum_{i=1}^N\left(\frac{1}{2}\left(f\left(x_i\right)+f\left(x_{i-1}\right)\right)\left(x_i-x_{i-1}\right)\right)
+  \]
+</div>
+<p>lo cuál se conoce como la aproximación por la regla del trapecio puesto que al aproximar la función por rectas en cada intervalo, el área debajo de la función en cada intervalo es el área de un trapecio de base \(x_i-x_{i-1}\) y alturas \(f\left(x_{i-1}\right)\) y \(f\left(x_i\right)\).
+</p>
+<p>Si los subintervalos están equiespaciados se tiene que \(x_i-x_{i-1}=h\) para todos ellos con lo que la regla del trapecio queda finalmente como:</p>
+<div class="formula">
+  \[
+  \int\limits_a^b f\left(x\right)\,\mathrm{d}x\approx\frac{h}{2}\sum_{i=1}^N\left(f\left(x_i\right)+f\left(x_{i-1}\right)\right)
+  \]
+</div>
+<p>Para estimar el error cometido en la aproximación de la función, se procede de manera similar. Desarrollando la función \(f\) en torno a \(x_{i-1}\)</p>
+<div class="formula">
+  \[
+    f\left(x\right)=f\left(x_{i-1}\right)+f'\left(x_{i-1}\right)\left(x-x_{i-1}\right)+\frac{1}{2}f''\left(x_{i-1}\right)\left(x-x_{i-1}\right)^2+o\left(|x-x_{i-1}|^2\right)
+  \]
+</div>
+<p>se puede estimar el error que se comete al aproximarla por una función lineal. Evaluando la expresión anterior en \(x_{i}\) se tiene que:</p>
+<div class="formula">
+  \[
+    f\left(x_i\right)=f\left(x_{i-1}\right)+f'\left(x_{i-1}\right)h+\frac{1}{2}f''\left(x_{i-1}\right)h^2+o\left(h^2\right)
+  \]
+</div>
+<p>con lo que la diferencia entre \(f\) y su aproximación lineal es</p>
+<!-- \footnote{Llegar a este resultado y al siguiente puede ser más o menos pesado, pero no es más que substituir y operar.} -->
+<div class="formula">
+  \[
+    f\left(x\right)-\left(f(x_{i-1})+\frac{f\left(x_{i}\right)-f\left(x_{i-1}\right)}{h}\left(x-x_{i-1}\right)\right)=\frac{1}{2}f''\left(x_{i-1}\right)\left(x-x_{i-1}\right)\left(x-x_{i}\right)+o\left(h^2\right)
+  \]
+</div>
+<p>Como era de esperar el error es nulo en \(x=x_{i-1}\) y \(x=x_i\) pues la recta pasa por esos puntos.
+</p>
+<p>Integrando entre \(x_{i-1}\) y \(x_{i}\) a ambos lados se obtiene:</p>
+<div class="formula">
+  \[
+  \int\limits_{x_{i-1}}^{x_{i}}f\left(x\right)\,\mathrm{d}x-h\frac{f\left(x_{i-1}\right)+f\left(x_i\right)}{2}=-\frac{1}{12}f''\left(x_{i-1}\right)h^3+o\left(h^3\right)
+  \]
+</div>
+<p>con lo que se puede asegurar que, si la derivada segunda de la función \(f\) está acotada en el intervalo \(\left[a,b\right]\), entonces existe \(K>0\) tal que
+</p>
+<div class="formula">
+  \[
+    \left|\int\limits_{x_{i-1}}^{x_{i}}f\left(x\right)\,\mathrm{d}x-h\frac{f\left(x_{i-1}\right)+f\left(x_i\right)}{2}\right|\le\frac{K}{12}h^3
+  \]
+</div>
+<p>y sumando todos los intervalos:</p>
+<div class="formula">
+  \[
+    \left|\int\limits_{a}^{b}f\left(x\right)\,\mathrm{d}x-h\sum_{i=1}^N\frac{f\left(x_{i-1}\right)+f\left(x_i\right)}{2}\right|\le K\frac{b-a}{12}h^2
+  \]
+</div>
+<p>o lo que es lo mismo:</p>
+<div class="formula">
+  \[
+    \boxed{
+    \int\limits_{a}^{b}f\left(x\right)\,\mathrm{d}x=h\sum_{i=1}^N\frac{f\left(x_{i-1}\right)+f\left(x_i\right)}{2}+\mathcal{O}\left(h^2\right)}
+  \]
+</div>
+<p>por lo que aproximando la integral por la regla del trapecio se comete un error de orden cuadrático.</p>
+
+<h2>Regla de Simpson.</h2>
+  El la regla de Simpson consiste en coger los subintervalos de dos en dos (por lo que es necesario que el número de subintervalos sea par) y teniendo en cuenta que dos intervalos consecutivos supone conocer tres valores de la función, $f\left(x_{i-1}\right)$, $f\left(x_{i}\right)$ y $f\left(x_{i+1}\right)$; aproximar la función en ellos por una función $\hat{f}$ parabólica.
+
+  Una parábola genérica se puede escribir como\footnote{Se utiliza $x-x_i$ para que los resultados salgan más fácilmente, pero la fórmula es igual de genérica que si se hubiese puesto $x$ en vez de $x-x_i$.}:
+  \[
+  \hat{f}\left(x\right)=A\left(x-x_i\right)^2 + B\left(x-x_i\right)+C
+  \]
+  Si se impone que en $x_i$ tiene que valer $f\left(x_i\right)$ se obtiene que
+  $C=f\left(x_i\right)$ mientras que en $x_{i-1}$ y $x_{i+1}$ se obtiene:
+  \[f\left(x_{i-1}\right)=Ah^2-Bh+C\]
+  \[f\left(x_{i+1}\right)=Ah^2+Bh+C\]
+  donde $h=x_{i}-x_{i-1}$. Resolviendo el sistema de ecuaciones se obtiene que\footnote{Esta expresión no debería de resultar extraña, pues es exactamente el desarrollo de Taylor centrado en $x_i$ substituyendo $f'\left(x_i\right)$ y $f''\left(x_i\right)$ por sus aproximaciones numéricas centradas.}
+  \[
+  \hat{f}\left(x\right)=f\left(x_i\right)+\frac{f\left(x_{i+1}\right)-f\left(x_{i-1}\right)}{2h}\left(x-x_i\right)+\frac{1}{2}\frac{f\left(x_{i+1}\right)-2f\left(x_i\right)+f\left(x_{i+1}\right)}{h^2}\left(x-x_i\right)^2
+  \]
+
+  Si se integra la expresión anterior entre $x_{i-1}$ y $x_{i+1}$ se obtiene
+  \[
+  \int\limits_{x_{i-1}}^{x^{i+1}}\hat{f}\left(x\right)\,\mathrm{d}x=\frac{h}{3}\left(f\left(x_{i-1}\right)+4f\left(x_i\right)+f\left(x_{i+1}\right)\right)
+  \]
+  con lo que la integral completa queda aproximada por:
+  \[
+  \int\limits_{a}^{b}f\left(x\right)\,\mathrm{d}x\approx\sum_{i=1}^{\frac{N}{2}}\int\limits_{x_{2i-2}}^
+  {x_{2i}}\hat{f}\left(x\right)\,\mathrm{d}x=\frac{h}{3}\sum_{i=1}^{\frac{N}{2}}\left(f\left(x_{2i-2}\right)+4f\left(x_{2i-1}\right)+f\left(x_{2i}\right)\right)\]
+  es decir
+  \[
+  \int\limits_{a}^{b}f\left(x\right)\,\mathrm{d}x\approx\frac{h}{3}\left(f\left(x_{0}\right)+4f\left(x_{1}\right)+2f\left(x_{2}\right)+4f\left(x_{3}\right)+2f\left(x_{4}\right)+\dots+4f\left(x_{N-1}\right)+f\left(x_{N}\right)\right)\]
+
+  Por último, siguiendo un desarrollo análogo al de la regla del trapecio, que se omite por brevedad, se obtiene que
+  \[
+  \boxed{
+  \int\limits_{a}^{b}f\left(x\right)\,\mathrm{d}x=\frac{h}{3}\sum_{i=1}^{\frac{N}{2}}\left(f\left(x_{2i-2}\right)+4f\left(x_{2i-1}\right)+f\left(x_{2i}\right)\right)+\mathcal{O}\left(h^4\right)}
+  \]
+  Es decir, el error cometido al aproximar la integral por la regla de Simpson con subintervalos de tamaño $h$ es de orden $\mathcal{O}\left(h^4\right)$.
+
+  \subsubsection*{Ejercicio propuesto.}
+  Se sugiere programar los tres métodos y calcular la integral
+  \[I=\int_{0}^{\pi}\sin\left(x\right)\,\mathrm{d}x\]
+  para diferentes valores de $h$. Si llamamos $e_h$ al valor absoluto de la diferencia entre obtenido para la integral para un cierto valor de $h$ y el valor exacto (2). Se tiene que cumplir que $e_h=\mathcal{O}\left(h\right)$ para el método de las sumas por la izquierda, $e_h=\mathcal{O}\left(h^2\right)$ para la regla del trapecio y $e_h=\mathcal{O}\left(h^4\right)$ para la regla de Simpson.
+
+
   <script src="./plotter.js"></script>
 </body>
