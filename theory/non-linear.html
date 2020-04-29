@@ -74,84 +74,117 @@
 <p>es decir, el error \(e_n=\left| x-x_n\right|\) cometido al asumir como solución aproximada el punto medio del intervalo \(I_n\) es como máximo la mitad de la medida de dicho intervalo. Si se hubiese parado en el intervalo siguiente \(I_{n+1}\), el error sería \(e_{n+1}<\frac{b-a}{2^{n+2}}=\frac{1}{2}\frac{b-a}{2^{n+1}}\), por lo que se dice que es un método lineal, pues \(e_{n+1}=\mathcal{O}\left(e_{n}\right)\), es decir, el error en una iteración es comparable al error en la iteración anterior.
 </p>
 <h2>Método de Newton-Raphson.</h2>
-  Si la función $f$ es derivable y se conoce una forma de calcular esta derivada, se puede utilizar el método de Newton-Raphson para encontrar la solución. A diferencia del método de la bisección, este método no convergerá siempre, pero de converger, lo hará mucho mas rápido.
-
-  El método se apoya en el desarrollo de Taylor de la función para construir una sucesión cuyos valores se aproximan cada vez más a la solución exacta.
-
-  Sea $x_n$ el enésimo término de esa sucesión, si se desarrolla la función en torno a ese punto se tiene que:
-
+<p>Si la función \(f\) es derivable y se conoce una forma de calcular esta derivada, se puede utilizar el método de Newton-Raphson para encontrar la solución. A diferencia del método de la bisección, este método no convergerá siempre, pero de converger, lo hará mucho mas rápido.
+</p>
+  <p>El método se apoya en el desarrollo de Taylor de la función para construir una sucesión cuyos valores se aproximan cada vez más a la solución exacta.
+</p>
+  <p>Sea \(x_n\) el enésimo término de esa sucesión, si se desarrolla la función en torno a ese punto se tiene que:
+</p>
+  <div class="formula">
+    \[
+    f\left(x\right) = f\left(x_n\right)+f'\left(x_n\right)\left(x-x_n\right)+\mathcal{O}\left(\left|x-x_n\right|^2\right)
+    \]
+  </div>
+<p>Si \(x\) fuese la solución exacta (en la cuál \(f\left(x\right)=0\)) se tendría que:
+</p>
+<div class="formula">
   \[
-  f\left(x\right) = f\left(x_n\right)+f'\left(x_n\right)\left(x-x_n\right)+\mathcal{O}\left(\left|x-x_n\right|^2\right)
+    0 = f\left(x_n\right)+f'\left(x_n\right)\left(x-x_n\right)+\mathcal{O}\left(\left|x-x_n\right|^2\right)
   \]
-  Si imponemos que $x$ sea la solución exacta, en la cual $f\left(x\right)=0$ se tiene que:
+</div>
+<p>de donde, siempre que \(f'\left(x_n\right)\neq0\), se podría despejar \(x\) como:</p>
+<div class="formula">
   \[
-  0 = f\left(x_n\right)+f'\left(x_n\right)\left(x-x_n\right)+\mathcal{O}\left(\left|x-x_n\right|^2\right)
+    x = x_n - \frac{f\left(x_n\right)}{f'\left(x_n\right)}+\mathcal{O}\left(\left|x-x_n\right|^2\right)
   \]
-  de donde, siempre que $f'\left(x_n\right)\neq0$, se puede despejar $x$ como:
-  \[
-  x = x_n - \frac{f\left(x_n\right)}{f'\left(x_n\right)}+\mathcal{O}\left(\left|x-x_n\right|^2\right)
-  \]
-
-  El método consiste en aproximar $x$ por:
+</div>
+<p>Puesto que en general, la función \(f\) no será lineal, su desarrollo tendrá más términos y por lo tanto
+  el valor dado por la expresión anterior no será la solución exacta, sin embargo será una aproximación mejor que \(x_n\)</p>
+<p>El método de Newton consiste en construir una sucesión de aproximaciones sucesivas mediante la siguiente regla de recurrencia</p>
   \[
   x_{n+1} = x_n - \frac{f\left(x_n\right)}{f'\left(x_n\right)}
   \]
-  de modo que el error cometido es:
-  \[
-  e_{n+1} = \left|x-x_{n+1}\right|=\mathcal{O}\left(\left|x-x_n\right|^2\right)=\mathcal{O}\left(e_n^2\right)
-  \]
-  es decir, es un método en el que el error decrece de modo cuadrático, mucho más rápido que en el método de la bisección.
-
-  El aproximar $x$ por el valor $x_{n+1}$ es equivalente a aproximar la función $f$ por los dos primero términos del desarrollo de Taylor en torno a $x_n$:
+  <p>de modo que el error cometido es:
+  </p>
+  <div class="formula">
+    \[
+    e_{n+1} = \left|x-x_{n+1}\right|=\mathcal{O}\left(\left|x-x_n\right|^2\right)=\mathcal{O}\left(e_n^2\right)
+    \]
+  </div>
+  <p>es decir, es un método en el que el error decrece de modo cuadrático, mucho más rápido que en el método de la bisección.
+</p>
+<p>Para comprender gráficamente lo que hace el método de Newton basta con darse cuenta
+  de que aproximar \(x\) por el valor \(x_{n+1}\) es equivalente a aproximar la función \(f\) por los dos primero términos del desarrollo de Taylor en torno a \(x_n\):
+</p>
+<div class="formula">
   \[
   f\left(x\right)\approx f\left(x_n\right)+f'\left(x_n\right)\left(x-x_n\right)
   \]
-  La gráfica de la función aproximada se corresponde con la de una recta de pendiente $f'\left(x_n\right)$ y que pasa por el punto $\left(x_n,f\left(x_n\right)\right)$, es decir, la recta tangente; y el punto $x_{n+1}$ es el punto de corte de esta recta con el eje de abscisas, como se muestra en la siguiente figura.
+</div>
+<p>La gráfica de la función aproximada se corresponde con la de una recta de pendiente \(f'\left(x_n\right)\) y que pasa por el punto \(\left(x_n,f\left(x_n\right)\right)\), es decir, la recta tangente a la función \(f\) en el punto \(x_n\). Por lo tanto el punto \(x_{n+1}\) es el punto de corte de esta recta con el eje de abscisas, como se muestra en la siguiente figura.
+</p>
+  <div>
+    <img src="./Newton.png" alt="Newton">
+  </div>
 
-  \begin{center}
-  \includegraphics[scale=1]{Newton.pdf}
-  \end{center}
+<h2>Método de la secante.</h2>
+<p>En caso de que no se disponga de la derivada de la función, o calcularla sea muy costoso se puede utilizar una aproximación a la derivada numérica. Esto es lo que hace el método de la secante, llamado así porque al aproximar numéricamente la derivada, lo que se está haciendo es substituir la recta tangente del método de Newton-Raphson por la recta secante.
+</p>
+<p>Dadas dos aproximaciones consecutivas, \(x_{n-1}\) y \(x_{n}\), el método de la secante aproxima la función \(f\) por la recta que coincide con la función en esos dos puntos.
+</p>
+<div>
+  <img src="./secante.png" alt="secante">
+</div>
 
-  \subsection*{Método de la secante.}
-
-  En caso de que no se disponga de la derivada de la función, o calcularla sea muy costoso se puede utilizar una aproximación a la derivada numérica. Esto es lo que hace el método de la secante, llamado así porque al aproximar numéricamente la derivada, lo que se está haciendo es substituir la recta tangente del método de Newton-Raphson por la recta secante.
-
-  Dadas dos aproximaciones consecutivas, $x_{n-1}$ y $x_{n}$, el método de la secante aproxima la función $f$ por la recta que coincide con la función en esos dos puntos.
-
-  \begin{center}
-  \includegraphics[scale=1]{secante.pdf}
-  \end{center}
-
-  Toda recta se puede expresar como $y\left(x\right )=mx+n$, por lo que imponiendo que:
+<p>  Toda recta se puede expresar como \(y\left(x\right )=mx+n\), por lo que imponiendo que:
+</p>
+<div class="formula">
   \[y\left (x_{n-1}\right ) = f\left (x_{n-1}\right )\]
+</div>
+<div class="formula">
   \[y\left (x_{n}\right ) = f\left (x_{n}\right )\]
-  se obtiene la expresión de la recta secante como:
+</div>
+<p> se obtiene la expresión de la recta secante como:</p>
+<div class="formula">
   \[
   y\left (x\right )=f\left (x_n\right )+\frac{f\left (x_n\right )-f\left (x_{n-1}\right )}{x_n-x_{n-1}}\left (x-x_n\right )
   \]
-  donde se puede apreciar la similitud con la expresión de la recta tangente, sin mas que cambiar $f'\left(x_n\right)$ por su aproximación por diferencias finitas atrasadas:
+</div>
+<p>donde se puede apreciar la similitud con la expresión de la recta tangente, sin más que cambiar \(f'\left(x_n\right)\) por su aproximación por diferencias finitas atrasadas:
+</p>
+  <div class="formula">
   \[
-  \frac{f\left (x_n\right )-f\left (x_{n-1}\right )}{x_n-x_{n-1}}
+    \frac{f\left (x_n\right )-f\left (x_{n-1}\right )}{x_n-x_{n-1}}
   \]
-
-  La aproximación $x_{n+1}$ será aquel valor que haga que $y\left (x_{n+1}\right )=0$ es decir \[
+</div>
+<p>La aproximación \(x_{n+1}\) será aquel valor que haga que \(y\left (x_{n+1}\right )=0\) es decir
+</p>
+  <div class="formula">
+  \[
   x_{n+1}=x_n-f\left (x_n\right )\frac{x_n-x_{n-1}}{f\left (x_n\right )-f\left (x_{n-1}\right )}
   \]
-  el cuál también es completamente análogo al del método de Newton-Raphson. Este método, al no requerir de información de la derivada exacta, no convergerá en general tan rápido como el de Newton-Raphson\footnote{El orden de convergencia es superlineal, pero menor que cuadrático, de hecho se tiene que $e_{n+1}=\mathcal{O}\left(e_n^\varphi\right)$ donde $\varphi=1.618\dots$ es el número áureo.}.
+</div>
+<p>  el cuál también es completamente análogo al del método de Newton-Raphson. Este método, al no requerir de información de la derivada exacta, no convergerá en general tan rápido como el de Newton-Raphson.
+</p>
+<!-- \footnote{El orden de convergencia es superlineal, pero menor que cuadrático, de hecho se tiene que $e_{n+1}=\mathcal{O}\left(e_n^\varphi\right)$ donde $\varphi=1.618\dots$ es el número áureo.} -->
+<h2>Método de Newton-Raphson para sistemas de ecuaciones.</h2>
+<p>  En el caso de tener que resolver un sistema de \(N\) ecuaciones no lineales con \(N\) incógnitas cada una:
+</p>
+</div>
+\[
+\begin{array}{c}
+f_1\left(x_1,x_2,\dots,x_N\right)=0\\
+f_2\left(x_1,x_2,\dots,x_N\right)=0\\
+\vdots\\
+f_N\left(x_1,x_2,\dots,x_N\right)=0
+\end{array}
+\]
+  <div class="formula">
+<p>se puede utilizar un método análogo al de Newton-Raphson explicado para ecuaciones escalares.
+</p>
+<p>Si se agrupan las incógnitas y las funciones en dos vectores:</p>
 
-  \subsection*{Método de Newton-Raphson para sistemas de ecuaciones.}
-  En el caso de tener que resolver un sistema de $N$ ecuaciones no lineales con $N$ incógnitas cada una:
-  \[
-  \begin{array}{c}
-  f_1\left(x_1,x_2,\dots,x_N\right)=0\\
-  f_2\left(x_1,x_2,\dots,x_N\right)=0\\
-  \vdots\\
-  f_N\left(x_1,x_2,\dots,x_N\right)=0
-  \end{array}
-  \]
-  se puede utilizar un método análogo al de Newton-Raphson explicado para ecuaciones escalares.
-
-  Si se agrupan las incógnitas y las funciones en dos vectores:
+<div class="formula">
   \[
   \mathbf{x}=\begin{pmatrix}
   x_1\\
@@ -166,16 +199,23 @@
   f_N\left(\mathbf{x}\right)
   \end{pmatrix}
   \]
-  se puede reescribir el sistema como una única ecuación no lineal vectorial
+</div>
+<p>se puede reescribir el sistema como una única ecuación no lineal vectorial</p>
+<div class="formula">
   \[
   \mathbf{f}(\mathbf{x})=\mathbf{0}
   \]
-
-  La mayor diferencia con el caso escalar está en que el desarrollo de Taylor entorno a $\mathbf{x}_n$ de una función vectorial de varias variables tiene la forma:
+</div>
+<p>La mayor diferencia con el caso escalar está en que el desarrollo de Taylor entorno a \(\mathbf{x}_n\) de una función vectorial de varias variables tiene la forma:
+</p>
+<div class="formula">
   \[
   \mathbf{f}(\mathbf{x})=\mathbf{f}(\mathbf{x}_n)+\mathbf{J_f}\left(\mathbf{x}_n\right)\left(\mathbf{x}-\mathbf{x}_n\right)+\mathcal{O}\left(\left|\mathbf{x}-\mathbf{x}_n\right|^2\right)
   \]
-  donde $\mathbf{J_f}\left(\mathbf{x}_n\right)$ es la matriz jacobiana de la función $\mathbf{f}$ evaluada en el punto $\mathbf{x}_n$, es decir:
+</div>
+<p>donde \(\mathbf{J_f}\left(\mathbf{x}_n\right)\) es la matriz jacobiana de la función \(\mathbf{f}\) evaluada en el punto \(\mathbf{x}_n\), es decir:
+</p>
+<div class="formula">
   \[
   \mathbf{J_f}\left(\mathbf{x}_n\right)=
   \begin{pmatrix}
@@ -185,16 +225,21 @@
   \frac{\partial f_N}{\partial x_1}_{\vert\mathbf{x}_n} &\frac{\partial f_N}{\partial x_2}_{\vert\mathbf{x}_n} &\dots &\frac{\partial f_N}{\partial x_N}_{\vert\mathbf{x}_n}
   \end{pmatrix}
   \]
-  Por lo tanto al despejar $\mathbf{x}_{n+1}$ en función de $\mathbf{x}_{n}$ se obtiene:
+</div>
+<p>Por lo tanto al despejar \(\mathbf{x}_{n+1}\) en función de \(\mathbf{x}_{n}\) se obtiene:
+</p>
+<div class="formula">
   \[
   \mathbf{x}_{n+1}=\mathbf{x}_{n}-\mathbf{J_f}\left(\mathbf{x}_{n}\right)^{-1}\mathbf{f}\left(\mathbf{x}_{n}\right)
   \]
-  por lo que la cantidad $\mathbf{x}_{n+1}=\mathbf{x}_{n}+\Delta\mathbf{x}$ no se podrá calcular directamente, sino que será necesario resolver el sistema lineal de ecuaciones:
+</div>
+<p>por lo que la cantidad \(\mathbf{x}_{n+1}=\mathbf{x}_{n}+\Delta\mathbf{x}\) no se podrá calcular directamente, sino que será necesario resolver el sistema lineal de ecuaciones:
+</p>
+<div class="formula">
   \[
   \mathbf{J_f}\left(\mathbf{x}_{n}\right)\Delta\mathbf{x}=-\mathbf{f}\left(\mathbf{x}_{n}\right)
   \]
-
-  Del mismo modo que en el caso escalar, el método de Newton-Raphson vectorial también presenta convergencia de orden cuadrático.
-
-
+</div>
+<p>Del mismo modo que en el caso escalar, el método de Newton-Raphson vectorial también presenta convergencia de orden cuadrático.
+</p>
 </body>
