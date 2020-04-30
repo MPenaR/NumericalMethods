@@ -13,6 +13,7 @@ contains
 
       subroutine print_matrix(A)
       !! Prints a real matrix in a tabular form
+      !! (can be improved)
           real, intent(in) :: A(:,:)
           !! matriz to be displayed
           integer :: M, N, i
@@ -49,7 +50,7 @@ contains
         !! and stores it in **D**
         character(len=*), intent(in) :: filename
         !! path to the file
-        real, intent(inout) allocatable :: D(:,:)
+        real, intent(inout), allocatable :: D(:,:)
         !! array containing the two columns read
 
         integer :: i, N, u, IO_status
