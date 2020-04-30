@@ -126,7 +126,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 2.6% of total for procedures.">11 statements</a>
+    title=" 2.4% of total for procedures.">11 statements</a>
      </li> 
      
      
@@ -291,35 +291,35 @@ public function solve_U(U, b) result(x)
 <polygon fill="none" stroke="#000000" points="551,-87 497,-87 497,-63 551,-63 551,-87"/>
 <text text-anchor="middle" x="524" y="-72.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#000000">solve_U</text>
 </g>
-<!-- proc~solve_lu -->
-<g id="proc~~solve_u~~CalledByGraph_node2" class="node">
-<title>proc~solve_lu</title>
-<g id="a_proc~~solve_u~~CalledByGraph_node2"><a xlink:href=".././proc/solve_lu.html" xlink:title="solve_LU">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="453.5,-66 396.5,-66 396.5,-42 453.5,-42 453.5,-66"/>
-<text text-anchor="middle" x="425" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">solve_LU</text>
-</a>
-</g>
-</g>
-<!-- proc~solve_lu&#45;&gt;proc~solve_u -->
-<g id="proc~~solve_u~~CalledByGraph_edge1" class="edge">
-<title>proc~solve_lu&#45;&gt;proc~solve_u</title>
-<path fill="none" stroke="#000000" d="M453.6349,-60.0741C464.0408,-62.2814 475.9524,-64.8081 486.98,-67.1473"/>
-<polygon fill="#000000" stroke="#000000" points="486.2816,-70.5769 496.7902,-69.2282 487.7342,-63.7293 486.2816,-70.5769"/>
-</g>
 <!-- proc~gauss_solve -->
-<g id="proc~~solve_u~~CalledByGraph_node3" class="node">
+<g id="proc~~solve_u~~CalledByGraph_node2" class="node">
 <title>proc~gauss_solve</title>
-<g id="a_proc~~solve_u~~CalledByGraph_node3"><a xlink:href=".././proc/gauss_solve.html" xlink:title="gauss_solve">
+<g id="a_proc~~solve_u~~CalledByGraph_node2"><a xlink:href=".././proc/gauss_solve.html" xlink:title="gauss_solve">
 <polygon fill="#d94e8f" stroke="#d94e8f" points="461,-108 389,-108 389,-84 461,-84 461,-108"/>
 <text text-anchor="middle" x="425" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">gauss_solve</text>
 </a>
 </g>
 </g>
 <!-- proc~gauss_solve&#45;&gt;proc~solve_u -->
-<g id="proc~~solve_u~~CalledByGraph_edge2" class="edge">
+<g id="proc~~solve_u~~CalledByGraph_edge1" class="edge">
 <title>proc~gauss_solve&#45;&gt;proc~solve_u</title>
 <path fill="none" stroke="#000000" d="M461.0213,-88.3591C469.4326,-86.5749 478.406,-84.6715 486.8646,-82.8772"/>
 <polygon fill="#000000" stroke="#000000" points="487.7987,-86.257 496.8547,-80.7581 486.3461,-79.4094 487.7987,-86.257"/>
+</g>
+<!-- proc~solve_lu -->
+<g id="proc~~solve_u~~CalledByGraph_node3" class="node">
+<title>proc~solve_lu</title>
+<g id="a_proc~~solve_u~~CalledByGraph_node3"><a xlink:href=".././proc/solve_lu.html" xlink:title="solve_LU">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="453.5,-66 396.5,-66 396.5,-42 453.5,-42 453.5,-66"/>
+<text text-anchor="middle" x="425" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">solve_LU</text>
+</a>
+</g>
+</g>
+<!-- proc~solve_lu&#45;&gt;proc~solve_u -->
+<g id="proc~~solve_u~~CalledByGraph_edge2" class="edge">
+<title>proc~solve_lu&#45;&gt;proc~solve_u</title>
+<path fill="none" stroke="#000000" d="M453.6349,-60.0741C464.0408,-62.2814 475.9524,-64.8081 486.98,-67.1473"/>
+<polygon fill="#000000" stroke="#000000" points="486.2816,-70.5769 496.7902,-69.2282 487.7342,-63.7293 486.2816,-70.5769"/>
 </g>
 <!-- proc~solve -->
 <g id="proc~~solve_u~~CalledByGraph_node4" class="node">
@@ -331,22 +331,37 @@ public function solve_U(U, b) result(x)
 </g>
 </g>
 <!-- proc~solve&#45;&gt;proc~solve_lu -->
-<g id="proc~~solve_u~~CalledByGraph_edge3" class="edge">
+<g id="proc~~solve_u~~CalledByGraph_edge4" class="edge">
 <title>proc~solve&#45;&gt;proc~solve_lu</title>
 <path fill="none" stroke="#000000" d="M351.0661,-54C361.9127,-54 374.6124,-54 386.3959,-54"/>
 <polygon fill="#000000" stroke="#000000" points="386.4456,-57.5001 396.4456,-54 386.4456,-50.5001 386.4456,-57.5001"/>
 </g>
-<!-- program~test -->
+<!-- proc~eigen_inv -->
 <g id="proc~~solve_u~~CalledByGraph_node5" class="node">
+<title>proc~eigen_inv</title>
+<g id="a_proc~~solve_u~~CalledByGraph_node5"><a xlink:href=".././proc/eigen_inv.html" xlink:title="eigen_inv">
+<polygon fill="#d9534f" stroke="#d9534f" points="353,-24 295,-24 295,0 353,0 353,-24"/>
+<text text-anchor="middle" x="324" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">eigen_inv</text>
+</a>
+</g>
+</g>
+<!-- proc~eigen_inv&#45;&gt;proc~solve_lu -->
+<g id="proc~~solve_u~~CalledByGraph_edge5" class="edge">
+<title>proc~eigen_inv&#45;&gt;proc~solve_lu</title>
+<path fill="none" stroke="#000000" d="M352.9425,-24.0355C363.599,-28.4669 375.8321,-33.5539 387.1573,-38.2634"/>
+<polygon fill="#000000" stroke="#000000" points="385.825,-41.4999 396.4024,-42.1079 388.5128,-35.0365 385.825,-41.4999"/>
+</g>
+<!-- program~test -->
+<g id="proc~~solve_u~~CalledByGraph_node6" class="node">
 <title>program~test</title>
-<g id="a_proc~~solve_u~~CalledByGraph_node5"><a xlink:href=".././program/test.html" xlink:title="test">
+<g id="a_proc~~solve_u~~CalledByGraph_node6"><a xlink:href=".././program/test.html" xlink:title="test">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="237.5,-108 183.5,-108 183.5,-84 237.5,-84 237.5,-108"/>
 <text text-anchor="middle" x="210.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">test</text>
 </a>
 </g>
 </g>
 <!-- program~test&#45;&gt;proc~gauss_solve -->
-<g id="proc~~solve_u~~CalledByGraph_edge5" class="edge">
+<g id="proc~~solve_u~~CalledByGraph_edge3" class="edge">
 <title>program~test&#45;&gt;proc~gauss_solve</title>
 <path fill="none" stroke="#000000" d="M237.6666,-96C273.076,-96 335.5438,-96 378.5438,-96"/>
 <polygon fill="#000000" stroke="#000000" points="378.7571,-99.5001 388.7571,-96 378.7571,-92.5001 378.7571,-99.5001"/>
@@ -356,21 +371,6 @@ public function solve_U(U, b) result(x)
 <title>program~test&#45;&gt;proc~solve</title>
 <path fill="none" stroke="#000000" d="M237.6861,-85.94C252.4584,-80.4735 270.9388,-73.635 287.0053,-67.6897"/>
 <polygon fill="#000000" stroke="#000000" points="288.4786,-70.8765 296.6424,-64.1235 286.0492,-64.3116 288.4786,-70.8765"/>
-</g>
-<!-- proc~eigen_inv -->
-<g id="proc~~solve_u~~CalledByGraph_node6" class="node">
-<title>proc~eigen_inv</title>
-<g id="a_proc~~solve_u~~CalledByGraph_node6"><a xlink:href=".././proc/eigen_inv.html" xlink:title="eigen_inv">
-<polygon fill="#d9534f" stroke="#d9534f" points="353,-24 295,-24 295,0 353,0 353,-24"/>
-<text text-anchor="middle" x="324" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">eigen_inv</text>
-</a>
-</g>
-</g>
-<!-- proc~eigen_inv&#45;&gt;proc~solve_lu -->
-<g id="proc~~solve_u~~CalledByGraph_edge4" class="edge">
-<title>proc~eigen_inv&#45;&gt;proc~solve_lu</title>
-<path fill="none" stroke="#000000" d="M352.9425,-24.0355C363.599,-28.4669 375.8321,-33.5539 387.1573,-38.2634"/>
-<polygon fill="#000000" stroke="#000000" points="385.825,-41.4999 396.4024,-42.1079 388.5128,-35.0365 385.825,-41.4999"/>
 </g>
 <!-- program~test_eigenvectors -->
 <g id="proc~~solve_u~~CalledByGraph_node7" class="node">

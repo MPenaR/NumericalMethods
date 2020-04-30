@@ -10,7 +10,7 @@
     <meta name="author" content="Manuel Pena" >
     <link rel="icon" href="../favicon.png">
 
-    <title>g &ndash; Numerical Methods</title>
+    <title>read_2_columns_csv &ndash; Numerical Methods</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -108,8 +108,8 @@
     
   
   <div class="row">
-    <h1>g
-      <small>Function</small>
+    <h1>read_2_columns_csv
+      <small>Subroutine</small>
     
     </h1>
     
@@ -126,24 +126,24 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 1.1% of total for procedures.">5 statements</a>
+    title=" 4.0% of total for procedures.">18 statements</a>
      </li> 
      
      
      
-    <li><i class="fa fa-code"></i><a href="../src/test_integrals.f08"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/utilities.f08"> Source File</a></li>
      
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
     
-     <li><a href='../sourcefile/test_integrals.f08.html'>test_integrals.f08</a></li>
+     <li><a href='../sourcefile/utilities.f08.html'>utilities.f08</a></li>
     
-     <li><a href='../program/test_integrals.html'>test_integrals</a></li>
+     <li><a href='../module/utilities.html'>utilities</a></li>
     
   
-     <li class="active">g</li>
+     <li class="active">read_2_columns_csv</li>
   </ol>
 </div>
 </div>
@@ -193,7 +193,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-function g(x) result(y)
+public subroutine read_2_columns_csv(filename, D)
     
     
    
@@ -202,6 +202,9 @@ function g(x) result(y)
   
 
 
+    
+    <p>Reads a two-column csv from file <strong>filename</strong>
+ and stores it in <strong>D</strong></p>
     
 
     <h3>Arguments</h3>
@@ -222,27 +225,33 @@ function g(x) result(y)
   
 <tr>
   
-  <td><span class="anchor" id="variable-x~17"></span>real,</td>
+  <td><span class="anchor" id="variable-filename~2"></span>character(len=*),</td>
   <td>intent(in)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>x</strong></td><td></td>
+  <td><strong>filename</strong></td><td><p>path to the file</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-d~2"></span>real,</td>
+  <td>intent(inout),</td>
+  <td></td>
+  
+  <td>allocatable</td><td>::</td>
+  <td><strong>D</strong>(:,:)</td><td><p>array containing the two columns read</p></td>
   
 </tr>
 
 </tbody>
 </table>
 
-    
-    
-    
-    
-    
-    
-    
-   <h3>Return Value <small><span class="anchor" id="variable-y~6"></span>real
-  </small></h3>
     
     
     
