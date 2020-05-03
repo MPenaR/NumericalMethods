@@ -123,12 +123,12 @@ function plot_bins_T(svg, Nbins, f, x0,xf){
     return bins;
 }
 
-function plot_bins_S(Nbins){
+function plot_bins_S(svg, Nbins, f, x0,xf, N=100){
     var bin_w_px = (x(xf) - x(x0))/Nbins;
     var bin_w = (xf - x0)/Nbins;
-    var x_bins = d3.range(Nbins+1).map(function(i){return x0+i*bin_w;});
+    var x_bins = linspace(x0,xf,Nbins+1);
     var i;
-    pars = svg4.append('g');
+    var bins = svg.append('g');
     for (i = 1; i < Nbins; i=i+2) {
       function par(x){
         return { x: x,
@@ -138,11 +138,11 @@ function plot_bins_S(Nbins){
              }
       }
       var Ns = Math.ceil(N/Nbins);
-      var x_par_0 = x_bins[i-1], x_par_f = x_bins[i+1];
-      var delta_par = (x_par_f - x_par_0)/ Ns ;
-      var x_par = d3.range(Ns+1).map(function(i){return x_par_0+i*delta_par;});
-      par_points = x_par.map(par);
-      pars.append("path")
+      var x_par_0 = x_bins[i-1];
+      var x_par_f = x_bins[i+1];
+      var x_par = linspace(x_par_0,x_par_f,Ns+1);
+      var par_points = x_par.map(par);
+      bins.append("path")
          .datum([
          {x: x_bins[i-1],       y: 0},
          ...par_points,
@@ -156,7 +156,7 @@ function plot_bins_S(Nbins){
            .x(function(d) { return x(d.x) })
            .y(function(d) { return y(d.y) })
             )
-      pars.append("path")
+      bins.append("path")
           .datum([{x:x_bins[i],y:0},{x:x_bins[i],y:f(x_bins[i])}])
           .attr("stroke", "black")
           .attr("fill","none")
@@ -168,10 +168,11 @@ function plot_bins_S(Nbins){
             )
 
     }
+    return bins
 }
 
 
-function int_plot(label, plot_bins){
+function int_plot(label, plot_bins, Nstep=1){
 
   var x_a = 0.2;
   var x_b = 0.8;
@@ -213,12 +214,10 @@ function int_plot(label, plot_bins){
     .max(maxN)
     .width(200)
     .ticks(4)
-    .step(1)
+    .step(Nstep)
     .default(10)
     .on('onchange', val => {
-      //d3.select('#text_L').text(texto_L(val));
       Nbins = val;
-//     svg.selectAll("rect").remove();
       bins.remove("g");
       bins = plot_bins(svg,val,f,x_a,x_b);
       });
@@ -278,3 +277,4 @@ function int_plot(label, plot_bins){
 int_plot('plot_L',plot_bins_L);
 int_plot('plot_R',plot_bins_R);
 int_plot('plot_T',plot_bins_T);
+int_plot('plot_S',plot_bins_S,2);
