@@ -135,8 +135,9 @@ function Left_sums(label){
        if ((x.invert(d3.event.x)<0.)||(x.invert(d3.event.x)>x_b)){return}
        x_a = x.invert(d3.event.x);
        xy = gen_xy(f,x_a,x_b,N);
-       area.selectAll("path").remove();
-       graph(svgL, xy, x_a, x_b);
+       // area.selectAll("path").remove();
+       area.remove("g");
+       area = graph(svgL, xy, x_a, x_b);
        svgL.selectAll("rect").remove();
        plot_bins_L(svgL,Nbins, f, x_a,x_b);
        TriL.attr("transform", "translate(" + x(x_a) + ","+y(-0.02)+")");
@@ -158,8 +159,9 @@ function Left_sums(label){
      if ((x.invert(d3.event.x)<x_a)||(x.invert(d3.event.x)>1.)){return}
      x_b = x.invert(d3.event.x);
      xy = gen_xy(f,x_a,x_b,N);
-     area.selectAll("path").remove();
-     graph(svgL, xy, x_a, x_b);
+     // area.selectAll("path").remove();
+     area.remove("g");
+     area = graph(svgL, xy, x_a, x_b);
      svgL.selectAll("rect").remove();
      plot_bins_L(svgL,Nbins, f, x_a,x_b);
      TriR.attr("transform", "translate(" + x(x_b) + ","+y(-0.02)+")");
