@@ -48,7 +48,8 @@ function graph( svg, xy, x0, xf){
 }
 
 function f(x){
-  return x**2;
+  return 0.5*Math.sin(6*Math.PI*x)+0.5;
+  // return x**2;
 }
 function gen_xy(f,x0,xf,N){
   var x_points = linspace(x0,xf,N+1);
