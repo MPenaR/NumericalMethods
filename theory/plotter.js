@@ -63,8 +63,9 @@ function plot_bins_L(svg, Nbins, f, x0,xf){
     var bin_w = (xf - x0)/Nbins;
     var x_bins = linspace(x0,xf,Nbins+1);
     var i;
+    var bins = svg.append("g");
     for (i = 0; i < Nbins; i++) {
-      svg.append("rect")
+      bins.append("rect")
          .attr("fill","red")
          .attr("opacity",0.6)
          .attr("stroke","black")
@@ -73,15 +74,17 @@ function plot_bins_L(svg, Nbins, f, x0,xf){
          .attr("width", bin_w_px)
          .attr("height", y(0)-y(f(x_bins[i])));
     }
+    return bins;
 }
 
-function plot_bins_R(cont, Nbins, f, x0,xf){
+function plot_bins_R(svg, Nbins, f, x0,xf){
     var bin_w_px = (x(xf) - x(x0))/Nbins;
     var bin_w = (xf - x0)/Nbins;
     var x_bins = linspace(x0,xf,Nbins+1);
     var i;
+    var bins = svg.append("g");
     for (i = 0; i < Nbins; i++) {
-      cont.append("rect")
+      bins.append("rect")
          .attr("fill","red")
          .attr("opacity",0.6)
          .attr("stroke","black")
@@ -90,18 +93,89 @@ function plot_bins_R(cont, Nbins, f, x0,xf){
          .attr("width", bin_w_px)
          .attr("height", y(0)-y(f(x_bins[i+1])));
     }
+    return bins;
 }
 
+
+function plot_bins_T(svg, Nbins, f, x0,xf){
+    var bin_w_px = (x(xf) - x(x0))/Nbins;
+    var bin_w = (xf - x0)/Nbins;
+    var x_bins = linspace(x0,xf,Nbins+1);
+    var i;
+    var bins = svg.append('g');
+    for (i = 0; i < Nbins; i++) {
+      bins.append("path")
+         .datum([
+         {x: x_bins[i],       y: 0},
+         {x: x_bins[i],       y: f(x_bins[i])},
+         {x: x_bins[i]+bin_w, y: f(x_bins[i]+bin_w)},
+         {x: x_bins[i]+bin_w, y: 0}
+         ])
+         .attr("fill", "red")
+         .attr("stroke", "black")
+         .attr("opacity",0.6)
+         .attr("stroke-width", 1.5)
+         .attr("d", d3.line()
+           .x(function(d) { return x(d.x) })
+           .y(function(d) { return y(d.y) })
+            )
+    }
+    return bins;
+}
+
+function plot_bins_S(Nbins){
+    var bin_w_px = (x(xf) - x(x0))/Nbins;
+    var bin_w = (xf - x0)/Nbins;
+    var x_bins = d3.range(Nbins+1).map(function(i){return x0+i*bin_w;});
+    var i;
+    pars = svg4.append('g');
+    for (i = 1; i < Nbins; i=i+2) {
+      function par(x){
+        return { x: x,
+                 y: f(x_bins[i]) +
+               (f(x_bins[i+1])-f(x_bins[i-1]))/(2*bin_w)*(x-x_bins[i]) +
+               (f(x_bins[i-1])-2*f(x_bins[i])+f(x_bins[i+1]))/(2*bin_w**2)*(x-x_bins[i])**2
+             }
+      }
+      var Ns = Math.ceil(N/Nbins);
+      var x_par_0 = x_bins[i-1], x_par_f = x_bins[i+1];
+      var delta_par = (x_par_f - x_par_0)/ Ns ;
+      var x_par = d3.range(Ns+1).map(function(i){return x_par_0+i*delta_par;});
+      par_points = x_par.map(par);
+      pars.append("path")
+         .datum([
+         {x: x_bins[i-1],       y: 0},
+         ...par_points,
+         {x: x_bins[i+1], y: 0}
+         ])
+         .attr("fill", "red")
+         .attr("stroke", "black")
+         .attr("opacity",0.6)
+         .attr("stroke-width", 1.5)
+         .attr("d", d3.line()
+           .x(function(d) { return x(d.x) })
+           .y(function(d) { return y(d.y) })
+            )
+      pars.append("path")
+          .datum([{x:x_bins[i],y:0},{x:x_bins[i],y:f(x_bins[i])}])
+          .attr("stroke", "black")
+          .attr("fill","none")
+          .attr("opacity",0.6)
+          .attr("stroke-width", 1.5)
+          .attr("d", d3.line()
+            .x(function(d) { return x(d.x) })
+            .y(function(d) { return y(d.y) })
+            )
+
+    }
+}
+
+
 function int_plot(label, plot_bins){
-
-
-
-
 
   var x_a = 0.2;
   var x_b = 0.8;
   var N = 100;
-
 
   var svg = d3.select('#'+label)
               .append("svg")
@@ -131,7 +205,7 @@ function int_plot(label, plot_bins){
   xy = gen_xy(f,x_a,x_b,N);
   var area = graph(svg, xy, x_a, x_b);
   var Nbins = 10 ;
-  plot_bins(svg,Nbins, f, x_a,x_b)
+  var bins = plot_bins(svg,Nbins, f, x_a,x_b);
 
   var sliderStep = d3
     .sliderBottom()
@@ -144,8 +218,9 @@ function int_plot(label, plot_bins){
     .on('onchange', val => {
       //d3.select('#text_L').text(texto_L(val));
       Nbins = val;
-      svg.selectAll("rect").remove();
-      plot_bins(svg,val,f,x_a,x_b);
+//     svg.selectAll("rect").remove();
+      bins.remove("g");
+      bins = plot_bins(svg,val,f,x_a,x_b);
       });
   svg.append('g')
      .attr('transform','translate(50,10)')
@@ -158,8 +233,8 @@ function int_plot(label, plot_bins){
        // area.selectAll("path").remove();
        area.remove("g");
        area = graph(svg, xy, x_a, x_b);
-       svg.selectAll("rect").remove();
-       plot_bins(svg,Nbins, f, x_a,x_b);
+       bins.remove("g");
+       bins = plot_bins(svg,Nbins, f, x_a,x_b);
        TriL.attr("transform", "translate(" + x(x_a) + ","+y(-0.02)+")");
   };
 
@@ -179,11 +254,10 @@ function int_plot(label, plot_bins){
      if ((x.invert(d3.event.x)<x_a)||(x.invert(d3.event.x)>1.)){return}
      x_b = x.invert(d3.event.x);
      xy = gen_xy(f,x_a,x_b,N);
-     // area.selectAll("path").remove();
      area.remove("g");
      area = graph(svg, xy, x_a, x_b);
-     svg.selectAll("rect").remove();
-     plot_bins(svg,Nbins, f, x_a,x_b);
+     bins.remove("g");
+     bins = plot_bins(svg,Nbins, f, x_a,x_b);
      TriR.attr("transform", "translate(" + x(x_b) + ","+y(-0.02)+")");
    };
 
@@ -203,3 +277,4 @@ function int_plot(label, plot_bins){
 
 int_plot('plot_L',plot_bins_L);
 int_plot('plot_R',plot_bins_R);
+int_plot('plot_T',plot_bins_T);
