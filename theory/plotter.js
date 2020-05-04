@@ -1,4 +1,4 @@
-
+// import cos from Math;
 var max_w = 600;
 var max_h = 400;
 var margin = {top: 10, right: 30, bottom: 30, left: 60};
@@ -50,6 +50,29 @@ function graph( svg, xy, x0, xf){
 function f(x){
   return 0.5*Math.sin(6*Math.PI*x)+0.5;
   // return x**2;
+}
+
+function I_exact(a,b){
+  return -(1/(6*Math.PI)*(Math.cos(6*Math.PI*b)-Math.cos(6*Math.PI*a)));
+}
+
+function l_sums(f,a,b,N){
+  var x = linspace(a,b,N+1);
+  var s = 0. ;
+  var i;
+  for(i=0; i<N; i++){
+    s = s + (x[i+1]-x[i])*f(x[i]);
+  }
+  return s;
+}
+function r_sums(f,a,b,N){
+  var x = linspace(a,b,N+1);
+  var s = 0. ;
+  var i;
+  for(i=0; i<N; i++){
+    s = s + (x[i+1]-x[i])*f(x[i+1]);
+  }
+  return s;
 }
 function gen_xy(f,x0,xf,N){
   var x_points = linspace(x0,xf,N+1);
@@ -172,9 +195,9 @@ function plot_bins_S(svg, Nbins, f, x0,xf, N=100){
 }
 
 
-function int_plot(label, plot_bins, Nstep=1){
+function int_plot(label, plot_bins, Nstep=1, numI=l_sums){
 
-  var x_a = 0.2;
+  var x_a = 0.3;
   var x_b = 0.8;
   var N = 100;
 
@@ -190,8 +213,23 @@ function int_plot(label, plot_bins, Nstep=1){
       .attr("transform", "translate(0," + height + ")")
       .call(d3.axisBottom(x));
 
+  svg.append("text")
+       .attr("transform",
+             "translate(" + (width/2) + " ," +
+                            (height + margin.top + 20) + ")")
+       .style("text-anchor", "middle")
+       .text("x")
+
   svg.append("g")
      .call(d3.axisLeft(y));
+
+ svg.append("text")
+     .attr("transform", "rotate(-90)")
+     .attr("y", 0 - margin.left)
+     .attr("x",0 - (height / 2))
+     .attr("dy", "1em")
+     .style("text-anchor", "middle")
+     .text("y");
 
   var xy = gen_xy(f,0.,1.,N);
   svg.append("path")
@@ -207,6 +245,15 @@ function int_plot(label, plot_bins, Nstep=1){
   var area = graph(svg, xy, x_a, x_b);
   var Nbins = 10 ;
   var bins = plot_bins(svg,Nbins, f, x_a,x_b);
+
+  // function add_text(N){
+  //   svg.text
+  // }
+  var x_text = 300;
+  svg.append("text").text("N").attr('transform','translate(130,1)');
+  svg.append("text").text("I = "+I_exact(x_a,x_b).toPrecision(3)).attr('transform','translate('+x_text+',1)');
+  svg.append("text").text("I_h = "+numI(f,x_a,x_b,Nbins).toPrecision(3)).attr('transform','translate('+x_text+',20)');
+
 
   var sliderStep = d3
     .sliderBottom()

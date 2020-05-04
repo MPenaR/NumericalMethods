@@ -86,8 +86,29 @@
 </p>
     <!-- <div>$$I=\int_{a}^{b}f\left(x\right)\,\mathrm{d}x$$</div>
   <div>$$L=\frac{b-a}{N}\sum_{i=1}^{N}f\left(x_{i-1}\right)$$</div> -->
+<h3>Ejemplos:</h3>
+<p>A continuación se muestra como ejemplo la integral:</p>
+<div class="formula">
+  \[
+  I = \int_{a}^{b}\frac{\sin\left(6\pi x\right)+1}{2}\,\mathrm{d}x
+  \]
+</div>
+<p>aproximada tanto por las sumas por la izquierda:</p>
+<div class="formula">
+  \[\boxed{
+  I_h = \sum_{i=1}^{N}f\left(x_{i-1}\right)h}
+  \]
+</div>
   <div class="plot" id="plot_L" align="center"></div>
+<p>como por las sumas por la derecha:</p>
+<div class="formula">
+  \[\boxed{
+  I_h=\sum_{i=1}^{N}f\left(x_{i}\right)h}
+  \]
+</div>
 <div class="plot" id="plot_R" align="center"></div>
+<p>Se puede observar que al reducir el paso \(h\) el error cometido en ambas se reduce
+de manera proporcional a éste.</p>
 
 
 <h2>Regla del trapecio.</h2>
