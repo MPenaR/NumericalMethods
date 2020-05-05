@@ -1,7 +1,7 @@
 // import cos from Math;
 var max_w = 600;
 var max_h = 400;
-var margin = {top: 10, right: 30, bottom: 30, left: 60};
+var margin = {top: 60, right: 30, bottom: 30, left: 60};
 var width = max_w - margin.left - margin.right;
 var height = max_h - margin.top - margin.bottom;
 var minN = 2;
@@ -265,24 +265,21 @@ function int_plot(label, plot_bins, Nstep=1, numI=l_sums){
         );
   xy = gen_xy(f,x_a,x_b,N);
   var area = graph(svg, xy, x_a, x_b);
-  var Nbins = 10 ;
+  var Nbins = 4 ;
   var bins = plot_bins(svg,Nbins, f, x_a,x_b);
 
-  // function add_text(N){
-  //   svg.text
-  // }
-  var x_text = 300;
+
+  var x_text = 250;
   function plot_data(svg,a,b,N){
     var I = I_exact(x_a,x_b);
     var I_h = numI(f,x_a,x_b,N);
     var e_h = abs(I-I_h);
     var texts = svg.append("g")
     var h = (x_b-x_a)/N;
-    texts.append("text").text("N").attr('transform','translate(130,1)');
-    texts.append("text").text("I = "+I.toPrecision(3)).attr('transform','translate('+x_text+',1)');
-    texts.append("text").text("I_h = "+I_h.toPrecision(3)).attr('transform','translate('+x_text+',21)');
-    texts.append("text").text("h = "+h.toExponential(2)).attr('transform','translate('+x_text+',41)');
-    texts.append("text").text("e_h = "+e_h.toExponential(2)).attr('transform','translate('+x_text+',61)');
+    texts.append("text").text("I  = "+I.toPrecision(3)).attr('transform','translate('+x_text+',-30)');
+    texts.append("text").text("I_h = "+I_h.toPrecision(3)).attr('transform','translate('+(x_text+100)+',-30)');
+    texts.append("text").text("h = "+h.toExponential(2)).attr('transform','translate('+x_text+',-10)');
+    texts.append("text").text("e_h = "+e_h.toExponential(2)).attr('transform','translate('+(x_text+100)+',-10)');
     return texts;
   }
   var texts = plot_data(svg, x_a,x_b,Nbins);
@@ -303,8 +300,9 @@ function int_plot(label, plot_bins, Nstep=1, numI=l_sums){
       texts = plot_data(svg, x_a,x_b,Nbins);
       });
   svg.append('g')
-     .attr('transform','translate(50,10)')
+     .attr('transform','translate(20,-40)')
      .call(sliderStep);
+  svg.append("text").text("N").attr('transform','translate(110,-10)');
 
   function dragTri_L(d) {
        if ((x.invert(d3.event.x)<0.)||(x.invert(d3.event.x)>x_b)){return}

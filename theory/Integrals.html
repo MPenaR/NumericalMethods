@@ -83,9 +83,12 @@
   \]
 </div>
 <p>Es decir, dada una función derivable \(f\) y un intervalo \(\left[a,b\right]\) de integración fijos, el error que se comete cuando se utiliza \(\xi_i=x_{i-1}\) es de orden \(\mathcal{O}\left(h\right)\).
-</p>
-    <!-- <div>$$I=\int_{a}^{b}f\left(x\right)\,\mathrm{d}x$$</div>
-  <div>$$L=\frac{b-a}{N}\sum_{i=1}^{N}f\left(x_{i-1}\right)$$</div> -->
+<p>Si en vez de cogerse el valor de la izquierda se hubiese cogido el de la derecha \(f\left(x_i\right)\) se hubiese obtenido una expresión similar que también aproxima la integral con un error de orden lineal:</p>
+<div class="formula">
+  \[\boxed{
+  \int\limits_{a}^{b}f\left(x\right)\,\mathrm{d}x=\sum_{i=1}^{N}f\left(x_{i}\right)h+\mathcal{O}\left(h\right)}
+  \]
+</div>
 <h3>Ejemplos:</h3>
 <p>A continuación se muestra como ejemplo la integral:</p>
 <div class="formula">
@@ -93,22 +96,25 @@
   I = \int_{a}^{b}\frac{\sin\left(6\pi x\right)+1}{2}\,\mathrm{d}x
   \]
 </div>
-<p>aproximada tanto por las sumas por la izquierda:</p>
+<p>aproximada por las sumas por la izquierda:</p>
 <div class="formula">
   \[\boxed{
   I_h = \sum_{i=1}^{N}f\left(x_{i-1}\right)h}
   \]
 </div>
   <div class="plot" id="plot_L" align="center"></div>
-<p>como por las sumas por la derecha:</p>
+<p>Como se ve, la altura de cada rectángulo de base \([x_{i-1},x_{i}]\) corresponde al valor de \(f\left(x\right)\) en el extremo izquierdo del intervalo, \(x_{i-1}\).</p>
+<p>Si se varía el valor de \(h\), a base de cambiar el número de subintervalos \(N\), se observa que aumentar \(N\), es decir reducir \(h\) implica reducir el error que se comete \(e_h=\left|I - I_h\right|\).
+  El valor de \(h\) no sólo depende del número de subintervalos sino que también depende de los límites de integración \(a\) y \(b\).</p>
+<p>Se observa que reducir \(h\) a la mitad (duplicar \(N\)) tiene el efecto aproximado de reducir el error por la mitad, lo cual concuerda con el orden lineal del método.</p>
+<p>Si se utiliza el valor de \(f\left(x\right)\) en el extremo derecho de cada subintervalo, \(x_i\), se obtienen unos resultados completamente análogos:</p>
 <div class="formula">
   \[\boxed{
   I_h=\sum_{i=1}^{N}f\left(x_{i}\right)h}
   \]
 </div>
 <div class="plot" id="plot_R" align="center"></div>
-<p>Se puede observar que al reducir el paso \(h\) el error cometido en ambas se reduce
-de manera proporcional a éste.</p>
+
 
 
 <h2>Regla del trapecio.</h2>
@@ -196,8 +202,13 @@ de manera proporcional a éste.</p>
 </div>
 <p>por lo que aproximando la integral por la regla del trapecio se comete un error de orden cuadrático.</p>
 
-<div class="plot" id="plot_T" align="center"></div>
+<h3>Ejemplo:</h3>
+<p>A continuación se aproxima la misma integral utilizando el método del trapecio. Se puede observar que el trapecio de base \(\)
+\(\left[x_{i-1},x_i\right]\) contiene a los puntos \((x_{i-1},f\left(x_{i-1}\right))\) y \((x_{i},f\left(x_{i}\right))\) como vértices.</p>
 
+
+<div class="plot" id="plot_T" align="center"></div>
+<p>En este caso, como el método tiene un error de orden cuadrático, se obverva que duplicar \(N\) equivale a dividir por  \(4\) el error cometido.</p>
 
 <h2>Regla de de Simpson.</h2>
 <p>La regla de Simpson consiste en coger los subintervalos de dos en dos (por lo que es necesario que el número de subintervalos sea par) y teniendo en cuenta que dos intervalos consecutivos supone conocer tres valores de la función, \(f\left(x_{i-1}\right)\), \(f\left(x_{i}\right)\) y \(f\left(x_{i+1}\right)\); aproximar la función en \(\left[x_{i-1},x_{i+1}\right]\) por una función parabólica \(\hat{f}\) que pase por ellos.
@@ -256,8 +267,19 @@ de manera proporcional a éste.</p>
 </div>
 <p>Es decir, el error cometido al aproximar la integral por la regla de Simpson con subintervalos de tamaño \(h\) es de orden \(\mathcal{O}\left(h^4\right)\).
 </p>
+<h3>Ejemplo:</h3>
+<p>Por último se muestra la aproximación de la integral anterior por el método de Simpson. Se ve cómo este método
+  utiliza el área bajo la pábola que pasa por tres puntos consecutivos \(x_{i-1}\), \(x_i\) y \(x_{i+1}\) por lo que se requieren
+  dos subintervalos para definir cada parabola, y por lo tanto, que el número total de subintervalos, \(N\), sea par:
+</p>
 
 <div class="plot" id="plot_S" align="center"></div>
-
+<p>Al ser éste un método con un error de orden cuadrático, basta con duplicar \(N\) para obtener un error mas de \(10\) veces menor (unas \(16\)) lo cuál se puede observar probando con \(N=2,\,4,\,8,\,16,\dots\).</p>
   <script src="./plotter.js"></script>
+<h2>Códigos.</h2>
+<p>Los códigos para implementar el método del trapecio, o el de Simpson dada una función genérica se encuentran <a href="../docs/sourcefile/integrals.f08.html">aquí</a> por los nombres de <b>quad_trapz</b> y <b>quad_simpson</b> respectivamente. En ellos podéis observar
+además como hacer para pasar una función genérica como argumento a otra función.</p>
+<p>También se incluye una función de integración genérica <b>quad</b> que permite escoger uno de los dos métodos mediante la misma llamada.</p>
+<p>Por último se incluye una función <b>trapz</b> que sirve para integrar numéricamente funciones que están dadas por sus valores \(y_i=f\left(x_i\right)\) de las cuales desconozcamos su expresión.</p>
+<p>Está disponible también la <a href="../docs/module/integrals.html">documentación</a> en la que se puede ver cuál es el tipo de los argumentos de entrada y salida de cada función, así como su significado. Ésta está en inglés pues en programación es el idioma estándar.</p>
 </body>
