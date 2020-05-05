@@ -6,6 +6,10 @@ var width = max_w - margin.left - margin.right;
 var height = max_h - margin.top - margin.bottom;
 var minN = 2;
 var maxN = 50;
+
+const { PI, sin, cos, ceil, abs }  = Math
+
+
 var x = d3.scaleLinear()
         .domain([0,1])
         .range([ 0, width ]);
@@ -48,12 +52,12 @@ function graph( svg, xy, x0, xf){
 }
 
 function f(x){
-  return 0.5*Math.sin(6*Math.PI*x)+0.5;
+  return 0.5*sin(6*PI*x)+0.5;
   // return x**2;
 }
 
 function I_exact(a,b){
-  return -(1/(6*Math.PI)*(Math.cos(6*Math.PI*b)-Math.cos(6*Math.PI*a)));
+  return 0.5*(b-a-(1/(6*PI)*(cos(6*PI*b)-cos(6*PI*a))));
 }
 
 function l_sums(f,a,b,N){
@@ -71,6 +75,24 @@ function r_sums(f,a,b,N){
   var i;
   for(i=0; i<N; i++){
     s = s + (x[i+1]-x[i])*f(x[i+1]);
+  }
+  return s;
+}
+function t_sums(f,a,b,N){
+  var x = linspace(a,b,N+1);
+  var s = 0. ;
+  var i;
+  for(i=0; i<N; i++){
+    s = s + 0.5*(x[i+1]-x[i])*(f(x[i])+f(x[i+1]));
+  }
+  return s;
+}
+function s_sums(f,a,b,N){
+  var x = linspace(a,b,N+1);
+  var s = 0. ;
+  var i;
+  for(i=1; i<N; i+=2){
+    s = s + 1./6.*(x[i+1]-x[i-1])*(f(x[i-1])+4*f(x[i])+f(x[i+1]));
   }
   return s;
 }
@@ -160,7 +182,7 @@ function plot_bins_S(svg, Nbins, f, x0,xf, N=100){
                (f(x_bins[i-1])-2*f(x_bins[i])+f(x_bins[i+1]))/(2*bin_w**2)*(x-x_bins[i])**2
              }
       }
-      var Ns = Math.ceil(N/Nbins);
+      var Ns = ceil(N/Nbins);
       var x_par_0 = x_bins[i-1];
       var x_par_f = x_bins[i+1];
       var x_par = linspace(x_par_0,x_par_f,Ns+1);
@@ -250,10 +272,20 @@ function int_plot(label, plot_bins, Nstep=1, numI=l_sums){
   //   svg.text
   // }
   var x_text = 300;
-  svg.append("text").text("N").attr('transform','translate(130,1)');
-  svg.append("text").text("I = "+I_exact(x_a,x_b).toPrecision(3)).attr('transform','translate('+x_text+',1)');
-  svg.append("text").text("I_h = "+numI(f,x_a,x_b,Nbins).toPrecision(3)).attr('transform','translate('+x_text+',20)');
-
+  function plot_data(svg,a,b,N){
+    var I = I_exact(x_a,x_b);
+    var I_h = numI(f,x_a,x_b,N);
+    var e_h = abs(I-I_h);
+    var texts = svg.append("g")
+    var h = (x_b-x_a)/N;
+    texts.append("text").text("N").attr('transform','translate(130,1)');
+    texts.append("text").text("I = "+I.toPrecision(3)).attr('transform','translate('+x_text+',1)');
+    texts.append("text").text("I_h = "+I_h.toPrecision(3)).attr('transform','translate('+x_text+',21)');
+    texts.append("text").text("h = "+h.toExponential(2)).attr('transform','translate('+x_text+',41)');
+    texts.append("text").text("e_h = "+e_h.toExponential(2)).attr('transform','translate('+x_text+',61)');
+    return texts;
+  }
+  var texts = plot_data(svg, x_a,x_b,Nbins);
 
   var sliderStep = d3
     .sliderBottom()
@@ -267,6 +299,8 @@ function int_plot(label, plot_bins, Nstep=1, numI=l_sums){
       Nbins = val;
       bins.remove("g");
       bins = plot_bins(svg,val,f,x_a,x_b);
+      texts.remove("g");
+      texts = plot_data(svg, x_a,x_b,Nbins);
       });
   svg.append('g')
      .attr('transform','translate(50,10)')
@@ -276,11 +310,12 @@ function int_plot(label, plot_bins, Nstep=1, numI=l_sums){
        if ((x.invert(d3.event.x)<0.)||(x.invert(d3.event.x)>x_b)){return}
        x_a = x.invert(d3.event.x);
        xy = gen_xy(f,x_a,x_b,N);
-       // area.selectAll("path").remove();
        area.remove("g");
        area = graph(svg, xy, x_a, x_b);
        bins.remove("g");
        bins = plot_bins(svg,Nbins, f, x_a,x_b);
+       texts.remove("g");
+       texts = plot_data(svg, x_a,x_b,Nbins);
        TriL.attr("transform", "translate(" + x(x_a) + ","+y(-0.02)+")");
   };
 
@@ -291,7 +326,7 @@ function int_plot(label, plot_bins, Nstep=1, numI=l_sums){
            .attr("d", TriSymb)
            .attr("fill", "white")
            .attr("stroke", "black")
-           .attr("transform", "translate(" + x(0.2) + ","+y(-0.02)+")")
+           .attr("transform", "translate(" + x(x_a) + ","+y(-0.02)+")")
            .attr("cursor","ew-resize")
            .call(drag_left);
 
@@ -304,6 +339,8 @@ function int_plot(label, plot_bins, Nstep=1, numI=l_sums){
      area = graph(svg, xy, x_a, x_b);
      bins.remove("g");
      bins = plot_bins(svg,Nbins, f, x_a,x_b);
+     texts.remove("g");
+     texts = plot_data(svg, x_a,x_b,Nbins);
      TriR.attr("transform", "translate(" + x(x_b) + ","+y(-0.02)+")");
    };
 
@@ -321,7 +358,7 @@ function int_plot(label, plot_bins, Nstep=1, numI=l_sums){
 }
 
 
-int_plot('plot_L',plot_bins_L);
-int_plot('plot_R',plot_bins_R);
-int_plot('plot_T',plot_bins_T);
-int_plot('plot_S',plot_bins_S,2);
+int_plot('plot_L',plot_bins_L,1,l_sums);
+int_plot('plot_R',plot_bins_R,1,r_sums);
+int_plot('plot_T',plot_bins_T,1,t_sums);
+int_plot('plot_S',plot_bins_S,2,s_sums);
