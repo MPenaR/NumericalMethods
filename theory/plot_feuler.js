@@ -1,6 +1,6 @@
 var max_w =800;
 var max_h = 400;
-var margin = {top: 10, right: 30, bottom: 30, left: 60};
+var margin = {top: 50, right: 30, bottom: 30, left: 60};
 var width = max_w - margin.left - margin.right;
 var height = max_h - margin.top - margin.bottom;
 var xmax = 5;
@@ -133,11 +133,11 @@ sol2 = plot_sol(svg2,x0,y0)
 
 
 
-var Nt = 50;
+var Nt = 20;
 var T = xmax;
 
 
-function forward_euler(x0,y0){
+function forward_euler(x0,y0,Nt){
   var DT = (T-x0) / Nt ;
   var t = linspace(x0,T,Nt+1);
   var y_e = new Array(Nt);
@@ -166,7 +166,7 @@ function forward_euler(x0,y0){
   return euler
 }
 
-euler = forward_euler(x0,y0);
+var euler = forward_euler(x0,y0,Nt);
 
 var drag2 = d3.drag().on("drag", dragmove2);
 
@@ -183,7 +183,7 @@ function dragmove2(d) {
       .attr("cx",x(x0))
       .attr("cy",y(y0));
   euler.remove();
-  euler = forward_euler(x0,y0);
+  euler = forward_euler(x0,y0,Nt);
 };
 
 svg2.append("circle")
@@ -195,3 +195,23 @@ svg2.append("circle")
      .attr("stroke","black")
      .attr("cursor","move")
      .call(drag2);
+
+var minN = 2;
+var maxN = 50;
+var Nstep = 1;
+var sliderStep = d3
+   .sliderBottom()
+   .min(minN)
+   .max(maxN)
+   .width(200)
+   .ticks(4)
+   .step(Nstep)
+   .default(10)
+   .on('onchange', val => {
+     Nt = val;
+     euler.remove();
+     euler = forward_euler(x0,y0,Nt);
+     });
+ svg2.append('g')
+    .attr('transform','translate(20,-40)')
+    .call(sliderStep);
