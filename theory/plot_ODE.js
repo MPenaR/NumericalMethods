@@ -89,18 +89,6 @@ for (i=0; i<Ny; i++){
         .attr("fill", "black")
         .attr("stroke", "black")
         .attr("transform", "translate(" + x(X[i][j]+Vx[i][j]) + ","+y(Y[i][j]+Vy[i][j])+") rotate("+angle+") scale(0.3)" );
-    // svg.append("g")
-    //    .append("circle")
-    //     .attr("r",2)
-    //     .attr("cx", x(Vx[i][j]))
-    //     .attr("cy", y(Vy[i][j]))
-    //     .attr("transform", "translate(" + (x(X[i][j]) - x(0)) + "," + (y(Y[i][j]) - y(0)) + ")");
-    // svg.append("circle")
-    //       .attr("cx",x(X[i][j]))
-    //       .attr("cy",y(Y[i][j]))
-    //       .attr("r",1)
-    //       .attr("fill","black")
-    //       .attr("stroke","black");
   }
 }
 
@@ -110,13 +98,12 @@ function solution(x0,y0,x){
   return {x: x, y: (Math.exp(x-x0))/(Math.exp(x-x0)+1./y0-1)};
 }
 
-var x0 = 0.;
-var y0 = 0.5;
+var x0 = 0.75;
+var y0 = 0.55;
 
 function plot_sol(svg,x0,y0){
   var xy = linspace(x0,xmax,N).map(x=>solution(x0,y0,x));
-
-  sol = svg.append("path")
+  var sol = svg.append("path")
         .datum(xy)
         .attr("fill", "none")
         .attr("stroke","steelblue")
@@ -125,11 +112,38 @@ function plot_sol(svg,x0,y0){
           .x(function(d) { return x(d.x) })
           .y(function(d) { return y(d.y) })
          );
-  return sol
-}
-sol1 = plot_sol(svg1,x0,y0)
 
- var drag1 = d3.drag().on("drag", dragmove1);
+  var aux_x = svg.append("line")
+                   .attr("x1", x(x0))
+                   .attr("y1", y(y0))
+                   .attr("x2", x(x0))
+                   .attr("y2", y(0))
+                   .attr("stroke-width", 1)
+                   .attr("stroke", "black")
+                   .style("stroke-dasharray", ("3, 3"));
+  var aux_y = svg.append("line")
+                  .attr("x1", x(x0))
+                  .attr("y1", y(y0))
+                  .attr("x2", x(0))
+                  .attr("y2", y(y0))
+                  .attr("stroke-width", 1)
+                  .attr("stroke", "black")
+                  .style("stroke-dasharray", ("3, 3"));
+  var labelx = svg.append("text")
+                    .html("t&#x2080")
+                    .attr("x",x(x0))
+                    .attr("y",y(0.))
+                    .attr("dy","1em");
+  var labely = svg.append("text")
+                    .html("y&#x2080")
+                    .attr("x",x(0))
+                    .attr("dx","-2em")
+                    .attr("y",y(y0));
+  return { sol: sol, aux: [aux_x, aux_y], labels: [ labelx, labely]}
+}
+var graph = plot_sol(svg1,x0,y0)
+
+var drag1 = d3.drag().on("drag", dragmove1);
 
 
 
@@ -138,8 +152,10 @@ function dragmove1(d) {
  if ((y.invert(d3.event.y)<0.)||(y.invert(d3.event.y)>1.)){return}
  x0 = x.invert(d3.event.x);
  y0 = y.invert(d3.event.y);
- sol1.remove();
- sol1 = plot_sol(svg1,x0,y0)
+ graph["sol"].remove();
+ graph["aux"][0].remove();
+ graph["aux"][1].remove();
+ graph = plot_sol(svg1,x0,y0);
  d3.select(this)
      .attr("cx",x(x0))
      .attr("cy",y(y0));

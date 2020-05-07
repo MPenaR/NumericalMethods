@@ -277,9 +277,9 @@ function int_plot(label, plot_bins, Nstep=1, numI=l_sums){
     var texts = svg.append("g")
     var h = (x_b-x_a)/N;
     texts.append("text").text("I  = "+I.toPrecision(3)).attr('transform','translate('+x_text+',-30)');
-    texts.append("text").text("I_h = "+I_h.toPrecision(3)).attr('transform','translate('+(x_text+100)+',-30)');
+    texts.append("text").html("I&#x2095 = "+I_h.toPrecision(3)).attr('transform','translate('+(x_text+100)+',-30)');
     texts.append("text").text("h = "+h.toExponential(2)).attr('transform','translate('+x_text+',-10)');
-    texts.append("text").text("e_h = "+e_h.toExponential(2)).attr('transform','translate('+(x_text+100)+',-10)');
+    texts.append("text").html("e&#x2095 = "+e_h.toExponential(2)).attr('transform','translate('+(x_text+100)+',-10)');
     return texts;
   }
   var texts = plot_data(svg, x_a,x_b,Nbins);
@@ -291,7 +291,7 @@ function int_plot(label, plot_bins, Nstep=1, numI=l_sums){
     .width(200)
     .ticks(4)
     .step(Nstep)
-    .default(10)
+    .default(Nbins)
     .on('onchange', val => {
       Nbins = val;
       bins.remove("g");
