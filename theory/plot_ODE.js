@@ -137,7 +137,7 @@ function plot_sol(svg,x0,y0){
   var labely = svg.append("text")
                     .html("y&#x2080")
                     .attr("x",x(0))
-                    .attr("dx","-2em")
+                    .attr("dx","-1.5em")
                     .attr("y",y(y0));
   return { sol: sol, aux: [aux_x, aux_y], labels: [ labelx, labely]}
 }
@@ -155,6 +155,8 @@ function dragmove1(d) {
  graph["sol"].remove();
  graph["aux"][0].remove();
  graph["aux"][1].remove();
+ graph["labels"][0].remove();
+ graph["labels"][1].remove();
  graph = plot_sol(svg1,x0,y0);
  d3.select(this)
      .attr("cx",x(x0))

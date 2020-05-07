@@ -8,24 +8,78 @@
 </head>
 <body>
   <h1 class="text" align="center">Problemas de valor inicial.</h1>
-  <p>Se llama ecuación diferencial ordinaria a una ecuación en la que están involucradas una función incógnita y una o más de sus derivadas totales. Éstas se podrán escribir como</p>
+  <p>Se llama ecuación diferencial ordinaria a una ecuación en la que la incógnita es una función de una variable, y están involucradas ella, la variable independiente y una o más de sus derivadas totales.</p>
+  <p>De manera general se podrán escribir como</p>
   <div align="center">
     $$G\left(t,y,\frac{dy}{dt},\frac{d^2y}{dt^2},\dots,\frac{d^ny}{dt^n}\right)=0$$
   </div>
-  <p>Donde \(t\) es la variable independiente, \(y=f\left(t\right)\) es la función incógnita y \(\frac{d^iy}{dt^i}\) es su derivada de orden \(i\).</p>
-  <div class="formula">
+  <p>donde \(t\) es la variable independiente, \(y=f\left(t\right)\) es la función incógnita y \(\frac{d^iy}{dt^i}\) es su derivada de orden \(i\).</p>
+ <p> Las ecuaciones diferenciales ordinarias están presentes en muchísimas ramas de la ciencia, siempre que exista una relación entre una variable y lo rápido que varía (derivada).</p>
+ <p>Por ejemplo, la segunda ley de Newton nos relaciona la derivada segunda de la posición, la aceleración \(a\left(t\right)\) con la fuerza, que en general será una función como mucho
+ de la posición \(\mathbf{r}\left(t\right)\), su derivada, la velocidad \(v\left(t\right)\) y el tiempo \(t\):</p>
+ <div class="formula">
+   \[
+   m\mathbf{a}=\mathbf{F}\left(\mathbf{r},\mathbf{v},t\right)
+   \]
+ </div>
+ <p>o bien, reescrito como en la ecuación general:</p>
+ <div class="formula">
+   \[
+   m\frac{d^2\mathbf{r}}{dt^2}-\mathbf{F}\left(\mathbf{r},\frac{d\mathbf{r}}{dt},t\right)=0
+   \]
+ </div>
+ <p>Otro ejemplo el crecimiento descontrolado de una población (conejos, bacterias, etc). Si se supone que no existe ningún límite natural en el número total
+ de individuos, se puede asumir que la variación de la población en un instante de tiempo (cuántos conejos nacieron en la última semana, cuántas bacterias en la última hora, etc) será proporcional al número de individuos
+existentes.</p>
+<p>Es decir, llamando \(N\left(t\right)\) a la cantidad de individuos en el instante \(t\) y \(r\) a la tasa de reproducción, se podría modelar el proceso como:</p>
+<div class="formula">
+  \[
+  \frac{dN\left(t\right)}{dt}=rN\left(t\right)
+  \]
+</div>
+
+  <!-- <div class="formula">
     $$m\frac{d\mathbf{r}}{dt^2}=-\frac{GMm}{\vert\mathbf{r}-\mathbf{r}_0\vert^3}\mathbf{r}$$
-  </div>
+  </div> -->
   <p>Al máximo orden de la derivadas que aparecen en el una ecuación diferencial se le conoce como orden de la ecuación diferencial.
-    De este modo una ecuación diferencial de primer orden será una ecuación en la que solo estarán involucradas
-    la variable independiente \(t\), la función incógnita \(y\) y su derivada primera:</p>
-    <div align="center">
-      $$G\left(t,y,\frac{dy}{dt}\right)=0$$
-    </div>
+    De este modo, las ecuaciones de Newton son unas ecuaciónes diferenciales ordinarias de segundo orden, mientras que que el crecimiento exponencial de una población es una ecuación diferencial ordinaria de primer orden</p>
   <p>Este tema se centrará en la resolución de ecuaciones diferenciales ordinarias de primer orden en las cuales la derivada se podrá despejar de forma explícita, es decir, serán ecuaciones que se podrán expresar como:</p>
   <div align="center">
     $$\frac{dy}{dt}=F\left(y,t\right)$$
   </div>
+  <p>La ecuación del crecimiento de la población se puede integrar analíticamente, cosa poco común, de ahí la necesidad de métodos numéricos para la resolución de ecuaciones diferenciales.</p>
+  <p>Si se reordena la ecuación de modo que todos los términos que dependan de \(N\) queden en el mismo miembro:</p>
+  <div class="formula">
+    \[
+    \frac{1}{N\left(t\right)}\frac{dN\left(t\right)}{dt}=r
+    \]
+  </div>
+<p>se puede integrar a ambos lados entre \(t_0\) y \(t\) obteniéndose:
+</p>
+  <div class="formula">
+    \[
+    \int_{t_0}^t\frac{1}{N\left(t\right)}\frac{dN\left(t\right)}{dt}\,\mathrm{d}t=\int_{t_0}^t r\,\mathrm{d}t
+    \]
+  </div>
+<p>Lo cual se puede reescribir como:</p>
+<div class="formula">
+  \[
+  \int_{t_0}^t\frac{d\left(\log\left(N\left(t\right)\right)\right)}{dt}\,\mathrm{d}t= r\left(t-t_0\right)
+  \]
+</div>
+<p>es decir:</p>
+<div class="formula">
+  \[
+  \log\left(N\left(t\right)\right)-\log\left(N\left(t_0\right)\right)= r\left(t-t_0\right)
+  \]
+</div>
+<p>o bien</p>
+<div class="formula">
+  \[
+  N\left(t\right)= N\left(t_0\right)e^{r\left(t-t_0\right)}
+  \]
+</div>
+<p>de donde viene lo de crecimiento exponencial.</p>
   <div>
   $$\frac{dy\left(t\right)}{dt} = y(t)(1-y(t))$$
   </div>
