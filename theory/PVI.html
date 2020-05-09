@@ -8,53 +8,83 @@
 </head>
 <body>
   <h1 class="text" align="center">Problemas de valor inicial.</h1>
-  <p>Se llama ecuación diferencial ordinaria a una ecuación en la que la incógnita es una función de una variable, y están involucradas ella, la variable independiente y una o más de sus derivadas totales.</p>
+  <p>Se llama ecuación diferencial ordinaria a una ecuación en la que están involucradas una función incógnita de una sola variable, una o más de sus derivadas totales y la propia variable independiente.</p>
   <p>De manera general se podrán escribir como</p>
   <div align="center">
-    $$G\left(t,y,\frac{dy}{dt},\frac{d^2y}{dt^2},\dots,\frac{d^ny}{dt^n}\right)=0$$
+    \[
+    \tag{1}
+    G\left(t,y,\frac{dy}{dt},\frac{d^2y}{dt^2},\dots,\frac{d^ny}{dt^n}\right)=0
+    \]
   </div>
   <p>donde \(t\) es la variable independiente, \(y=f\left(t\right)\) es la función incógnita y \(\frac{d^iy}{dt^i}\) es su derivada de orden \(i\).</p>
- <p> Las ecuaciones diferenciales ordinarias están presentes en muchísimas ramas de la ciencia, siempre que exista una relación entre una variable y lo rápido que varía (derivada).</p>
- <p>Por ejemplo, la segunda ley de Newton nos relaciona la derivada segunda de la posición, la aceleración \(a\left(t\right)\) con la fuerza, que en general será una función como mucho
- de la posición \(\mathbf{r}\left(t\right)\), su derivada, la velocidad \(v\left(t\right)\) y el tiempo \(t\):</p>
+ <p> Las ecuaciones diferenciales ordinarias están presentes en muchísimas ramas de la ciencia. Siempre que exista una relación entre una variable y lo rápido que varía ésta (es decir su derivada) tendremos una ecuación diferencial.</p>
+ <p>Por ejemplo, la segunda ley de Newton nos relaciona la derivada segunda de la posición (la aceleración \(a\left(t\right)\)) con la fuerza, que en general será una función como mucho
+ de la posición \(\mathbf{r}\left(t\right)\), su derivada (la velocidad \(v\left(t\right)\)) y el tiempo \(t\):</p>
  <div class="formula">
    \[
    m\mathbf{a}=\mathbf{F}\left(\mathbf{r},\mathbf{v},t\right)
    \]
  </div>
- <p>o bien, reescrito como en la ecuación general:</p>
+ <p>o bien, reescrito como en la ecuación (1):</p>
  <div class="formula">
    \[
    m\frac{d^2\mathbf{r}}{dt^2}-\mathbf{F}\left(\mathbf{r},\frac{d\mathbf{r}}{dt},t\right)=0
    \]
  </div>
- <p>Otro ejemplo el crecimiento descontrolado de una población (conejos, bacterias, etc). Si se supone que no existe ningún límite natural en el número total
+ <p>Otro ejemplo es el crecimiento descontrolado de una población (conejos, bacterias, etc). Si se supone que no existe ningún límite natural en el número total
  de individuos, se puede asumir que la variación de la población en un instante de tiempo (cuántos conejos nacieron en la última semana, cuántas bacterias en la última hora, etc) será proporcional al número de individuos
-existentes.</p>
-<p>Es decir, llamando \(N\left(t\right)\) a la cantidad de individuos en el instante \(t\) y \(r\) a la tasa de reproducción, se podría modelar el proceso como:</p>
+existentes en ese instante de tiempo.</p>
+<p>Es decir, llamando \(N\left(t\right)\) a la cantidad de individuos en el instante \(t\) y \(r\gt 0\) a la tasa de reproducción, se podría modelar el proceso como:</p>
 <div class="formula">
   \[
   \frac{dN\left(t\right)}{dt}=rN\left(t\right)
+  \]
+</div>
+<p>La misma ecuación pero con \(r\lt 0\) gobierna el decaimiento radiactivo de una sustancia radiactiva. En este caso \(N(t)\) sería el número de átomos de dicha sustancia en un determinado instante
+y el número de átomos que se desintegran por unidad de tiempo es proporcional a la cantidad de átomos existentes.
+Normalmente en física nuclear se suele hablar de la constante de decaimiento \(\lambda=-r\), con lo que la ecuación del decaimiento radiactivo queda expresada como: </p>
+<div class="formula">
+  \[
+  \frac{dN\left(t\right)}{dt}=-\lambda N\left(t\right)
   \]
 </div>
 
   <!-- <div class="formula">
     $$m\frac{d\mathbf{r}}{dt^2}=-\frac{GMm}{\vert\mathbf{r}-\mathbf{r}_0\vert^3}\mathbf{r}$$
   </div> -->
-  <p>Al máximo orden de la derivadas que aparecen en el una ecuación diferencial se le conoce como orden de la ecuación diferencial.
-    De este modo, las ecuaciones de Newton son unas ecuaciónes diferenciales ordinarias de segundo orden, mientras que que el crecimiento exponencial de una población es una ecuación diferencial ordinaria de primer orden</p>
-  <p>Este tema se centrará en la resolución de ecuaciones diferenciales ordinarias de primer orden en las cuales la derivada se podrá despejar de forma explícita, es decir, serán ecuaciones que se podrán expresar como:</p>
+  <p>Al máximo orden de las derivadas que aparecen en la ecuación diferencial se le conoce como orden de la ecuación diferencial.
+    De este modo, las ecuaciones de Newton son unas ecuaciones diferenciales ordinarias de segundo orden en \(\mathbf{r}\), mientras que que la de crecimiento exponencial de una población
+    y la del decaimiento radiactivo son ecuaciones diferenciales ordinarias de primer orden en \(N\)</p>
+  <p>Este tema se centrará en la resolución de ecuaciones diferenciales ordinarias de primer orden en las cuales la derivada se pueda despejar de forma explícita, es decir, serán ecuaciones que se podrán expresar como:</p>
   <div align="center">
-    $$\frac{dy}{dt}=F\left(y,t\right)$$
+    \[
+    \tag{2}
+    \frac{dy}{dt}=F\left(y,t\right)
+    \]
   </div>
-  <p>La ecuación del crecimiento de la población se puede integrar analíticamente, cosa poco común, de ahí la necesidad de métodos numéricos para la resolución de ecuaciones diferenciales.</p>
-  <p>Si se reordena la ecuación de modo que todos los términos que dependan de \(N\) queden en el mismo miembro:</p>
+  <p>Encontrar una solución de la ecuación (2) consiste en buscar una función \(y=y\left(t\right)\) cuya derivada venga dada por \(F\left(y,t\right)\). Esto también se puede ver como encontrar una curva en el plano, que sea tangente en cada punto \(\left(t,y(t)\right)\) al campo vectorial dado por:</p>
+  <div class="formula">
+    \[
+    \begin{pmatrix}
+    \frac{dt}{dt}\\
+    \frac{dy}{dt}
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+    1\\
+    F\left(y,t\right)
+    \end{pmatrix}
+    \]
+  </div>
+  DIBUJO CAMPO VECTORIAL SIN CURVA SOLUCIÓN.
+  <p>La ecuación del crecimiento de la población, que ya es una ecuación del tipo (2), se puede integrar analíticamente. Esto es algo poco común, de ahí la necesidad de métodos numéricos para la resolución de ecuaciones diferenciales.</p>
+  <p>Para ello se reordena la ecuación de modo que todos los términos que dependan de \(N\) queden en el mismo miembro de la ecuación:</p>
   <div class="formula">
     \[
     \frac{1}{N\left(t\right)}\frac{dN\left(t\right)}{dt}=r
     \]
   </div>
-<p>se puede integrar a ambos lados entre \(t_0\) y \(t\) obteniéndose:
+<p>y se procede a integrar a ambos lados entre \(t_0\) y \(t\) obteniéndose:
 </p>
   <div class="formula">
     \[
@@ -73,18 +103,78 @@ existentes.</p>
   \log\left(N\left(t\right)\right)-\log\left(N\left(t_0\right)\right)= r\left(t-t_0\right)
   \]
 </div>
-<p>o bien</p>
+<p>y al despejar \(N\left(t\right)\) se entiende lo de crecimiento "exponencial":</p>
 <div class="formula">
   \[
   N\left(t\right)= N\left(t_0\right)e^{r\left(t-t_0\right)}
   \]
 </div>
-<p>de donde viene lo de crecimiento exponencial.</p>
-  <div>
+<p>Se puede observar que cualquier función de la forma \(N\left(t\right)=Ae^{rt}\) con \(A=\mathrm{cte}\) es solución de la ecuación.</p>
+DIBUJO SOLUCIÓN CON SLIDER A. Y QUIZAS SLIDER R
+<p>Se conoce como <b>problema de valor inicial</b> a un problema en el que se quiere hallar la solución de una ecuación diferencial en el intervalo \(t\in\left(t_0,\infty\right)\) y además se conoce el valor de la solución en el punto \(t_0\).</p>
+<p>Por ejemplo, el problema de valor inicial asociado a la ecuación del crecimiento exponencial sería:</p>
+<div class="formula">
+\[
+  \begin{cases}
+  \frac{dN\left(t\right)}{dt}=rN\left(t\right) & t\in\left(t_0,\infty\right)\\
+  N\left(t_0\right)=N_0
+  \end{cases}
+\]
+</div>
+<p>donde \(N_0\) sería el valor conocido de la población total en el instante inicial \(t_0\).</p>
+DIBUJO EXPONENCIAL CON VARIACION DE COND INICIALES
+<p>Dejar esto para trabajos?</p>
+<div>
   $$\frac{dy\left(t\right)}{dt} = y(t)(1-y(t))$$
   </div>
   <div class="plot" id="ODE">
   </div>
+
+<p>Otra diferencia importante entre la ecuación de la segunda ley de Newton y las ecuaciones de crecimiento y decaimiento es que, mientras que las ecuaciones
+de crecimiento y decaimiento son ecuaciones diferenciales escalares, pues la función incógnita \(N\) es una función escalar; la ecuacion de Newton es una ecuación diferencial vectorial de dimensión tres (o un sistema de tres ecuaciones diferenciales escalares, segun como se mire)
+pues la función incógnita es una función vectorial de dimensión \(3\).</p>
+<p>El motivo de que en este tema sólo se vayan a dar ecuaciones de primer orden, es que cualquier ecuación de orden \(n\) en el cual la derivada de mayor orden se pueda despejar explícitamente se puede transformar en una ecuación de primer orden vectorial.</p>
+<p>El procedimiento es siempre el mismo y se ejemplificará con las ecuaciones de Newton. Si la ecuación es de orden \(n\), se definen \(n-1\) nuevas variables, una por cada derivada, desde orden \(1\) hasta orden \(n-1\).</p>
+<p>En el caso de las ecuaciones de Newton, siendo estas de orden \(2\), solo es necesario definir una variable, que llamaremos \(\mathbf{v}\), para la derivada primera.</p>
+<p>De este modo, ahora disponemos de un sistema de dos ecuaciones vectoriales de primer orden:</p>
+<div class="formula">
+  \begin{align}
+  \frac{d\mathbf{r}}{dt} &=\mathbf{v}\\
+  \frac{d\mathbf{v}}{dt} &=\mathbf{F}\left(\mathbf{r},\mathbf{v},t\right)
+  \end{align}
+</div>
+<p>Por último, si se define el vector de estado:</p>
+  <div class="formula">
+    \[
+    \boldsymbol{\eta}\left(t\right)=\begin{pmatrix}\mathbf{r}\left(t\right)\\\mathbf{v}\left(t\right)\end{pmatrix}
+    \]
+  </div>
+  <p>se pueden reescribir las ecuaciones de Newton como una ecuación diferencial
+de primer orden del tipo(2) de dimensión \(6\):</p>
+<div class="formula">
+  \[
+  \frac{d\boldsymbol{\eta}}{dt} =\boldsymbol{\mathcal{F}}\left(\boldsymbol{\eta},t\right)
+  \]
+</div>
+en la que:
+<div class="formula">
+  \[
+  \frac{d\boldsymbol{\eta}}{dt}=\begin{pmatrix}\frac{d\mathbf{r}}{dt}\\\frac{d\mathbf{v}}{dt}\end{pmatrix},\quad
+  \boldsymbol{\mathcal{F}}\left(\boldsymbol{\eta},t\right)=\begin{pmatrix}\mathbf{v}\\\mathbf{F}\left(\mathbf{r},\mathbf{v},t\right)\end{pmatrix}
+  \]
+</div>
+<p>Al haber reescrito las ecuaciones de Newton en términos del vector de estado \(\boldsymbol{\eta}\) queda claro que para resolver un problema de valor inicial es necesario conocer las condiciones iniciales:</p>
+<div class="formula">
+  \[
+  \boldsymbol{\eta}\left(0\right)=\begin{pmatrix}\mathbf{r}\left(0\right)\\\mathbf{v}\left(0\right)\end{pmatrix}
+  \]
+</div>
+Es decir, para resolver un problema de valor inicial de dinámica newtoniana es necesario conocer la posición inicial y la velocidad inicial. Por un razonamiento análogo,
+para resolver un problema de valor inicial de orden \(n\) hará falta conocer \(n\) condiciones iniciales; el valor inicial de la función incógnita y las derivadas hasta orden \(n-1\).
+  <h1>Métodos numéricos de resolución de problemas de valor inicial.</h1>
+  <p>Todos los métodos numéricos que se van a estudiar siguen un planteamiento común. Al intentar resolver una ecuación del tipo (2), ya sea escalar o vectorial, en el intervalo \(t\in\left(t0,T\right)\) </p>
+  <p></p>
+  <h2>Método de Euler explícito</h2>
   <p>El método Euler explícito consiste en aproximar la integral:</p>
   <div align="center">
     $$\int_{t_i}^{t_i+1}F\left(y\left(t\right),t\right)\,\mathrm{d}t\approx\int_{t_i}^{t_i+1}F\left(y_i,t_i\right)\,\mathrm{d}t$$
@@ -99,6 +189,25 @@ existentes.</p>
     $$
   </div>
   <div class="plot" id="feuler">
+  </div>
+
+  <p>El método Euler implícito consiste en aproximar la integral:</p>
+  <div align="center">
+    $$\int_{t_i}^{t_i+1}F\left(y\left(t\right),t\right)\,\mathrm{d}t\approx\int_{t_i}^{t_i+1}F\left(y_{i+1},t_{i+1}\right)\,\mathrm{d}t$$
+  </div>
+  <p>con lo que se obtiene la siguiente regla de recurrencia:</p>
+  <div align="center">
+    $$
+    \begin{array}{l}
+    y_0 &= y(0)\\
+    y_{i+1} &= y_i + \Delta tF\left(y_{i+1},t_{i+1}\right)
+    \end{array}
+    $$
+  </div>
+  <p>Como se puede observar, la última ecuación define el valor de \(y_{i+1}\), pero no lo hace de manera explícita, sino implícita.
+     Es decir, para obtener \(y_{i+1}\) conocidos los valores anteriores, es necesario desolver una ecuación. En algunos casos, dependiendo de la función \(F\), se podrá hacer analíticamente, y en otros casos será necesario resolverla numéricamente, por ejemplo con un método Newton.</p>
+
+  <div class="plot" id="beuler">
   </div>
 <!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
 <script src="./d3.js">

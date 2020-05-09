@@ -131,11 +131,13 @@ function plot_sol(svg,x0,y0){
                   .style("stroke-dasharray", ("3, 3"));
   var labelx = svg.append("text")
                     .html("t&#x2080")
+                    .style("font-weight","bold")
                     .attr("x",x(x0))
                     .attr("y",y(0.))
                     .attr("dy","1em");
   var labely = svg.append("text")
                     .html("y&#x2080")
+                    .style("font-weight","bold")
                     .attr("x",x(0))
                     .attr("dx","-1.5em")
                     .attr("y",y(y0));
