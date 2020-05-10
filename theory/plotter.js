@@ -1,4 +1,6 @@
 // import cos from Math;
+const { PI, sin, cos, ceil, abs }  = Math
+
 var max_w = 600;
 var max_h = 400;
 var margin = {top: 60, right: 30, bottom: 30, left: 60};
@@ -7,7 +9,6 @@ var height = max_h - margin.top - margin.bottom;
 var minN = 2;
 var maxN = 50;
 
-const { PI, sin, cos, ceil, abs }  = Math
 
 
 var x = d3.scaleLinear()
