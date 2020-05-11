@@ -76,9 +76,12 @@ Normalmente en física nuclear se suele hablar de la constante de decaimiento \(
     \end{pmatrix}
     \]
   </div>
+  <p>A continuación se muestra el campo vectorial tangente correspondiente a la ecuación diferencial anterior. Escogiendo \(r\gt 0\) se obtiene el campo vectorial correspondiente al crecimiento de una población,
+  mientras que haciendo \(r\lt 0\) se obtiene el correspondiente al decaimiento radiactivo.</p>
   <div class="plot" id="vec_plot" caption_text="Campo vectorial.">
   </div>
-  <p>La ecuación del crecimiento de la población, que ya es una ecuación del tipo (2), se puede integrar analíticamente. Esto es algo poco común, de ahí la necesidad de métodos numéricos para la resolución de ecuaciones diferenciales.</p>
+  <p>Se puede observar que, en cada punto, la dirección y magnitud de las flechas nos indica como se tiene que comportar la solución.</p>
+  <p>La solución de la ecuación anterior se puede integrar analíticamente. Esto es algo poco común, de ahí la necesidad de métodos numéricos para la resolución de ecuaciones diferenciales.</p>
   <p>Para ello se reordena la ecuación de modo que todos los términos que dependan de \(N\) queden en el mismo miembro de la ecuación:</p>
   <div class="formula">
     \[
@@ -110,9 +113,12 @@ Normalmente en física nuclear se suele hablar de la constante de decaimiento \(
   N\left(t\right)= N\left(t_0\right)e^{r\left(t-t_0\right)}
   \]
 </div>
-<p>Se puede observar que cualquier función de la forma \(N\left(t\right)=Ae^{rt}\) con \(A=\mathrm{cte}\) es solución de la ecuación.</p>
+<p>Se puede observar que cualquier función de la forma \(N\left(t\right)=Ae^{rt}\) con \(A=\mathrm{cte}\) es solución de la ecuación. A la familia de funciones obtenidas para los diferentes valores de la constante se le conoce como <b>solución general</b> de la ecuación diferencial.</p>
+<p>A continuación se muestran las posibles soluciones de la ecuación BLA. Ahora se puede observar que, aunque ambas ecuaciones sean muy similares, en la ecuación de crecimiento de una población(\( r\gt 0\) ) todas las soluciones para tienden a dispararse,
+  mientras que en el caso del decaimiento radiactivo (\(r\lt 0\)), las soluciones tienden a \(0\), es decir, los comportamientos de las soluciones de ambas ecuaciones presentan comportamientos muy diferentes.</p>
 <div class="plot" id="gen_sol_plot" caption_text="Solución general.">
 </div>
+<p>Por otra parte, variar \(A\) no implica cambiar el comportamiento de la solución, sino que sirve para escoger una de las infinitas soluciones de la ecuación diferencial.</p>
 <p>Se conoce como <b>problema de valor inicial</b> a un problema en el que se quiere hallar la solución de una ecuación diferencial en el intervalo \(t\in\left(t_0,\infty\right)\) y además se conoce el valor de la solución en el punto \(t_0\).</p>
 <p>Por ejemplo, el problema de valor inicial asociado a la ecuación del crecimiento exponencial sería:</p>
 <div class="formula">
@@ -123,18 +129,23 @@ Normalmente en física nuclear se suele hablar de la constante de decaimiento \(
   \end{cases}
 \]
 </div>
-<p>donde \(N_0\) sería el valor conocido de la población total en el instante inicial \(t_0\).</p>
+<p>donde \(N_0\) sería el valor conocido de la población total en el instante inicial \(t_0\). De este modo, de las infinitas funciones exponenciales que cumplen la ecuación diferencial,  la única solución que cumple el problema de valor inicial, llamada <b>solución particular</b>, sería:</p>
+<div class="formula">
+  \[
+  N\left(t\right)= N_0e^{r\left(t-t_0\right)}
+  \]
+</div>
 DIBUJO EXPONENCIAL CON VARIACION DE COND INICIALES
-<p>Dejar esto para trabajos?</p>
+<!-- <p>Dejar esto para trabajos?</p>
 <div>
   $$\frac{dy\left(t\right)}{dt} = y(t)(1-y(t))$$
   </div>
   <div class="plot" id="ODE">
-  </div>
+  </div> -->
 
 <p>Otra diferencia importante entre la ecuación de la segunda ley de Newton y las ecuaciones de crecimiento y decaimiento es que, mientras que las ecuaciones
-de crecimiento y decaimiento son ecuaciones diferenciales escalares, pues la función incógnita \(N\) es una función escalar; la ecuacion de Newton es una ecuación diferencial vectorial de dimensión tres (o un sistema de tres ecuaciones diferenciales escalares, segun como se mire)
-pues la función incógnita es una función vectorial de dimensión \(3\).</p>
+de crecimiento y decaimiento son ecuaciones diferenciales escalares, pues la función incógnita \(N\) es una función escalar; la ecuación de Newton es una ecuación diferencial vectorial de dimensión tres (o un sistema de tres ecuaciones diferenciales escalares, según como se mire)
+pues la función incógnita \(\mathbf{r}\) es una función vectorial de dimensión \(3\).</p>
 <p>El motivo de que en este tema sólo se vayan a dar ecuaciones de primer orden, es que cualquier ecuación de orden \(n\) en el cual la derivada de mayor orden se pueda despejar explícitamente se puede transformar en una ecuación de primer orden vectorial.</p>
 <p>El procedimiento es siempre el mismo y se ejemplificará con las ecuaciones de Newton. Si la ecuación es de orden \(n\), se definen \(n-1\) nuevas variables, una por cada derivada, desde orden \(1\) hasta orden \(n-1\).</p>
 <p>En el caso de las ecuaciones de Newton, siendo estas de orden \(2\), solo es necesario definir una variable, que llamaremos \(\mathbf{v}\), para la derivada primera.</p>
@@ -171,8 +182,8 @@ en la que:
   \boldsymbol{\eta}\left(0\right)=\begin{pmatrix}\mathbf{r}\left(0\right)\\\mathbf{v}\left(0\right)\end{pmatrix}
   \]
 </div>
-Es decir, para resolver un problema de valor inicial de dinámica newtoniana es necesario conocer la posición inicial y la velocidad inicial. Por un razonamiento análogo,
-para resolver un problema de valor inicial de orden \(n\) hará falta conocer \(n\) condiciones iniciales; el valor inicial de la función incógnita y las derivadas hasta orden \(n-1\).
+<p>Es decir, para resolver un problema de valor inicial de dinámica newtoniana es necesario conocer la posición inicial y la velocidad inicial. Por un razonamiento análogo,
+para resolver un problema de valor inicial de orden \(n\) hará falta conocer \(n\) condiciones iniciales; el valor inicial de la función incógnita y las derivadas hasta orden \(n-1\).</p>
   <h1>Métodos numéricos de resolución de problemas de valor inicial.</h1>
   <p>Todos los métodos numéricos que se van a estudiar siguen un planteamiento común. Al intentar resolver una ecuación del tipo (2), ya sea escalar o vectorial, en el intervalo \(t\in\left(t0,T\right)\) </p>
   <p></p>

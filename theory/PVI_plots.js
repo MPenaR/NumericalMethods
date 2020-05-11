@@ -2,7 +2,7 @@ const{PI, atan2, exp} = Math;
 
 var max_w =800;
 var max_h = 400;
-var margin = {top: 60, right: 30, bottom: 30, left: 60};
+var margin = {top: 65, right: 30, bottom: 30, left: 60};
 var width = max_w - margin.left - margin.right;
 var height = max_h - margin.top - margin.bottom;
 var xmax = 5;
@@ -85,7 +85,7 @@ function plot_vector_field(plot, Nx, Ny, f){
   svg.append("text")
        .attr("transform",
              "translate(" + (width/2) + " ," +
-                            (height + margin.top + 20) + ")")
+                            (y(0)+30) + ")")
        .style("text-anchor", "middle")
        .text("t")
 
@@ -98,7 +98,7 @@ function plot_vector_field(plot, Nx, Ny, f){
       .attr("x",0 - (height / 2))
       .attr("dy", "1em")
       .style("text-anchor", "middle")
-      .text("y(t)");
+      .text("N(t)");
 
   var arrows = quiver(svg,Nx,Ny,f,r);
   var minR = -1.;
@@ -142,7 +142,7 @@ function plot_general_solution_vec(plot, Nx, Ny, vf, f_sol){
   svg.append("text")
        .attr("transform",
              "translate(" + (width/2) + " ," +
-                            (height + margin.top + 20) + ")")
+                            (y(0)+30) + ")")
        .style("text-anchor", "middle")
        .text("t")
 
@@ -155,11 +155,10 @@ function plot_general_solution_vec(plot, Nx, Ny, vf, f_sol){
       .attr("x",0 - (height / 2))
       .attr("dy", "1em")
       .style("text-anchor", "middle")
-      .text("y(t)");
+      .text("N(t)");
 
   var arrows = quiver(svg,Nx,Ny,vf,r);
 
-  var N = 100;
   function plot_sol(r,A,f){
     var xy = linspace(0.,xmax,N).map(x=>f(x,A,r));
     var sol = svg.append("path")
@@ -176,7 +175,7 @@ function plot_general_solution_vec(plot, Nx, Ny, vf, f_sol){
   var sol = plot_sol(r,A,f_sol);
    var minR = -1.;
    var maxR = 1.;
-   var sliderStep = d3
+   var sliderR = d3
      .sliderBottom()
      .min(minR)
      .max(maxR)
@@ -194,8 +193,31 @@ function plot_general_solution_vec(plot, Nx, Ny, vf, f_sol){
        });
    svg.append('g')
       .attr('transform','translate(20,-45)')
-      .call(sliderStep);
+      .call(sliderR);
    svg.append("text").text("r").attr('transform','translate(120,-50)');
+   var minA = 0.;
+   var maxA = 1.;
+   var sliderA = d3
+     .sliderBottom()
+     .min(minA)
+     .max(maxA)
+     .width(200)
+     .ticks(4)
+     .step(0.05)
+     .default(A)
+     .on('onchange', val => {
+       A = val;
+       arrows["heads"].remove("g");
+       arrows["tails"].remove("g");
+       sol.remove("path");
+       arrows = quiver(svg,Nx,Ny,vf,r);
+       sol = plot_sol(r,A,f_sol);
+       });
+   var offset = 400;
+   svg.append('g')
+      .attr('transform','translate('+(offset+20)+',-45)')
+      .call(sliderA);
+   svg.append("text").text("A").attr('transform','translate('+(offset+120)+',-50)');
 }
 
 
@@ -203,7 +225,7 @@ function plot_general_solution_vec(plot, Nx, Ny, vf, f_sol){
 var Nf = 15 ;
 var Nx = 2*Nf ;
 var Ny = Nf ;
-
+var N = 100;
 var r = 0.5;
 var A = 0.5;
 
@@ -212,7 +234,7 @@ plot_general_solution_vec("gen_sol_plot", Nx, Ny,exp_grow,exponential);
 
 
 
-// var N = 100;
+
 // function solution(x0,y0,x){
 //   // return {x: x, y: y0*Math.exp((x-x0))};
 //   return {x: x, y: (Math.exp(x-x0))/(Math.exp(x-x0)+1./y0-1)};
