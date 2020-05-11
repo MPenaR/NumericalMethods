@@ -1,4 +1,4 @@
-const{PI, atan2} = Math;
+const{PI, atan2, exp} = Math;
 
 var max_w =800;
 var max_h = 400;
@@ -21,6 +21,52 @@ function linspace(x0,xf,N){
 
 function exp_grow(y,r){
   return r*y;
+}
+
+function exponential(x,A,r){
+  return {x:x, y:A*exp(r*x)};
+}
+
+function quiver(svg,Nx,Ny,f,r){
+  var x_coords = linspace(0,xmax,Nx);
+  var y_coords = linspace(0,1,Ny);
+  var X = new Array(Ny);
+  var Y = new Array(Ny);
+  var Vx = new Array(Ny);
+  var Vy = new Array(Ny);
+  var tails = svg.append("g");
+  var heads = svg.append("g");
+  for (i=0; i<Ny; i++){
+    X[i] = new Array(Nx);
+    Y[i] = new Array(Nx);
+    Vx[i] = new Array(Nx);
+    Vy[i] = new Array(Nx);
+
+    var TriSymb = d3.symbol().type(d3.symbolTriangle);
+
+    var angle;
+
+    for (j=0; j<Nx; j++){
+      X[i][j] = x_coords[j];
+      Y[i][j] = y_coords[i];
+      Vx[i][j] = lambda*1.;
+      Vy[i][j] = lambda*f(Y[i][j], r);
+      angle = atan2(Vy[i][j],Vx[i][j]);
+      angle = -2*angle*180./PI + 90;
+      tails.append("path")
+          .attr("d", "M" + x(0) + " " + y(0) + " L" + x(Vx[i][j]) + " " + y(Vy[i][j]))
+          .attr("stroke", "black")
+          .attr("stroke-width", 2)
+          .attr("fill", "none")
+          .attr("transform", "translate(" + (x(X[i][j]) - x(0)) + "," + (y(Y[i][j]) - y(0)) + ")");
+      heads.append("path")
+          .attr("d", TriSymb)
+          .attr("fill", "black")
+          .attr("stroke", "black")
+          .attr("transform", "translate(" + x(X[i][j]+Vx[i][j]) + ","+y(Y[i][j]+Vy[i][j])+") rotate("+angle+") scale(0.3)" );
+      }
+  }
+return {tails:tails, heads:heads};
 }
 
 function plot_vector_field(plot, Nx, Ny, f){
@@ -54,53 +100,9 @@ function plot_vector_field(plot, Nx, Ny, f){
       .style("text-anchor", "middle")
       .text("y(t)");
 
-
-
-
-  function quiver(svg,Nx,Ny,f,r){
-    var x_coords = linspace(0,xmax,Nx);
-    var y_coords = linspace(0,1,Ny);
-    var X = new Array(Ny);
-    var Y = new Array(Ny);
-    var Vx = new Array(Ny);
-    var Vy = new Array(Ny);
-    var tails = svg.append("g");
-    var heads = svg.append("g");
-    for (i=0; i<Ny; i++){
-      X[i] = new Array(Nx);
-      Y[i] = new Array(Nx);
-      Vx[i] = new Array(Nx);
-      Vy[i] = new Array(Nx);
-
-      var TriSymb = d3.symbol().type(d3.symbolTriangle);
-
-      var angle;
-
-      for (j=0; j<Nx; j++){
-        X[i][j] = x_coords[j];
-        Y[i][j] = y_coords[i];
-        Vx[i][j] = lambda*1.;
-        Vy[i][j] = lambda*f(Y[i][j], r);
-        angle = atan2(Vy[i][j],Vx[i][j]);
-        angle = -2*angle*180./PI + 90;
-        tails.append("path")
-            .attr("d", "M" + x(0) + " " + y(0) + " L" + x(Vx[i][j]) + " " + y(Vy[i][j]))
-            .attr("stroke", "black")
-            .attr("stroke-width", 2)
-            .attr("fill", "none")
-            .attr("transform", "translate(" + (x(X[i][j]) - x(0)) + "," + (y(Y[i][j]) - y(0)) + ")");
-        heads.append("path")
-            .attr("d", TriSymb)
-            .attr("fill", "black")
-            .attr("stroke", "black")
-            .attr("transform", "translate(" + x(X[i][j]+Vx[i][j]) + ","+y(Y[i][j]+Vy[i][j])+") rotate("+angle+") scale(0.3)" );
-        }
-    }
-  return {tails:tails, heads:heads};
-  }
   var arrows = quiver(svg,Nx,Ny,f,r);
-  minR = -1.;
-  maxR = 1.;
+  var minR = -1.;
+  var maxR = 1.;
   var sliderStep = d3
     .sliderBottom()
     .min(minR)
@@ -119,24 +121,82 @@ function plot_vector_field(plot, Nx, Ny, f){
      .attr('transform','translate(20,-45)')
      .call(sliderStep);
   svg.append("text").text("r").attr('transform','translate(120,-50)');
-
+  return svg;
 };
 
 var lambda = 0.08;
 
-// plot_general_solution_vec(plot, Nx, Ny, vf, sol){
-//   plot_vector_field(plot, Nx, Ny,vf);
-//   var xy = linspace(0.,xmax,N).map(x=>sol(x,A,r));
-//   var sol = svg.append("path")
-//         .datum(xy)
-//         .attr("fill", "none")
-//         .attr("stroke","steelblue")
-//         .attr("stroke-width",2.5)
-//         .attr("d", d3.line()
-//           .x(function(d) { return x(d.x) })
-//           .y(function(d) { return y(d.y) })
-//          );
-// }
+function plot_general_solution_vec(plot, Nx, Ny, vf, f_sol){
+  var svg = d3.select("#"+plot)
+              .append("svg")
+                .attr("width", max_w)
+                .attr("height", max_h)
+              .append("g")
+                .attr("transform",
+                      "translate(" + margin.left + "," + margin.top + ")");
+
+  svg.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x));
+
+  svg.append("text")
+       .attr("transform",
+             "translate(" + (width/2) + " ," +
+                            (height + margin.top + 20) + ")")
+       .style("text-anchor", "middle")
+       .text("t")
+
+  svg.append("g")
+     .call(d3.axisLeft(y));
+
+  svg.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 0 - margin.left)
+      .attr("x",0 - (height / 2))
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .text("y(t)");
+
+  var arrows = quiver(svg,Nx,Ny,vf,r);
+
+  var N = 100;
+  function plot_sol(r,A,f){
+    var xy = linspace(0.,xmax,N).map(x=>f(x,A,r));
+    var sol = svg.append("path")
+          .datum(xy)
+          .attr("fill", "none")
+          .attr("stroke","steelblue")
+          .attr("stroke-width",2.5)
+          .attr("d", d3.line()
+            .x(function(d) { return x(d.x) })
+            .y(function(d) { return y(d.y) })
+           );
+     return sol;
+  }
+  var sol = plot_sol(r,A,f_sol);
+   var minR = -1.;
+   var maxR = 1.;
+   var sliderStep = d3
+     .sliderBottom()
+     .min(minR)
+     .max(maxR)
+     .width(200)
+     .ticks(4)
+     .step(0.05)
+     .default(r)
+     .on('onchange', val => {
+       r = val;
+       arrows["heads"].remove("g");
+       arrows["tails"].remove("g");
+       sol.remove("path");
+       arrows = quiver(svg,Nx,Ny,vf,r);
+       sol = plot_sol(r,A,f_sol);
+       });
+   svg.append('g')
+      .attr('transform','translate(20,-45)')
+      .call(sliderStep);
+   svg.append("text").text("r").attr('transform','translate(120,-50)');
+}
 
 
 
@@ -145,8 +205,10 @@ var Nx = 2*Nf ;
 var Ny = Nf ;
 
 var r = 0.5;
+var A = 0.5;
 
 plot_vector_field("vec_plot", Nx, Ny,exp_grow);
+plot_general_solution_vec("gen_sol_plot", Nx, Ny,exp_grow,exponential);
 
 
 
