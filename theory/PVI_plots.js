@@ -2,7 +2,7 @@ const{PI, atan2} = Math;
 
 var max_w =800;
 var max_h = 400;
-var margin = {top: 10, right: 30, bottom: 30, left: 60};
+var margin = {top: 60, right: 30, bottom: 30, left: 60};
 var width = max_w - margin.left - margin.right;
 var height = max_h - margin.top - margin.bottom;
 var xmax = 5;
@@ -116,9 +116,9 @@ function plot_vector_field(plot, Nx, Ny, f){
       arrows = quiver(svg,Nx,Ny,f,r);
       });
   svg.append('g')
-     .attr('transform','translate(20,40)')
+     .attr('transform','translate(20,-45)')
      .call(sliderStep);
-  // svg.append("text").text("r").attr('transform','translate(110,-10)');
+  svg.append("text").text("r").attr('transform','translate(120,-50)');
 
 };
 
