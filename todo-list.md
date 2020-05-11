@@ -7,3 +7,4 @@
 - animación condición de una matriz.
 - add navigation "next", "previous", "index"
 - ecuaciones numeradas via CSS
+- Something is wrong with the arrows head rotation.

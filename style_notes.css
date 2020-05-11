@@ -59,13 +59,14 @@ h2{
    text-indent: 10px;
 } */
 
-.plot::after {
+/* .plot::after {
   content:"Figura: " attr(caption_text);
-  font-weight: bold;
+  /* margin: 0 auto;
+  text-align: center; */
   /* color: red;
   font-style: normal;
   font-weight: bold; */
-}
+} */
 
 /* .plot {
   margin: auto;
