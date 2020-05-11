@@ -27,6 +27,11 @@ function exponential(x,A,r){
   return {x:x, y:A*exp(r*x)};
 }
 
+function solution(x0,y0,r,x){
+  return {x: x, y: y0*exp(r*(x-x0))};
+  // return {x: x, y: (Math.exp(x-x0))/(Math.exp(x-x0)+1./y0-1)};
+}
+
 function quiver(svg,Nx,Ny,f,r){
   var x_coords = linspace(0,xmax,Nx);
   var y_coords = linspace(0,1,Ny);
@@ -221,97 +226,156 @@ function plot_general_solution_vec(plot, Nx, Ny, vf, f_sol){
 }
 
 
+function plot_pvi(plot, Nx, Ny, vf, f_sol){
+  var svg = d3.select("#"+plot)
+              .append("svg")
+                .attr("width", max_w)
+                .attr("height", max_h)
+              .append("g")
+                .attr("transform",
+                      "translate(" + margin.left + "," + margin.top + ")");
+
+  svg.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x));
+
+  svg.append("text")
+       .attr("transform",
+             "translate(" + (width/2) + " ," +
+                            (y(0)+30) + ")")
+       .style("text-anchor", "middle")
+       .text("t")
+
+  svg.append("g")
+     .call(d3.axisLeft(y));
+
+  svg.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 0 - margin.left)
+      .attr("x",0 - (height / 2))
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .text("N(t)");
+
+  var arrows = quiver(svg,Nx,Ny,vf,r);
+
+  function plot_sol(x0,y0,r,f_sol){
+    var xy = linspace(x0,xmax,N).map(x=>f_sol(x0,y0,r,x));
+    var sol = svg.append("path")
+          .datum(xy)
+          .attr("fill", "none")
+          .attr("stroke","steelblue")
+          .attr("stroke-width",2.5)
+          .attr("d", d3.line()
+            .x(function(d) { return x(d.x) })
+            .y(function(d) { return y(d.y) })
+           );
+
+    var aux_x = svg.append("line")
+                     .attr("x1", x(x0))
+                     .attr("y1", y(y0))
+                     .attr("x2", x(x0))
+                     .attr("y2", y(0))
+                     .attr("stroke-width", 1)
+                     .attr("stroke", "black")
+                     .style("stroke-dasharray", ("3, 3"));
+    var aux_y = svg.append("line")
+                    .attr("x1", x(x0))
+                    .attr("y1", y(y0))
+                    .attr("x2", x(0))
+                    .attr("y2", y(y0))
+                    .attr("stroke-width", 1)
+                    .attr("stroke", "black")
+                    .style("stroke-dasharray", ("3, 3"));
+    var labelx = svg.append("text")
+                      .html("t&#x2080")
+                      .style("font-weight","bold")
+                      .attr("x",x(x0))
+                      .attr("y",y(0.))
+                      .attr("dy","1em");
+    var labely = svg.append("text")
+                      .html("N&#x2080")
+                      .style("font-weight","bold")
+                      .attr("x",x(0))
+                      .attr("dx","-1.5em")
+                      .attr("y",y(y0));
+    return { sol: sol, aux: [aux_x, aux_y], labels: [ labelx, labely]}
+  }
+   var graph = plot_sol(x0,y0,r,f_sol);
+   var minR = -1.;
+   var maxR = 1.;
+   var sliderR = d3
+     .sliderBottom()
+     .min(minR)
+     .max(maxR)
+     .width(200)
+     .ticks(4)
+     .step(0.05)
+     .default(r)
+     .on('onchange', val => {
+       r = val;
+       arrows["heads"].remove("g");
+       arrows["tails"].remove("g");
+       graph["sol"].remove("path");
+       graph["aux"][0].remove();
+       graph["aux"][1].remove();
+       graph["labels"][0].remove();
+       graph["labels"][1].remove();
+       arrows = quiver(svg,Nx,Ny,vf,r);
+       graph = plot_sol(x0,y0,r,f_sol);
+       });
+   svg.append('g')
+      .attr('transform','translate(20,-45)')
+      .call(sliderR);
+   svg.append("text").text("r").attr('transform','translate(120,-50)');
+
+
+   var drag1 = d3.drag().on("drag", dragmove1);
+
+
+
+   function dragmove1(d) {
+    if ((x.invert(d3.event.x)<0.)||(x.invert(d3.event.x)>xmax)){return}
+    if ((y.invert(d3.event.y)<0.)||(y.invert(d3.event.y)>1.)){return}
+    x0 = x.invert(d3.event.x);
+    y0 = y.invert(d3.event.y);
+    graph["sol"].remove();
+    graph["aux"][0].remove();
+    graph["aux"][1].remove();
+    graph["labels"][0].remove();
+    graph["labels"][1].remove();
+    graph = plot_sol(x0,y0,r,f_sol);
+    d3.select(this)
+        .attr("cx",x(x0))
+        .attr("cy",y(y0));
+   };
+
+   svg.append("circle")
+        .attr("cx",x(x0))
+        .attr("cy",y(y0))
+        .attr("r",6)
+        .attr("fill","white")
+        .attr("stroke","black")
+        .attr("cursor","move")
+        .call(drag1);
+
+}
+
+
 
 var Nf = 15 ;
 var Nx = 2*Nf ;
 var Ny = Nf ;
+
 var N = 100;
+
 var r = 0.5;
 var A = 0.5;
 
+var x0 = 0.75;
+var y0 = 0.55;
+
+
 plot_vector_field("vec_plot", Nx, Ny,exp_grow);
 plot_general_solution_vec("gen_sol_plot", Nx, Ny,exp_grow,exponential);
-
-
-
-
-// function solution(x0,y0,x){
-//   // return {x: x, y: y0*Math.exp((x-x0))};
-//   return {x: x, y: (Math.exp(x-x0))/(Math.exp(x-x0)+1./y0-1)};
-// }
-//
-// var x0 = 0.75;
-// var y0 = 0.55;
-//
-// function plot_sol(svg,x0,y0){
-//   var xy = linspace(x0,xmax,N).map(x=>solution(x0,y0,x));
-//   var sol = svg.append("path")
-//         .datum(xy)
-//         .attr("fill", "none")
-//         .attr("stroke","steelblue")
-//         .attr("stroke-width",2.5)
-//         .attr("d", d3.line()
-//           .x(function(d) { return x(d.x) })
-//           .y(function(d) { return y(d.y) })
-//          );
-//
-//   var aux_x = svg.append("line")
-//                    .attr("x1", x(x0))
-//                    .attr("y1", y(y0))
-//                    .attr("x2", x(x0))
-//                    .attr("y2", y(0))
-//                    .attr("stroke-width", 1)
-//                    .attr("stroke", "black")
-//                    .style("stroke-dasharray", ("3, 3"));
-//   var aux_y = svg.append("line")
-//                   .attr("x1", x(x0))
-//                   .attr("y1", y(y0))
-//                   .attr("x2", x(0))
-//                   .attr("y2", y(y0))
-//                   .attr("stroke-width", 1)
-//                   .attr("stroke", "black")
-//                   .style("stroke-dasharray", ("3, 3"));
-//   var labelx = svg.append("text")
-//                     .html("t&#x2080")
-//                     .style("font-weight","bold")
-//                     .attr("x",x(x0))
-//                     .attr("y",y(0.))
-//                     .attr("dy","1em");
-//   var labely = svg.append("text")
-//                     .html("y&#x2080")
-//                     .style("font-weight","bold")
-//                     .attr("x",x(0))
-//                     .attr("dx","-1.5em")
-//                     .attr("y",y(y0));
-//   return { sol: sol, aux: [aux_x, aux_y], labels: [ labelx, labely]}
-// }
-// var graph = plot_sol(svg1,x0,y0)
-//
-// var drag1 = d3.drag().on("drag", dragmove1);
-//
-//
-//
-// function dragmove1(d) {
-//  if ((x.invert(d3.event.x)<0.)||(x.invert(d3.event.x)>xmax)){return}
-//  if ((y.invert(d3.event.y)<0.)||(y.invert(d3.event.y)>1.)){return}
-//  x0 = x.invert(d3.event.x);
-//  y0 = y.invert(d3.event.y);
-//  graph["sol"].remove();
-//  graph["aux"][0].remove();
-//  graph["aux"][1].remove();
-//  graph["labels"][0].remove();
-//  graph["labels"][1].remove();
-//  graph = plot_sol(svg1,x0,y0);
-//  d3.select(this)
-//      .attr("cx",x(x0))
-//      .attr("cy",y(y0));
-// };
-//
-// svg1.append("circle")
-//      .attr("cx",x(x0))
-//      .attr("cy",y(y0))
-//      .attr("r",6)
-//      .attr("fill","white")
-//      .attr("stroke","black")
-//      .attr("cursor","move")
-//      .call(drag1);
+plot_pvi("pvi_plot", Nx, Ny,exp_grow, solution);
