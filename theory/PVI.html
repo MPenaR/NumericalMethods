@@ -12,6 +12,7 @@
   <p>De manera general se podrán escribir como</p>
   <div align="center">
     \[
+    \label{eq:EDO}
     \tag{1}
     G\left(t,y,\frac{dy}{dt},\frac{d^2y}{dt^2},\dots,\frac{d^ny}{dt^n}\right)=0
     \]
@@ -25,7 +26,7 @@
    m\mathbf{a}=\mathbf{F}\left(\mathbf{r},\mathbf{v},t\right)
    \]
  </div>
- <p>o bien, reescrito como en la ecuación (1):</p>
+ <p>o bien, reescrito como en la ecuación (\ref{eq:EDO}):</p>
  <div class="formula">
    \[
    m\frac{d^2\mathbf{r}}{dt^2}-\mathbf{F}\left(\mathbf{r},\frac{d\mathbf{r}}{dt},t\right)=0
@@ -59,10 +60,11 @@ Normalmente en física nuclear se suele hablar de la constante de decaimiento \(
   <div align="center">
     \[
     \tag{2}
+    \label{eq:EDO1}
     \frac{dy}{dt}=F\left(y,t\right)
     \]
   </div>
-  <p>Encontrar una solución de la ecuación (2) consiste en buscar una función \(y=y\left(t\right)\) cuya derivada venga dada por \(F\left(y,t\right)\). Esto también se puede ver como encontrar una curva en el plano, que sea tangente en cada punto \(\left(t,y(t)\right)\) al campo vectorial dado por:</p>
+  <p>Encontrar una solución de la ecuación (\ref{eq:EDO1}) consiste en buscar una función \(y=y\left(t\right)\) cuya derivada venga dada por \(F\left(y,t\right)\). Esto también se puede ver como encontrar una curva en el plano, que sea tangente en cada punto \(\left(t,y(t)\right)\) al campo vectorial dado por:</p>
   <div class="formula">
     \[
     \begin{pmatrix}
@@ -76,12 +78,12 @@ Normalmente en física nuclear se suele hablar de la constante de decaimiento \(
     \end{pmatrix}
     \]
   </div>
-  <p>A continuación se muestra el campo vectorial tangente correspondiente a la ecuación diferencial anterior. Escogiendo \(r\gt 0\) se obtiene el campo vectorial correspondiente al crecimiento de una población,
+  <p>A continuación se muestra el campo vectorial tangente correspondiente a la ecuación diferencial del crecimiento de una población o del decaimiento radiactivo. Escogiendo \(r\gt 0\) se obtiene el campo vectorial correspondiente al crecimiento de una población,
   mientras que haciendo \(r\lt 0\) se obtiene el correspondiente al decaimiento radiactivo.</p>
   <div class="plot" id="vec_plot" caption_text="Campo vectorial.">
   </div>
-  <p>Se puede observar que, en cada punto, la dirección y magnitud de las flechas nos indica como se tiene que comportar la solución.</p>
-  <p>La solución de la ecuación anterior se puede integrar analíticamente. Esto es algo poco común, de ahí la necesidad de métodos numéricos para la resolución de ecuaciones diferenciales.</p>
+  <p>Encontrar una solución consistiría en encontrar una curva que en cada punto fuese tangente a la flecha situada en ese punto.</p>
+  <p>La solución de la ecuación anterior se puede obtener analíticamente. Esto es algo poco común, de ahí la necesidad de métodos numéricos para la resolución de ecuaciones diferenciales.</p>
   <p>Para ello se reordena la ecuación de modo que todos los términos que dependan de \(N\) queden en el mismo miembro de la ecuación:</p>
   <div class="formula">
     \[
@@ -114,8 +116,8 @@ Normalmente en física nuclear se suele hablar de la constante de decaimiento \(
   \]
 </div>
 <p>Se puede observar que cualquier función de la forma \(N\left(t\right)=Ae^{rt}\) con \(A=\mathrm{cte}\) es solución de la ecuación. A la familia de funciones obtenidas para los diferentes valores de la constante se le conoce como <b>solución general</b> de la ecuación diferencial.</p>
-<p>A continuación se muestran las posibles soluciones de la ecuación BLA. Ahora se puede observar que, aunque ambas ecuaciones sean muy similares, en la ecuación de crecimiento de una población(\( r\gt 0\) ) todas las soluciones para tienden a dispararse,
-  mientras que en el caso del decaimiento radiactivo (\(r\lt 0\)), las soluciones tienden a \(0\), es decir, los comportamientos de las soluciones de ambas ecuaciones presentan comportamientos muy diferentes.</p>
+<p>A continuación se muestra la gráfica de estas posibles soluciones. Ahora se puede observar que, aunque la ecuación del crecimineto de una población y la del decaimiento radiactivo sean muy similares, en la primera (\( r\gt 0\) ) todas las soluciones divergen,
+  mientras que en el segundo caso (\(r\lt 0\)), las soluciones tienden a \(0\), es decir, los comportamientos de las soluciones de ambas ecuaciones presentan comportamientos muy diferentes para \(t\to\infty\).</p>
 <div class="plot" id="gen_sol_plot" caption_text="Solución general.">
 </div>
 <p>Por otra parte, variar \(A\) no implica cambiar el comportamiento de la solución, sino que sirve para escoger una de las infinitas soluciones de la ecuación diferencial.</p>
@@ -130,6 +132,7 @@ Normalmente en física nuclear se suele hablar de la constante de decaimiento \(
 \]
 </div>
 <p>donde \(N_0\) sería el valor conocido de la población total en el instante inicial \(t_0\). De este modo, de las infinitas funciones exponenciales que cumplen la ecuación diferencial,  la única solución que cumple el problema de valor inicial, llamada <b>solución particular</b>, sería:</p>
+<p> Como se muestra en la siguiente figura, en un problema de valor inicial, al ser conocido el valor de la función en el instante \(t_0\) ya no existen infinitas soluciones sino que solo habrá una que valga \(N_0\) en ese momento.</p>
 <div class="formula">
   \[
   N\left(t\right)= N_0e^{r\left(t-t_0\right)}
@@ -148,8 +151,9 @@ Normalmente en física nuclear se suele hablar de la constante de decaimiento \(
 de crecimiento y decaimiento son ecuaciones diferenciales escalares, pues la función incógnita \(N\) es una función escalar; la ecuación de Newton es una ecuación diferencial vectorial de dimensión tres (o un sistema de tres ecuaciones diferenciales escalares, según como se mire)
 pues la función incógnita \(\mathbf{r}\) es una función vectorial de dimensión \(3\).</p>
 <p>El motivo de que en este tema sólo se vayan a dar ecuaciones de primer orden, es que cualquier ecuación de orden \(n\) en el cual la derivada de mayor orden se pueda despejar explícitamente se puede transformar en una ecuación de primer orden vectorial.</p>
-<p>El procedimiento es siempre el mismo y se ejemplificará con las ecuaciones de Newton. Si la ecuación es de orden \(n\), se definen \(n-1\) nuevas variables, una por cada derivada, desde orden \(1\) hasta orden \(n-1\).</p>
-<p>En el caso de las ecuaciones de Newton, siendo estas de orden \(2\), solo es necesario definir una variable, que llamaremos \(\mathbf{v}\), para la derivada primera.</p>
+<p>El procedimiento es siempre el mismo y se ejemplificará con las ecuaciones de Newton.</p>
+<p>Si la ecuación es de orden \(n\), se definen \(n-1\) nuevas variables, una por cada derivada, desde orden \(1\) hasta orden \(n-1\).</p>
+<p>En el caso de las ecuaciones de Newton, siendo éstas de orden \(2\), sólo es necesario definir una variable, que llamaremos \(\mathbf{v}\), para la derivada primera.</p>
 <p>De este modo, ahora disponemos de un sistema de dos ecuaciones vectoriales de primer orden:</p>
 <div class="formula">
   \begin{align}
@@ -164,7 +168,7 @@ pues la función incógnita \(\mathbf{r}\) es una función vectorial de dimensi�
     \]
   </div>
   <p>se pueden reescribir las ecuaciones de Newton como una ecuación diferencial
-de primer orden del tipo(2) de dimensión \(6\):</p>
+de primer orden del tipo (\ref{eq:EDO1}) de dimensión \(6\):</p>
 <div class="formula">
   \[
   \frac{d\boldsymbol{\eta}}{dt} =\boldsymbol{\mathcal{F}}\left(\boldsymbol{\eta},t\right)
@@ -177,34 +181,75 @@ en la que:
   \boldsymbol{\mathcal{F}}\left(\boldsymbol{\eta},t\right)=\begin{pmatrix}\mathbf{v}\\\mathbf{F}\left(\mathbf{r},\mathbf{v},t\right)\end{pmatrix}
   \]
 </div>
-<p>Al haber reescrito las ecuaciones de Newton en términos del vector de estado \(\boldsymbol{\eta}\) queda claro que para resolver un problema de valor inicial es necesario conocer las condiciones iniciales:</p>
+<p>Al haber reescrito las ecuaciones de Newton en términos del vector de estado \(\boldsymbol{\eta}\) queda claro que para resolver un problema de valor inicial es necesario conocer el vector de estado en el instante inicial:</p>
 <div class="formula">
   \[
-  \boldsymbol{\eta}\left(0\right)=\begin{pmatrix}\mathbf{r}\left(0\right)\\\mathbf{v}\left(0\right)\end{pmatrix}
+  \boldsymbol{\eta}\left(t_0\right)=\begin{pmatrix}\mathbf{r}\left(t_0\right)\\\mathbf{v}\left(t_0\right)\end{pmatrix}
   \]
 </div>
 <p>Es decir, para resolver un problema de valor inicial de dinámica newtoniana es necesario conocer la posición inicial y la velocidad inicial. Por un razonamiento análogo,
-para resolver un problema de valor inicial de orden \(n\) hará falta conocer \(n\) condiciones iniciales; el valor inicial de la función incógnita y las derivadas hasta orden \(n-1\).</p>
-  <h1>Métodos numéricos de resolución de problemas de valor inicial.</h1>
-  <p>Todos los métodos numéricos que se van a estudiar siguen un planteamiento común. Al intentar resolver una ecuación del tipo (2), ya sea escalar o vectorial, en el intervalo \(t\in\left(t_0,T\right)\) </p>
-  <p></p>
-  <h2>Método de Euler explícito</h2>
-  <p>El método Euler explícito consiste en aproximar la integral:</p>
-  <div align="center">
-    $$\int_{t_i}^{t_i+1}F\left(y\left(t\right),t\right)\,\mathrm{d}t\approx\int_{t_i}^{t_i+1}F\left(y_i,t_i\right)\,\mathrm{d}t$$
+para resolver un problema de valor inicial de orden \(n\) hará falta conocer \(n\) condiciones iniciales: el valor inicial de la función incógnita y el valor inicial de las derivadas hasta orden \(n-1\).</p>
+
+<h1>Métodos numéricos de resolución de problemas de valor inicial.</h1>
+
+  <p>Todos los métodos numéricos que se van a estudiar siguen un planteamiento común. Supongamos que tenemos una ecuación diferencial ordinaria del tipo (\ref{eq:EDO1}) escalar (el procedimiento para el caso vectorial es análogo, simplemente se omite para hacer la notación menos engorrosa):</p>
+  <div class="formula">
+    \[
+    \frac{dy(t)}{dt}=F\left(y(t),t\right)
+    \]
   </div>
-  <p>con lo que se obtiene la siguiente regla de recurrencia:</p>
+  <p>Si nos diesen el valor de \(y\left(t\right)\) en el instante \(t_i\), \(y\left(t_i\right)=y_i\) y nos pidiesen hallar el valor de \(y\left(t\right)\) en un instante \(t_{i+1}\) muy cercano, podríamos intentar integrar a ambos lados de la ecuación entre \(t_i\) y \(t_{i+1}\):</p>
+  <div class="formula">
+    \[
+    \int_{t_i}^{t_{i+1}}\frac{dy(t)}{dt}\,\mathrm{d}t=\int_{t_i}^{t_{i+1}}F\left(y(t),t\right)\,\mathrm{d}t
+    \]
+  </div>
+  <p>El miembro de la izquierda se puede integrar de manera exacta (por ser justamente una diferencial), sin embargo la integral de la derecha es imposible de obtener, pues depende del valor de \(y(t)\) que es precisamente el que se quiere calcular.</p>
+  <p>Si se integral el miembro de la izquierda únicamente, se llega a la igualdad:</p>
+  <div class="formula">
+    \[
+    y(t_{i+1})-y(t_i) = \int_{t_i}^{t_{i+1}}F\left(y(t),t\right)\,\mathrm{d}t
+    \]
+  </div>
+  o bien:
+  <div class="formula">
+    \[
+    \tag{3}
+    \label{eq:gen_met}
+    y(t_{i+1}) =y_i+ \int_{t_i}^{t_{i+1}}F\left(y(t),t\right)\,\mathrm{d}t
+    \]
+  </div>
+  <p>Los diferentes métodos numéricos que estudiaremos intentarán aproximar la integral del miembro de la derecha mediante diferentes fórmulas numéricas.</p>
+  <p>Si se quiere aproximar la solución en un intervalo \(t_0,T\), lo primero que harán será particionar el intervalo en una serie de puntos \(t_0,t_1,\dots,t_N=T\) de modo que aplicando la aproximación de la ecuación anterior se obtendrá una regla de recurrencia que nos permitirá obtener \(y_1\) a partir de \(y_0\), \(y_2\) a partir de \(y_1\), etc.</p>
+
+<!--
+(si estos puntos son equiespaciados se llamará \(\Delta t = t_{i+1}-t_{i}\)) -->
+
+  <h2>Método de Euler explícito.</h2>
+  <p>El método Euler explícito consiste en aproximar la integral asumiendo que \(y(t)\) en \(t\in \left[t_i,t_{i+1}\right]\) se puede aproximar por el valor constante \(y_{i}\):</p>
   <div align="center">
-    $$
+    \[
+    \int_{t_i}^{t_i+1}F\left(y\left(t\right),t\right)\,\mathrm{d}t=\int_{t_i}^{t_i+1}F\left(y_i,t_i\right)\,\mathrm{d}t+\mathcal{O}\left(\Delta t_i\right)
+    \]
+  </div>
+  <p>donde \(\Delta t_{i} = t_{i+1}-t_i\) es el ancho del subintervalo.</p>
+  <p>Es decir, sería el análogo al método de las sumas por la izquierda dado en métodos de integración numérica.</p>
+  <p>Al aplicar esta aproximación a la ecuación (\ref{eq:gen_met}) se obtiene la siguiente regla de recurrencia:</p>
+  <div align="center">
+    \[
     \begin{array}{l}
     y_0 &= y(0)\\
     y_{i+1} &= y_i + \Delta tF\left(y_i,t_i\right)
     \end{array}
-    $$
+    \]
   </div>
+  <p> donde se ha supuesto una partición equiespaciada, es decir \(\Delta t\) constante (de no ser así bastaría cambiar \(\Delta t\) por \(\Delta t_i\)).</p>
+  <p>Otra forma de interpretar la regla de recurrencia obtenida es teniendo en cuenta que si \(F\left(y_i,t_i\right)\) es el valor de la derivada en \(\left(t_i,y_i\right)\), el valor \(y_{i+1}\) aproximado por el método de Euler explícito corresponde al punto al que se llegaría en \(t_i\) si partiesemos de \(\left(t_i,y_i\right)\) con derivada constante.
+  </p>
+  <p>Es decir, es equivalente a trazar una recta desde \(\left(t_i,y_i\right)\) tangente al campo vectorial en es punto y avanzar hasta \(t_i\) en esa recta.</p>
   <div class="plot" id="feuler">
   </div>
-
+<h2>Método Euler implícito.</h2>
   <p>El método Euler implícito consiste en aproximar la integral:</p>
   <div align="center">
     $$\int_{t_i}^{t_i+1}F\left(y\left(t\right),t\right)\,\mathrm{d}t\approx\int_{t_i}^{t_i+1}F\left(y_{i+1},t_{i+1}\right)\,\mathrm{d}t$$
