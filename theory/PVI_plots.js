@@ -105,6 +105,8 @@ function plot_vector_field(plot, Nx, Ny, f){
       .style("text-anchor", "middle")
       .text("N(t)");
 
+  var r = 0.5;
+
   var arrows = quiver(svg,Nx,Ny,f,r);
   var minR = -1.;
   var maxR = 1.;
@@ -161,6 +163,9 @@ function plot_general_solution_vec(plot, Nx, Ny, vf, f_sol){
       .attr("dy", "1em")
       .style("text-anchor", "middle")
       .text("N(t)");
+
+  var r = 0.5;
+  var A = 0.5;
 
   var arrows = quiver(svg,Nx,Ny,vf,r);
 
@@ -256,6 +261,10 @@ function plot_pvi(plot, Nx, Ny, vf, f_sol){
       .attr("dy", "1em")
       .style("text-anchor", "middle")
       .text("N(t)");
+
+  var r = 0.5;
+  var x0 = 0.75;
+  var y0 = 0.55;
 
   var arrows = quiver(svg,Nx,Ny,vf,r);
 
@@ -369,11 +378,7 @@ var Ny = Nf ;
 
 var N = 100;
 
-var r = 0.5;
-var A = 0.5;
 
-var x0 = 0.75;
-var y0 = 0.55;
 
 
 plot_vector_field("vec_plot", Nx, Ny,exp_grow);
