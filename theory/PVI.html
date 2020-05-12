@@ -249,6 +249,14 @@ para resolver un problema de valor inicial de orden \(n\) hará falta conocer \(
   <p>Es decir, es equivalente a trazar una recta desde \(\left(t_i,y_i\right)\) tangente al campo vectorial en es punto y avanzar hasta \(t_i\) en esa recta.</p>
   <div class="plot" id="feuler">
   </div>
+  <p>Al utilizar un valor constante de la derivada entre cada dos puntos \(t_i\) y \(t_{i+1}\) el método de euler explícito no es capaz de aproximar correctamente a la función
+  exacta cuando la curvatura es muy alta, sin embargo se aproxima muy bien cuando hay poca curvatura.</p>
+  <p> Se puede observar que, puesto que la aproximación a la integral comete un error de orden
+ \(\mathcal{O}\left(\Delta t\right)\), aumentando el número de subintervalos \(N\) podemos conseguir mayor precisión en la solución.</p>
+ <p>Aunque no se va a hacer un análisis de la estabilidad del método numérico, pues este tema solo pretende dar una introdución a los métodos numéricos de resolución de ecuaciones diferenciales ordinarias, cabe destacar una diferencia importante en el comportamiento de la solución numérica frente a \(r\).</p>
+ <p>Puesto que la solución exacta de la ecuación con \(r>0\) diverge, se tiene que la aproximación numérica, comete un error cada vez mas grande con respecto a la solución exacta. Disminuyendo \(\Delta t\) podemos retrasar la aparición de este error, pero tarde o temprano las dos soluciónes tendrán valores completamente dispares.</p>
+ <p>Sin embargo, en el caso de \(r\lt 0\), puesto que la solución exacta tiende a una constante, el método numérico aproxima cada vez mejor la solución exacta, disminuyendo el error cometido a medida que \(t\to\infty\).</p>
+ <p>Hay que tener cuidado, pues si se escogen valor de \(r\) muy negativos, a la par que \(\Delta t\) muy grande, se puede llegar a una situación inestable, en la cual, a pesar de que la solución exacta converge a un límite, la solución numérica diverge.</p>
 <h2>Método Euler implícito.</h2>
   <p>El método Euler implícito consiste en aproximar la integral:</p>
   <div align="center">

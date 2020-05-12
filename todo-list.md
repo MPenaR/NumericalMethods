@@ -8,3 +8,4 @@
 - add navigation "next", "previous", "index"
 - ecuaciones numeradas via CSS
 - Something is wrong with the arrows head rotation.
+- change functions with specific arguments (like r) to anonymous functions.

@@ -32,6 +32,37 @@ function solution(x0,y0,r,x){
   // return {x: x, y: (Math.exp(x-x0))/(Math.exp(x-x0)+1./y0-1)};
 }
 
+function forward_euler(svg, f, r, x0,y0,Nt){
+  var DT = (T-x0) / Nt ;
+  var t = linspace(x0,T,Nt+1);
+  var y_e = new Array(Nt);
+  y_e[0] = y0;
+  euler = svg.append('g');
+
+  for(i=0; i<Nt;i++){
+    y_e[i+1] = y_e[i] + DT*f(y_e[i],r);
+    euler.append("path")
+         .datum([{x: t[i],       y: y_e[i]},
+                 {x: t[i+1],       y: y_e[i+1]}])
+         .attr("stroke", "red")
+         .attr("stroke-width", 1.5)
+         .attr("d", d3.line()
+           .x(function(d) { return x(d.x) })
+           .y(function(d) { return y(d.y) })
+            )
+    euler.append("circle")
+          .attr("cx",x(t[i+1]))
+          .attr("cy",y(y_e[i+1]))
+          .attr("r",3)
+          .attr("fill","red")
+          .attr("stroke","black");
+
+  }
+  return euler
+}
+
+
+
 function quiver(svg,Nx,Ny,f,r){
   var x_coords = linspace(0,xmax,Nx);
   var y_coords = linspace(0,1,Ny);
@@ -370,7 +401,7 @@ function plot_pvi(plot, Nx, Ny, vf, f_sol){
 
 }
 
-function plot_method(plot, Nx, Ny, vf, f_sol){
+function plot_method(plot, Nx, Ny, vf, f_sol, method){
   var svg = d3.select("#"+plot)
               .append("svg")
                 .attr("width", max_w)
@@ -449,8 +480,12 @@ function plot_method(plot, Nx, Ny, vf, f_sol){
                       .attr("y",y(y0));
     return { sol: sol, aux: [aux_x, aux_y], labels: [ labelx, labely]}
   }
+   var Nt = 20;
    var graph = plot_sol(x0,y0,r,f_sol);
-   var minR = -1.;
+   var euler = method(svg, vf, r, x0,y0,Nt);
+
+
+   var minR = -2.;
    var maxR = 1.;
    var sliderR = d3
      .sliderBottom()
@@ -469,13 +504,38 @@ function plot_method(plot, Nx, Ny, vf, f_sol){
        graph["aux"][1].remove();
        graph["labels"][0].remove();
        graph["labels"][1].remove();
+       euler.remove();
        arrows = quiver(svg,Nx,Ny,vf,r);
        graph = plot_sol(x0,y0,r,f_sol);
+       euler = method(svg, vf, r, x0,y0,Nt);
        });
    svg.append('g')
       .attr('transform','translate(20,-45)')
       .call(sliderR);
    svg.append("text").text("r").attr('transform','translate(120,-50)');
+
+
+   var minNt = 1;
+   var maxNt = 50;
+   var sliderNt = d3
+     .sliderBottom()
+     .min(minNt)
+     .max(maxNt)
+     .width(200)
+     .ticks(4)
+     .step(1)
+     .default(Nt)
+     .on('onchange', val => {
+       Nt = val;
+       euler.remove();
+       euler = method(svg, vf, r, x0,y0,Nt);
+       });
+   var offset = 400;
+   svg.append('g')
+      .attr('transform','translate('+(offset+20)+',-45)')
+      .call(sliderNt);
+   svg.append("text").text("N").attr('transform','translate('+(offset+120)+',-50)');
+
 
 
    var drag1 = d3.drag().on("drag", dragmove1);
@@ -492,7 +552,9 @@ function plot_method(plot, Nx, Ny, vf, f_sol){
     graph["aux"][1].remove();
     graph["labels"][0].remove();
     graph["labels"][1].remove();
+    euler.remove();
     graph = plot_sol(x0,y0,r,f_sol);
+    euler = method(svg, vf, r, x0,y0,Nt);
     d3.select(this)
         .attr("cx",x(x0))
         .attr("cy",y(y0));
@@ -516,10 +578,14 @@ var Ny = Nf ;
 var N = 100;
 
 
+var T = xmax;
+
+
+
 
 
 plot_vector_field("vec_plot", Nx, Ny,exp_grow);
 plot_general_solution_vec("gen_sol_plot", Nx, Ny,exp_grow,exponential);
 plot_pvi("pvi_plot", Nx, Ny,exp_grow, solution);
-plot_pvi("feuler", Nx, Ny,exp_grow, solution);
-plot_pvi("beuler", Nx, Ny,exp_grow, solution);
+plot_method("feuler", Nx, Ny,exp_grow, solution, forward_euler);
+// plot_method("beuler", Nx, Ny,exp_grow, solution);
