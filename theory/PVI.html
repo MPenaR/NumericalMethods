@@ -258,11 +258,12 @@ para resolver un problema de valor inicial de orden \(n\) hará falta conocer \(
  <p>Sin embargo, en el caso de \(r\lt 0\), puesto que la solución exacta tiende a una constante, el método numérico aproxima cada vez mejor la solución exacta, disminuyendo el error cometido a medida que \(t\to\infty\).</p>
  <p>Hay que tener cuidado, pues si se escogen valor de \(r\) muy negativos, a la par que \(\Delta t\) muy grande, se puede llegar a una situación inestable, en la cual, a pesar de que la solución exacta converge a un límite, la solución numérica diverge.</p>
 <h2>Método Euler implícito.</h2>
-  <p>El método Euler implícito consiste en aproximar la integral:</p>
+  <p>A diferencia del método explícito, el método implícito consiste en aproximar la integral, utilizando el valor de \(y_{i+1}\)</p>
   <div align="center">
-    $$\int_{t_i}^{t_i+1}F\left(y\left(t\right),t\right)\,\mathrm{d}t\approx\int_{t_i}^{t_i+1}F\left(y_{i+1},t_{i+1}\right)\,\mathrm{d}t$$
+    $$\int_{t_i}^{t_i+1}F\left(y\left(t\right),t\right)\,\mathrm{d}t=\int_{t_i}^{t_i+1}F\left(y_{i+1},t_{i+1}\right)\,\mathrm{d}t+\mathcal{O}\left(\Delta t_{i}\right)$$
   </div>
-  <p>con lo que se obtiene la siguiente regla de recurrencia:</p>
+  <p>Lo cual sería análogo al método de las sumas por la derecha para integración numérica.</p>
+  <p>Mediante este método la regla de recurrencia que se obtiene es:</p>
   <div align="center">
     $$
     \begin{array}{l}
@@ -271,16 +272,15 @@ para resolver un problema de valor inicial de orden \(n\) hará falta conocer \(
     \end{array}
     $$
   </div>
-  <p>Como se puede observar, la última ecuación define el valor de \(y_{i+1}\), pero no lo hace de manera explícita, sino implícita.
-     Es decir, para obtener \(y_{i+1}\) conocidos los valores anteriores, es necesario desolver una ecuación. En algunos casos, dependiendo de la función \(F\), se podrá hacer analíticamente, y en otros casos será necesario resolverla numéricamente, por ejemplo con un método Newton.</p>
-
+  <p>Como se puede observar, la última ecuación define el valor de \(y_{i+1}\), pero no lo hace de manera explícita, sino implícita, pues aparece a ambos lados de la igualdad.
+     Es decir, para obtener \(y_{i+1}\) conocidos los valores anteriores, es necesario resolver la ecuación algebráica de la regla de recurrencia. En algunos casos, dependiendo de la función \(F\), se podrá hacer analíticamente, despejando \(y_{i+1}\) en función de \(y_i\), y en otros casos será necesario resolverla numéricamente, por ejemplo con un método Newton.</p>
+  <p>Una forma geométrica de ver lo que está haciendo el método euler implicito en cada iteración, es buscar el punto \(y_{i+1}\), desde el cuál, puedo tirar una recta hacia atrás hasta el punto \(t_i,y_i\) de modo que la pendiente de la recta venga dada por \(F\left(y_{i+1},t_{i+1}\right)\), es decir, que la recta sea tangente al campo vectorial en \(t_{i+1},y_{i+1}\).</p>
   <div class="plot" id="beuler">
   </div>
+  <p>A diferencia del método de euler explícito, se puede observar que este no presenta problemas de inestabilidad para valores muy negativos de \(r\) y \(Delta t\) grandes. Es decir, para todos los valores de \(r\) donde la solución exacta es estable, lo es también la solución numérica.</p>
 <!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
 <script src="./d3.js">
 </script>
 <script src="./d3-simple-slider.js"></script>
-<!-- <script src="./plot_ODE.js"></script> -->
 <script src="./PVI_plots.js"></script>
-<!-- <script src="./plot_feuler.js"></script> -->
 </body>

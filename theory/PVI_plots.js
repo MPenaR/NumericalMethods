@@ -61,6 +61,35 @@ function forward_euler(svg, f, r, x0,y0,Nt){
   return euler
 }
 
+function backward_euler(svg, f, r, x0,y0,Nt){
+  var DT = (T-x0) / Nt ;
+  var t = linspace(x0,T,Nt+1);
+  var y_e = new Array(Nt);
+  y_e[0] = y0;
+  euler = svg.append('g');
+
+  for(i=0; i<Nt;i++){
+    y_e[i+1] = y_e[i]/(1.- DT*r);
+    euler.append("path")
+         .datum([{x: t[i],       y: y_e[i]},
+                 {x: t[i+1],       y: y_e[i+1]}])
+         .attr("stroke", "red")
+         .attr("stroke-width", 1.5)
+         .attr("d", d3.line()
+           .x(function(d) { return x(d.x) })
+           .y(function(d) { return y(d.y) })
+            )
+    euler.append("circle")
+          .attr("cx",x(t[i+1]))
+          .attr("cy",y(y_e[i+1]))
+          .attr("r",3)
+          .attr("fill","red")
+          .attr("stroke","black");
+
+  }
+  return euler
+}
+
 
 
 function quiver(svg,Nx,Ny,f,r){
@@ -588,4 +617,4 @@ plot_vector_field("vec_plot", Nx, Ny,exp_grow);
 plot_general_solution_vec("gen_sol_plot", Nx, Ny,exp_grow,exponential);
 plot_pvi("pvi_plot", Nx, Ny,exp_grow, solution);
 plot_method("feuler", Nx, Ny,exp_grow, solution, forward_euler);
-// plot_method("beuler", Nx, Ny,exp_grow, solution);
+plot_method("beuler", Nx, Ny,exp_grow, solution, backward_euler);
