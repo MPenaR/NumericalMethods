@@ -32,7 +32,7 @@ module ode
           real, intent(in) :: y0(:)
           !! initial conditions \(\mathbf{y}(t_0)\)
           real :: y(0:ubound(t,1),size(y0))
-          !! solution array \(\mathbf{y}_j(t_i)\) such that the
+          !! solution array \(y_j(t_i)\) such that the
           !! the row \(i\) and column \(j\) stands for the
           !! \(j\)th component of the vector solution \(\mathbf{y}\) at time \(t_i\).
           integer :: N, i
