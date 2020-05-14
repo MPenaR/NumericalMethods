@@ -6,7 +6,9 @@ program test_ode
   !! \frac{dy}{dt}= x\left(b-z\right) - y \\
   !! \frac{dz}{dt}= xy - cz
   !! \]
-
+  !! The system is integrated for \(t\in[0,10]\) with \(a=\), \(b=\) and \(c=\).
+  !! For initial conditions \(\left(x(0),y(0),z(0)\right) = \left(1,1,1\right)\), the solution is:
+  !! ![Image of the trayectory](../lorenz.png)
   use ode
 
   implicit none

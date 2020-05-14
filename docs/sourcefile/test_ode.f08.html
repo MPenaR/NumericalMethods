@@ -345,57 +345,59 @@
 <a name="ln-6"></a>  <span class="c">!! \frac{dy}{dt}= x\left(b-z\right) - y \\</span>
 <a name="ln-7"></a>  <span class="c">!! \frac{dz}{dt}= xy - cz</span>
 <a name="ln-8"></a>  <span class="c">!! \]</span>
-<a name="ln-9"></a>
-<a name="ln-10"></a>  <span class="k">use </span><span class="n">ode</span>
-<a name="ln-11"></a>
-<a name="ln-12"></a>  <span class="k">implicit none</span>
+<a name="ln-9"></a>  <span class="c">!! The system is integrated for \(t\in[0,10]\) with \(a=\), \(b=\) and \(c=\).</span>
+<a name="ln-10"></a>  <span class="c">!! For initial conditions \(\left(x(0),y(0),z(0)\right) = \left(1,1,1\right)\), the solution is:</span>
+<a name="ln-11"></a>  <span class="c">!! ![Image of the trayectory](../lorenz.png)</span>
+<a name="ln-12"></a>  <span class="k">use </span><span class="n">ode</span>
 <a name="ln-13"></a>
-<a name="ln-14"></a><span class="k">  </span><span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
-<a name="ln-15"></a>  <span class="kt">real</span> <span class="kd">::</span> <span class="n">Tf</span><span class="p">,</span> <span class="n">dT</span>
-<a name="ln-16"></a>  <span class="kt">real</span> <span class="kd">::</span> <span class="n">t</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="n">N</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="n">N</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
-<a name="ln-17"></a>  <span class="kt">integer</span> <span class="kd">::</span> <span class="n">i</span><span class="p">,</span> <span class="n">u</span>
-<a name="ln-18"></a>
-<a name="ln-19"></a>  <span class="n">Tf</span> <span class="o">=</span> <span class="mi">10</span>
-<a name="ln-20"></a>  <span class="n">dT</span> <span class="o">=</span> <span class="n">Tf</span><span class="o">/</span><span class="n">N</span>
-<a name="ln-21"></a>
-<a name="ln-22"></a>  <span class="k">do </span><span class="n">i</span> <span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span>
-<a name="ln-23"></a>    <span class="n">t</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">i</span><span class="o">*</span><span class="n">dT</span>
-<a name="ln-24"></a>  <span class="k">end do</span>
-<a name="ln-25"></a>
-<a name="ln-26"></a><span class="k">  </span><span class="n">y</span> <span class="o">=</span> <span class="n">forward_euler</span><span class="p">(</span><span class="n">lorenz</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="p">[</span> <span class="mf">1.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">1.</span><span class="p">])</span>
+<a name="ln-14"></a>  <span class="k">implicit none</span>
+<a name="ln-15"></a>
+<a name="ln-16"></a><span class="k">  </span><span class="kt">integer</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
+<a name="ln-17"></a>  <span class="kt">real</span> <span class="kd">::</span> <span class="n">Tf</span><span class="p">,</span> <span class="n">dT</span>
+<a name="ln-18"></a>  <span class="kt">real</span> <span class="kd">::</span> <span class="n">t</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="n">N</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="n">N</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<a name="ln-19"></a>  <span class="kt">integer</span> <span class="kd">::</span> <span class="n">i</span><span class="p">,</span> <span class="n">u</span>
+<a name="ln-20"></a>
+<a name="ln-21"></a>  <span class="n">Tf</span> <span class="o">=</span> <span class="mi">10</span>
+<a name="ln-22"></a>  <span class="n">dT</span> <span class="o">=</span> <span class="n">Tf</span><span class="o">/</span><span class="n">N</span>
+<a name="ln-23"></a>
+<a name="ln-24"></a>  <span class="k">do </span><span class="n">i</span> <span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span>
+<a name="ln-25"></a>    <span class="n">t</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">i</span><span class="o">*</span><span class="n">dT</span>
+<a name="ln-26"></a>  <span class="k">end do</span>
 <a name="ln-27"></a>
-<a name="ln-28"></a>  <span class="k">open</span><span class="p">(</span><span class="k">file</span><span class="o">=</span><span class="s1">&#39;datos.dat&#39;</span><span class="p">,</span><span class="n">newunit</span><span class="o">=</span><span class="n">u</span><span class="p">)</span>
-<a name="ln-29"></a>  <span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">N</span>
-<a name="ln-30"></a>    <span class="k">write</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="n">t</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
-<a name="ln-31"></a>  <span class="k">end do</span>
-<a name="ln-32"></a><span class="k">  close</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
-<a name="ln-33"></a>
-<a name="ln-34"></a>
-<a name="ln-35"></a><span class="k">contains</span>
+<a name="ln-28"></a><span class="k">  </span><span class="n">y</span> <span class="o">=</span> <span class="n">forward_euler</span><span class="p">(</span><span class="n">lorenz</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="p">[</span> <span class="mf">1.</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">1.</span><span class="p">])</span>
+<a name="ln-29"></a>
+<a name="ln-30"></a>  <span class="k">open</span><span class="p">(</span><span class="k">file</span><span class="o">=</span><span class="s1">&#39;datos.dat&#39;</span><span class="p">,</span><span class="n">newunit</span><span class="o">=</span><span class="n">u</span><span class="p">)</span>
+<a name="ln-31"></a>  <span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">N</span>
+<a name="ln-32"></a>    <span class="k">write</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="n">t</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<a name="ln-33"></a>  <span class="k">end do</span>
+<a name="ln-34"></a><span class="k">  close</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+<a name="ln-35"></a>
 <a name="ln-36"></a>
-<a name="ln-37"></a><span class="k">  function </span><span class="n">lorenz</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">t</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">dy</span><span class="p">)</span>
-<a name="ln-38"></a>  <span class="c">!! function for defining derivative in the [Lorenz system](https://en.wikipedia.org/wiki/Lorenz_system)</span>
-<a name="ln-39"></a>  <span class="c">!! written as:</span>
-<a name="ln-40"></a>  <span class="c">!! \[</span>
-<a name="ln-41"></a>  <span class="c">!! \frac{d\mathbf{y}}{dt}=\mathbf{F}\left(\mathbf{y},t\right)</span>
-<a name="ln-42"></a>  <span class="c">!! \]</span>
-<a name="ln-43"></a>  <span class="c">!! where:</span>
-<a name="ln-44"></a>  <span class="c">!! \[</span>
-<a name="ln-45"></a>  <span class="c">!! f_1 = a \left( y_2 - y_1 \right) \\</span>
-<a name="ln-46"></a>  <span class="c">!! f_2 = y_1 \left( b - y_3 \right) - y_2 \\</span>
-<a name="ln-47"></a>  <span class="c">!! f_3 = y_1 y_2 - cy_3</span>
-<a name="ln-48"></a>  <span class="c">!! \]</span>
-<a name="ln-49"></a>    <span class="kt">real</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">y</span><span class="p">(:)</span>
-<a name="ln-50"></a>    <span class="kt">real</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">t</span>
-<a name="ln-51"></a>    <span class="kt">real</span> <span class="kd">::</span> <span class="n">dy</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
-<a name="ln-52"></a>    <span class="kt">real</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="mf">0.</span>
-<a name="ln-53"></a>    <span class="kt">real</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span><span class="mf">8.</span>
-<a name="ln-54"></a>    <span class="kt">real</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">c</span> <span class="o">=</span> <span class="mf">8.</span><span class="o">/</span><span class="mf">3.</span>
-<a name="ln-55"></a>    <span class="n">dy</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="p">(</span><span class="n">y</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
-<a name="ln-56"></a>    <span class="n">dy</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">y</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> <span class="o">-</span> <span class="n">y</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<a name="ln-57"></a>    <span class="n">dy</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span><span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">c</span><span class="o">*</span><span class="n">y</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-<a name="ln-58"></a>  <span class="k">end function</span>
-<a name="ln-59"></a><span class="k">end program</span>
+<a name="ln-37"></a><span class="k">contains</span>
+<a name="ln-38"></a>
+<a name="ln-39"></a><span class="k">  function </span><span class="n">lorenz</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">t</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">dy</span><span class="p">)</span>
+<a name="ln-40"></a>  <span class="c">!! function for defining derivative in the [Lorenz system](https://en.wikipedia.org/wiki/Lorenz_system)</span>
+<a name="ln-41"></a>  <span class="c">!! written as:</span>
+<a name="ln-42"></a>  <span class="c">!! \[</span>
+<a name="ln-43"></a>  <span class="c">!! \frac{d\mathbf{y}}{dt}=\mathbf{F}\left(\mathbf{y},t\right)</span>
+<a name="ln-44"></a>  <span class="c">!! \]</span>
+<a name="ln-45"></a>  <span class="c">!! where:</span>
+<a name="ln-46"></a>  <span class="c">!! \[</span>
+<a name="ln-47"></a>  <span class="c">!! f_1 = a \left( y_2 - y_1 \right) \\</span>
+<a name="ln-48"></a>  <span class="c">!! f_2 = y_1 \left( b - y_3 \right) - y_2 \\</span>
+<a name="ln-49"></a>  <span class="c">!! f_3 = y_1 y_2 - cy_3</span>
+<a name="ln-50"></a>  <span class="c">!! \]</span>
+<a name="ln-51"></a>    <span class="kt">real</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">y</span><span class="p">(:)</span>
+<a name="ln-52"></a>    <span class="kt">real</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">t</span>
+<a name="ln-53"></a>    <span class="kt">real</span> <span class="kd">::</span> <span class="n">dy</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+<a name="ln-54"></a>    <span class="kt">real</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="mf">0.</span>
+<a name="ln-55"></a>    <span class="kt">real</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span><span class="mf">8.</span>
+<a name="ln-56"></a>    <span class="kt">real</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">c</span> <span class="o">=</span> <span class="mf">8.</span><span class="o">/</span><span class="mf">3.</span>
+<a name="ln-57"></a>    <span class="n">dy</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="p">(</span><span class="n">y</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<a name="ln-58"></a>    <span class="n">dy</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">y</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> <span class="o">-</span> <span class="n">y</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<a name="ln-59"></a>    <span class="n">dy</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span><span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">c</span><span class="o">*</span><span class="n">y</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<a name="ln-60"></a>  <span class="k">end function</span>
+<a name="ln-61"></a><span class="k">end program</span>
 </pre></div>
 
     </section>
