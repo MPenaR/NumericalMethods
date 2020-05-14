@@ -40,7 +40,7 @@ contains
   !! \[
   !! \frac{d\mathbf{y}}{dt}=\mathbf{F}\left(\mathbf{y},t\right)
   !! \]
-  !! where:
+  !! where
   !! \[
   !! f_1= a\left(y_2-y_1\right)\\
   !! f_2= y_1\left(b-y_3\right) - y_2 \\
