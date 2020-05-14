@@ -3,8 +3,8 @@ program test_ode
   !! The [Lorenz chaotic system](https://en.wikipedia.org/wiki/Lorenz_system) is solved:
   !! \[
   !! \frac{dx}{dt}= a\left(y-x\right)\\
-  !! \frac{dx}{dt}= x\left(b-z\right) - y \\
-  !! \frac{dx}{dt}= xy - cz
+  !! \frac{dy}{dt}= x\left(b-z\right) - y \\
+  !! \frac{dz}{dt}= xy - cz
   !! \]
 
   use ode
