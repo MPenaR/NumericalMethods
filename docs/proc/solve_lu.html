@@ -316,7 +316,7 @@ public function solve_LU(L, U, b) result(x)
 </g>
 </g>
 <!-- proc~solve_lu&#45;&gt;proc~solve_u -->
-<g id="proc~~solve_lu~~CallsGraph_edge1" class="edge">
+<g id="proc~~solve_lu~~CallsGraph_edge2" class="edge">
 <title>proc~solve_lu&#45;&gt;proc~solve_u</title>
 <path fill="none" stroke="#000000" d="M57.4512,-39.6445C65.4912,-41.4898 74.335,-43.5195 82.7773,-45.4571"/>
 <polygon fill="#000000" stroke="#000000" points="82.2652,-48.9305 92.7947,-47.7562 83.8311,-42.1079 82.2652,-48.9305"/>
@@ -331,7 +331,7 @@ public function solve_LU(L, U, b) result(x)
 </g>
 </g>
 <!-- proc~solve_lu&#45;&gt;proc~solve_l -->
-<g id="proc~~solve_lu~~CallsGraph_edge2" class="edge">
+<g id="proc~~solve_lu~~CallsGraph_edge1" class="edge">
 <title>proc~solve_lu&#45;&gt;proc~solve_l</title>
 <path fill="none" stroke="#000000" d="M57.4512,-26.3555C65.4912,-24.5102 74.335,-22.4805 82.7773,-20.5429"/>
 <polygon fill="#000000" stroke="#000000" points="83.8311,-23.8921 92.7947,-18.2438 82.2652,-17.0695 83.8311,-23.8921"/>
@@ -453,10 +453,25 @@ public function solve_LU(L, U, b) result(x)
 <path fill="none" stroke="#000000" d="M353.0715,-18.5294C361.2399,-20.364 370.2529,-22.3883 378.8841,-24.3269"/>
 <polygon fill="#000000" stroke="#000000" points="378.2437,-27.7702 388.7677,-26.5468 379.7778,-20.9403 378.2437,-27.7702"/>
 </g>
-<!-- program~test -->
+<!-- program~test_eigenvectors -->
 <g id="proc~~solve_lu~~CalledByGraph_node4" class="node">
+<title>program~test_eigenvectors</title>
+<g id="a_proc~~solve_lu~~CalledByGraph_node4"><a xlink:href=".././program/test_eigenvectors.html" xlink:title="test_eigenvectors">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="259,-24 162,-24 162,0 259,0 259,-24"/>
+<text text-anchor="middle" x="210.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">test_eigenvectors</text>
+</a>
+</g>
+</g>
+<!-- program~test_eigenvectors&#45;&gt;proc~eigen_inv -->
+<g id="proc~~solve_lu~~CalledByGraph_edge5" class="edge">
+<title>program~test_eigenvectors&#45;&gt;proc~eigen_inv</title>
+<path fill="none" stroke="#000000" d="M259.2929,-12C267.8265,-12 276.6051,-12 284.8359,-12"/>
+<polygon fill="#000000" stroke="#000000" points="284.9091,-15.5001 294.9091,-12 284.9091,-8.5001 284.9091,-15.5001"/>
+</g>
+<!-- program~test -->
+<g id="proc~~solve_lu~~CalledByGraph_node5" class="node">
 <title>program~test</title>
-<g id="a_proc~~solve_lu~~CalledByGraph_node4"><a xlink:href=".././program/test.html" xlink:title="test">
+<g id="a_proc~~solve_lu~~CalledByGraph_node5"><a xlink:href=".././program/test.html" xlink:title="test">
 <polygon fill="#f0ad4e" stroke="#f0ad4e" points="237.5,-108 183.5,-108 183.5,-84 237.5,-84 237.5,-108"/>
 <text text-anchor="middle" x="210.5" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">test</text>
 </a>
@@ -469,9 +484,9 @@ public function solve_LU(L, U, b) result(x)
 <polygon fill="#000000" stroke="#000000" points="288.4786,-70.8765 296.6424,-64.1235 286.0492,-64.3116 288.4786,-70.8765"/>
 </g>
 <!-- proc~vectornewton -->
-<g id="proc~~solve_lu~~CalledByGraph_node5" class="node">
+<g id="proc~~solve_lu~~CalledByGraph_node6" class="node">
 <title>proc~vectornewton</title>
-<g id="a_proc~~solve_lu~~CalledByGraph_node5"><a xlink:href=".././proc/vectornewton.html" xlink:title="VectorNewton">
+<g id="a_proc~~solve_lu~~CalledByGraph_node6"><a xlink:href=".././proc/vectornewton.html" xlink:title="VectorNewton">
 <polygon fill="#d94e8f" stroke="#d94e8f" points="250,-66 171,-66 171,-42 250,-42 250,-66"/>
 <text text-anchor="middle" x="210.5" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">VectorNewton</text>
 </a>
@@ -482,21 +497,6 @@ public function solve_LU(L, U, b) result(x)
 <title>proc~vectornewton&#45;&gt;proc~solve</title>
 <path fill="none" stroke="#000000" d="M250.1968,-54C262.0411,-54 274.9779,-54 286.6655,-54"/>
 <polygon fill="#000000" stroke="#000000" points="286.9807,-57.5001 296.9806,-54 286.9806,-50.5001 286.9807,-57.5001"/>
-</g>
-<!-- program~test_eigenvectors -->
-<g id="proc~~solve_lu~~CalledByGraph_node6" class="node">
-<title>program~test_eigenvectors</title>
-<g id="a_proc~~solve_lu~~CalledByGraph_node6"><a xlink:href=".././program/test_eigenvectors.html" xlink:title="test_eigenvectors">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="259,-24 162,-24 162,0 259,0 259,-24"/>
-<text text-anchor="middle" x="210.5" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="#ffffff">test_eigenvectors</text>
-</a>
-</g>
-</g>
-<!-- program~test_eigenvectors&#45;&gt;proc~eigen_inv -->
-<g id="proc~~solve_lu~~CalledByGraph_edge5" class="edge">
-<title>program~test_eigenvectors&#45;&gt;proc~eigen_inv</title>
-<path fill="none" stroke="#000000" d="M259.2929,-12C267.8265,-12 276.6051,-12 284.8359,-12"/>
-<polygon fill="#000000" stroke="#000000" points="284.9091,-15.5001 294.9091,-12 284.9091,-8.5001 284.9091,-15.5001"/>
 </g>
 <!-- program~test_non_linear_solvers -->
 <g id="proc~~solve_lu~~CalledByGraph_node7" class="node">

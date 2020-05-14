@@ -1,10 +1,10 @@
 module ode
-  !! Module for solving first order explicit ordinari differential equations, expressed in the form:
+  !! Module for solving first order explicit ordinary differential equations, expressed in the form:
   !! \[
   !! \frac{dy}{dt}=F\left(y,t\right)\\
   !! y(0) = y_0
   !! \]
-  !! where, \(y(t)\) is the unknown function, \(t\) is the independent variable and 
+  !! where, \(y(t)\) is the unknown function, \(t\) is the independent variable and
   !! \(y_0\) is the initial condition.
       implicit none
       contains
@@ -12,30 +12,29 @@ module ode
         function forward_euler(f,t,y0) result(y)
           !! function for integrating vector first order ODEs of the form:
           !! \[
-          !! \frac{dy}{dt}=F\left(y,t\right)
+          !! \frac{d\mathbf{y}}{dt}=\mathbf{F}\left(\mathbf{y},t\right)
           !! \]
           !! using the forward (explicit) euler method.
           interface
             function f(y,t) result(dy)
-            !! function defining the derivative of \(y\) for each
-            !! time \(t\) and each value \(y\)
+            !! function \(\mathbf{F}\) of the system
               real, intent(in) :: y(:)
-            !! value of the unknown function \(y(t)\)
+            !! value of the unknown function \(\mathbf{y}(t)\)
               real, intent(in) :: t
             !! independent variable \(t\)
               real :: dy(size(y))
-            !! derivative of \(y\)
+            !! derivative of \(\mathbf{y}\)
             end function
           end interface
           real, intent(in) :: t(0:)
           !! array of times \( t_0,t_1,\dots,t_N \)where the numerical solution
           !! will be evaluated.
           real, intent(in) :: y0(:)
-          !! initial conditions \(y(t_0)\)
+          !! initial conditions \(\mathbf{y}(t_0)\)
           real :: y(0:ubound(t,1),size(y0))
-          !! solution array \(y_j(t_i)\) such that the
+          !! solution array \(\mathbf{y}_j(t_i)\) such that the
           !! the row \(i\) and column \(j\) stands for the
-          !! \(j\)th component of the vector solution at time \(t_i\).
+          !! \(j\)th component of the vector solution \(\mathbf{y}\) at time \(t_i\).
           integer :: N, i
           N = ubound(t,1)
           y(0,:) = y0

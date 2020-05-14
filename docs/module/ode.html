@@ -200,12 +200,12 @@
     </div>
     
     <div class="col-md-9" id='text'>
-    <p>Module for solving first order explicit ordinari differential equations, expressed in the form:
+    <p>Module for solving first order explicit ordinary differential equations, expressed in the form:
  <script type="math/tex; mode=display">
  \frac{dy}{dt}=F\left(y,t\right)\\
  y(0) = y_0
  </script>
- where, <script type="math/tex">y(t)</script> is the unknown function, <script type="math/tex">t</script> is the independent variable and 
+ where, <script type="math/tex">y(t)</script> is the unknown function, <script type="math/tex">t</script> is the independent variable and
  <script type="math/tex">y_0</script> is the initial condition.</p>
       <br>
     
@@ -398,7 +398,7 @@ public function <a href='../proc/forward_euler.html'>forward_euler</a>(f, t, y0)
 
 <p>function for integrating vector first order ODEs of the form:
  <script type="math/tex; mode=display">
- \frac{dy}{dt}=F\left(y,t\right)
+ \frac{d\mathbf{y}}{dt}=\mathbf{F}\left(\mathbf{y},t\right)
  </script>
  using the forward (explicit) euler method.</p>
     
@@ -434,9 +434,7 @@ public function f(y, t) result(dy)
 
 
 
-<p>function defining the derivative of <script type="math/tex">y</script> for each
- time <script type="math/tex">t</script> and each value <script type="math/tex">y</script>
-</p>
+<p>function <script type="math/tex">\mathbf{F}</script> of the system</p>
     
     <h6>Arguments</h6>
     
@@ -462,7 +460,7 @@ public function f(y, t) result(dy)
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>y</strong>(:)</td><td><p>value of the unknown function <script type="math/tex">y(t)</script>
+  <td><strong>y</strong>(:)</td><td><p>value of the unknown function <script type="math/tex">\mathbf{y}(t)</script>
 </p></td>
   
 </tr>
@@ -496,7 +494,7 @@ public function f(y, t) result(dy)
   
      <h6>Return Value <small>real
   (size(y))</small></h6>
-  <p>derivative of <script type="math/tex">y</script>
+  <p>derivative of <script type="math/tex">\mathbf{y}</script>
 </p>
     
 </small>
@@ -531,7 +529,7 @@ public function f(y, t) result(dy)
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>y0</strong>(:)</td><td><p>initial conditions <script type="math/tex">y(t_0)</script>
+  <td><strong>y0</strong>(:)</td><td><p>initial conditions <script type="math/tex">\mathbf{y}(t_0)</script>
 </p></td>
   
 </tr>
@@ -549,9 +547,9 @@ public function f(y, t) result(dy)
   
      <h4>Return Value <small>real
   (0:ubound(t,1),size(y0))</small></h4>
-  <p>solution array <script type="math/tex">y_j(t_i)</script> such that the
+  <p>solution array <script type="math/tex">\mathbf{y}_j(t_i)</script> such that the
  the row <script type="math/tex">i</script> and column <script type="math/tex">j</script> stands for the
- <script type="math/tex">j</script>th component of the vector solution at time <script type="math/tex">t_i</script>.</p>
+ <script type="math/tex">j</script>th component of the vector solution <script type="math/tex">\mathbf{y}</script> at time <script type="math/tex">t_i</script>.</p>
     
 
   </div>
