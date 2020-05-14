@@ -38,10 +38,14 @@ contains
   !! function for defining derivative in the [Lorenz system](https://en.wikipedia.org/wiki/Lorenz_system)
   !! written as:
   !! \[
+  !! \frac{d\mathbf{y}}{dt}=\mathbf{F}\left(\mathbf{y},t\right)
+  !! \]
+  !! where:
+  !! \[
   !! f_1 = a \left( y_2 - y_1 \right) \\
   !! f_2 = y_1 \left( b - y_3 \right) - y_2 \\
   !! f_3 = y_1 y_2 - cy_3
-  !! |]
+  !! \]
     real, intent(in) :: y(:)
     real, intent(in) :: t
     real :: dy(size(y))
