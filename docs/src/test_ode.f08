@@ -54,7 +54,7 @@ contains
   !! \]
   !! and
   !! \[
-  !! \mathbf{F}=
+  !! \mathbf{F}\left(\mathbf{U},t\right)=
   !! \begin{pmatrix}
   !!  a \left( U_2 - U_1 \right) \\
   !!  U_1 \left( b - U_3 \right) - U_2 \\
