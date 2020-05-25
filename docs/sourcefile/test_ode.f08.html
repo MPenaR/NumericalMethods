@@ -347,7 +347,7 @@
 <a name="ln-8"></a>  <span class="c">!! \]</span>
 <a name="ln-9"></a>  <span class="c">!! The system is integrated for \(t\in[0,10]\) with \(a=\), \(b=\) and \(c=\).</span>
 <a name="ln-10"></a>  <span class="c">!! For initial conditions \(\left(x(0),y(0),z(0)\right) = \left(1,1,1\right)\), the solution is:</span>
-<a name="ln-11"></a>  <span class="c">!! ![Image of the trayectory](../lorenz.png)</span>
+<a name="ln-11"></a>  <span class="c">!! ![Image of the trayectory](../../lorenz.png)</span>
 <a name="ln-12"></a>  <span class="k">use </span><span class="n">ode</span>
 <a name="ln-13"></a>
 <a name="ln-14"></a>  <span class="k">implicit none</span>
@@ -375,29 +375,42 @@
 <a name="ln-36"></a>
 <a name="ln-37"></a><span class="k">contains</span>
 <a name="ln-38"></a>
-<a name="ln-39"></a><span class="k">  function </span><span class="n">lorenz</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">t</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">dy</span><span class="p">)</span>
-<a name="ln-40"></a>  <span class="c">!! function for defining derivative in the [Lorenz system](https://en.wikipedia.org/wiki/Lorenz_system)</span>
-<a name="ln-41"></a>  <span class="c">!! written as:</span>
-<a name="ln-42"></a>  <span class="c">!! \[</span>
-<a name="ln-43"></a>  <span class="c">!! \frac{d\mathbf{y}}{dt}=\mathbf{F}\left(\mathbf{y},t\right)</span>
-<a name="ln-44"></a>  <span class="c">!! \]</span>
-<a name="ln-45"></a>  <span class="c">!! where:</span>
-<a name="ln-46"></a>  <span class="c">!! \[</span>
-<a name="ln-47"></a>  <span class="c">!! f_1 = a \left( y_2 - y_1 \right) \\</span>
-<a name="ln-48"></a>  <span class="c">!! f_2 = y_1 \left( b - y_3 \right) - y_2 \\</span>
-<a name="ln-49"></a>  <span class="c">!! f_3 = y_1 y_2 - cy_3</span>
-<a name="ln-50"></a>  <span class="c">!! \]</span>
-<a name="ln-51"></a>    <span class="kt">real</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">y</span><span class="p">(:)</span>
-<a name="ln-52"></a>    <span class="kt">real</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">t</span>
-<a name="ln-53"></a>    <span class="kt">real</span> <span class="kd">::</span> <span class="n">dy</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
-<a name="ln-54"></a>    <span class="kt">real</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="mf">0.</span>
-<a name="ln-55"></a>    <span class="kt">real</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span><span class="mf">8.</span>
-<a name="ln-56"></a>    <span class="kt">real</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">c</span> <span class="o">=</span> <span class="mf">8.</span><span class="o">/</span><span class="mf">3.</span>
-<a name="ln-57"></a>    <span class="n">dy</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="p">(</span><span class="n">y</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
-<a name="ln-58"></a>    <span class="n">dy</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">y</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> <span class="o">-</span> <span class="n">y</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<a name="ln-59"></a>    <span class="n">dy</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span><span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">c</span><span class="o">*</span><span class="n">y</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-<a name="ln-60"></a>  <span class="k">end function</span>
-<a name="ln-61"></a><span class="k">end program</span>
+<a name="ln-39"></a><span class="k">  function </span><span class="n">lorenz</span><span class="p">(</span><span class="n">U</span><span class="p">,</span><span class="n">t</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">dU</span><span class="p">)</span>
+<a name="ln-40"></a>  <span class="c">!! function for defining derivative in the </span>
+<a name="ln-41"></a>  <span class="c">!! [Lorenz system](https://en.wikipedia.org/wiki/Lorenz_system)</span>
+<a name="ln-42"></a>  <span class="c">!! written as:</span>
+<a name="ln-43"></a>  <span class="c">!! \[</span>
+<a name="ln-44"></a>  <span class="c">!! \frac{d\mathbf{U}}{dt}=\mathbf{F}\left(\mathbf{U},t\right)</span>
+<a name="ln-45"></a>  <span class="c">!! \]</span>
+<a name="ln-46"></a>  <span class="c">!! where:</span>
+<a name="ln-47"></a>  <span class="c">!! \[</span>
+<a name="ln-48"></a>  <span class="c">!! \mathbf{U}\left(t\right) = </span>
+<a name="ln-49"></a>  <span class="c">!! \begin{pmatrix}</span>
+<a name="ln-50"></a>  <span class="c">!! x\left(t\right)\\</span>
+<a name="ln-51"></a>  <span class="c">!! y\left(t\right)\\</span>
+<a name="ln-52"></a>  <span class="c">!! z\left(t\right)</span>
+<a name="ln-53"></a>  <span class="c">!! \end{pmatrix}</span>
+<a name="ln-54"></a>  <span class="c">!! \]</span>
+<a name="ln-55"></a>  <span class="c">!! and</span>
+<a name="ln-56"></a>  <span class="c">!! \[</span>
+<a name="ln-57"></a>  <span class="c">!! \mathbf{F}=</span>
+<a name="ln-58"></a>  <span class="c">!! \begin{pmatrix}</span>
+<a name="ln-59"></a>  <span class="c">!!  a \left( U_2 - U_1 \right) \\</span>
+<a name="ln-60"></a>  <span class="c">!!  U_1 \left( b - U_3 \right) - U_2 \\</span>
+<a name="ln-61"></a>  <span class="c">!!  U_1 U_2 - cU_3</span>
+<a name="ln-62"></a>  <span class="c">!! \end{pmatrix}</span>
+<a name="ln-63"></a>  <span class="c">!! \]</span>
+<a name="ln-64"></a>    <span class="kt">real</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">U</span><span class="p">(:)</span>
+<a name="ln-65"></a>    <span class="kt">real</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">t</span>
+<a name="ln-66"></a>    <span class="kt">real</span> <span class="kd">::</span> <span class="n">dU</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">U</span><span class="p">))</span>
+<a name="ln-67"></a>    <span class="kt">real</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="mf">0.</span>
+<a name="ln-68"></a>    <span class="kt">real</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span><span class="mf">8.</span>
+<a name="ln-69"></a>    <span class="kt">real</span><span class="p">,</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">c</span> <span class="o">=</span> <span class="mf">8.</span><span class="o">/</span><span class="mf">3.</span>
+<a name="ln-70"></a>    <span class="n">dU</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="p">(</span><span class="n">U</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="n">U</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<a name="ln-71"></a>    <span class="n">dU</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="n">U</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">U</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> <span class="o">-</span> <span class="n">U</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<a name="ln-72"></a>    <span class="n">dU</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span><span class="n">U</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">U</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">c</span><span class="o">*</span><span class="n">U</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<a name="ln-73"></a>  <span class="k">end function</span>
+<a name="ln-74"></a><span class="k">end program</span>
 </pre></div>
 
     </section>

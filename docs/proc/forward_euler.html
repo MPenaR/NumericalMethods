@@ -193,7 +193,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-public function forward_euler(f, t, y0) result(y)
+public function forward_euler(f, t, U0) result(U)
     
     
    
@@ -205,7 +205,7 @@ public function forward_euler(f, t, y0) result(y)
     
     <p>function for integrating vector first order ODEs of the form:
  <script type="math/tex; mode=display">
- \frac{d\mathbf{y}}{dt}=\mathbf{F}\left(\mathbf{y},t\right)
+ \frac{d\mathbf{U}}{dt}=\mathbf{F}\left(\mathbf{U},t\right)
  </script>
  using the forward (explicit) euler method.</p>
     
@@ -232,7 +232,7 @@ public function forward_euler(f, t, y0) result(y)
       <small>
     
     <h5>
-public function f(y, t) result(dy)
+public function f(U, t) result(dU)
     
     
    
@@ -267,7 +267,7 @@ public function f(y, t) result(dy)
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>y</strong>(:)</td><td><p>value of the unknown function <script type="math/tex">\mathbf{y}(t)</script>
+  <td><strong>U</strong>(:)</td><td><p>value of the unknown function <script type="math/tex">\mathbf{U}(t)</script>
 </p></td>
   
 </tr>
@@ -300,7 +300,7 @@ public function f(y, t) result(dy)
   
   
      <h6>Return Value <small>real
-  (size(y))</small></h6>
+  (size(U))</small></h6>
   <p>derivative of <script type="math/tex">\mathbf{y}</script>
 </p>
     
@@ -331,12 +331,12 @@ public function f(y, t) result(dy)
   
 <tr>
   
-  <td><span class="anchor" id="variable-y0"></span>real,</td>
+  <td><span class="anchor" id="variable-u0"></span>real,</td>
   <td>intent(in)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>y0</strong>(:)</td><td><p>initial conditions <script type="math/tex">\mathbf{y}(t_0)</script>
+  <td><strong>U0</strong>(:)</td><td><p>initial conditions <script type="math/tex">\mathbf{U}(t_0)</script>
 </p></td>
   
 </tr>
@@ -351,11 +351,11 @@ public function f(y, t) result(dy)
     
     
     
-   <h3>Return Value <small><span class="anchor" id="variable-y~8"></span>real
-  (0:ubound(t,1),size(y0))</small></h3>
-    <p>solution array <script type="math/tex">y_j(t_i)</script> such that the
+   <h3>Return Value <small><span class="anchor" id="variable-u~4"></span>real
+  (0:ubound(t,1),size(U0))</small></h3>
+    <p>solution array <script type="math/tex">U_j(t_i)</script> such that the
  the row <script type="math/tex">i</script> and column <script type="math/tex">j</script> stands for the
- <script type="math/tex">j</script>th component of the vector solution <script type="math/tex">\mathbf{y}</script> at time <script type="math/tex">t_i</script>.</p>
+ <script type="math/tex">j</script>th component of the vector solution <script type="math/tex">\mathbf{U}</script> at time <script type="math/tex">t_i</script>.</p>
     
     
     <br>

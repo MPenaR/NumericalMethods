@@ -36,26 +36,39 @@ program test_ode
 
 contains
 
-  function lorenz(y,t) result(dy)
-  !! function for defining derivative in the [Lorenz system](https://en.wikipedia.org/wiki/Lorenz_system)
+  function lorenz(U,t) result(dU)
+  !! function for defining derivative in the 
+  !! [Lorenz system](https://en.wikipedia.org/wiki/Lorenz_system)
   !! written as:
   !! \[
-  !! \frac{d\mathbf{y}}{dt}=\mathbf{F}\left(\mathbf{y},t\right)
+  !! \frac{d\mathbf{U}}{dt}=\mathbf{F}\left(\mathbf{U},t\right)
   !! \]
   !! where:
   !! \[
-  !! f_1 = a \left( y_2 - y_1 \right) \\
-  !! f_2 = y_1 \left( b - y_3 \right) - y_2 \\
-  !! f_3 = y_1 y_2 - cy_3
+  !! \mathbf{U}\left(t\right) = 
+  !! \begin{pmatrix}
+  !! x\left(t\right)\\
+  !! y\left(t\right)\\
+  !! z\left(t\right)
+  !! \end{pmatrix}
   !! \]
-    real, intent(in) :: y(:)
+  !! and
+  !! \[
+  !! \mathbf{F}=
+  !! \begin{pmatrix}
+  !!  a \left( U_2 - U_1 \right) \\
+  !!  U_1 \left( b - U_3 \right) - U_2 \\
+  !!  U_1 U_2 - cU_3
+  !! \end{pmatrix}
+  !! \]
+    real, intent(in) :: U(:)
     real, intent(in) :: t
-    real :: dy(size(y))
+    real :: dU(size(U))
     real, parameter :: a = 10.
     real, parameter :: b = 28.
     real, parameter :: c = 8./3.
-    dy(1) = a*(y(2)-y(1))
-    dy(2) = y(1)*(b-y(3)) - y(2)
-    dy(3) =y(1)*y(2) - c*y(3)
+    dU(1) = a*(U(2)-U(1))
+    dU(2) = U(1)*(b-U(3)) - U(2)
+    dU(3) =U(1)*U(2) - c*U(3)
   end function
 end program

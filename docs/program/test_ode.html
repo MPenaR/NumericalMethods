@@ -177,7 +177,7 @@
       
       <a class="list-group-item" href="../program/test_ode.html#variable-t~3">t</a>
       
-      <a class="list-group-item" href="../program/test_ode.html#variable-y~10">y</a>
+      <a class="list-group-item" href="../program/test_ode.html#variable-y~8">y</a>
       
       <a class="list-group-item" href="../program/test_ode.html#variable-i~4">i</a>
       
@@ -350,7 +350,7 @@
  </script>
  The system is integrated for <script type="math/tex">t\in[0,10]</script> with <script type="math/tex">a=</script>, <script type="math/tex">b=</script> and <script type="math/tex">c=</script>.
  For initial conditions <script type="math/tex">\left(x(0),y(0),z(0)\right) = \left(1,1,1\right)</script>, the solution is:
- <img alt="Image of the trayectory" src="../lorenz.png" style="width:800px" ></p>
+ <img alt="Image of the trayectory" src="../../lorenz.png"></p>
     
     <br>
     <div class="panel panel-default">
@@ -476,7 +476,7 @@
       
       <a class="list-group-item" href="../program/test_ode.html#variable-t~3">t</a>
       
-      <a class="list-group-item" href="../program/test_ode.html#variable-y~10">y</a>
+      <a class="list-group-item" href="../program/test_ode.html#variable-y~8">y</a>
       
       <a class="list-group-item" href="../program/test_ode.html#variable-i~4">i</a>
       
@@ -598,7 +598,7 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-y~10"></span>real</td>
+  <td><span class="anchor" id="variable-y~8"></span>real</td>
   
   
   <td></td><td>::</td>
@@ -656,7 +656,7 @@
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-lorenz"></span><h3>
-function <a href='../proc/lorenz.html'>lorenz</a>(y, t) result(dy)
+function <a href='../proc/lorenz.html'>lorenz</a>(U, t) result(dU)
     
     
    
@@ -671,16 +671,29 @@ function <a href='../proc/lorenz.html'>lorenz</a>(y, t) result(dy)
 
 
 
-<p>function for defining derivative in the <a href="https://en.wikipedia.org/wiki/Lorenz_system">Lorenz system</a>
+<p>function for defining derivative in the 
+ <a href="https://en.wikipedia.org/wiki/Lorenz_system">Lorenz system</a>
  written as:
  <script type="math/tex; mode=display">
- \frac{d\mathbf{y}}{dt}=\mathbf{F}\left(\mathbf{y},t\right)
+ \frac{d\mathbf{U}}{dt}=\mathbf{F}\left(\mathbf{U},t\right)
  </script>
  where:
  <script type="math/tex; mode=display">
- f_1 = a \left( y_2 - y_1 \right) \\
- f_2 = y_1 \left( b - y_3 \right) - y_2 \\
- f_3 = y_1 y_2 - cy_3
+ \mathbf{U}\left(t\right) = 
+ \begin{pmatrix}
+ x\left(t\right)\\
+ y\left(t\right)\\
+ z\left(t\right)
+ \end{pmatrix}
+ </script>
+ and
+ <script type="math/tex; mode=display">
+ \mathbf{F}=
+ \begin{pmatrix}
+  a \left( U_2 - U_1 \right) \\
+  U_1 \left( b - U_3 \right) - U_2 \\
+  U_1 U_2 - cU_3
+ \end{pmatrix}
  </script>
 </p>
     
@@ -708,7 +721,7 @@ function <a href='../proc/lorenz.html'>lorenz</a>(y, t) result(dy)
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>y</strong>(:)</td><td></td>
+  <td><strong>U</strong>(:)</td><td></td>
   
 </tr>
 
@@ -739,7 +752,7 @@ function <a href='../proc/lorenz.html'>lorenz</a>(y, t) result(dy)
   
   
      <h4>Return Value <small>real
-  (size(y))</small></h4>
+  (size(U))</small></h4>
   
     
 

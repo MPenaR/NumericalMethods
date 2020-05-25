@@ -348,37 +348,37 @@
 <a name="ln-9"></a>      <span class="k">implicit none</span>
 <a name="ln-10"></a><span class="k">      contains</span>
 <a name="ln-11"></a>
-<a name="ln-12"></a><span class="k">        function </span><span class="n">forward_euler</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">y0</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<a name="ln-12"></a><span class="k">        function </span><span class="n">forward_euler</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">U0</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
 <a name="ln-13"></a>          <span class="c">!! function for integrating vector first order ODEs of the form:</span>
 <a name="ln-14"></a>          <span class="c">!! \[</span>
-<a name="ln-15"></a>          <span class="c">!! \frac{d\mathbf{y}}{dt}=\mathbf{F}\left(\mathbf{y},t\right)</span>
+<a name="ln-15"></a>          <span class="c">!! \frac{d\mathbf{U}}{dt}=\mathbf{F}\left(\mathbf{U},t\right)</span>
 <a name="ln-16"></a>          <span class="c">!! \]</span>
 <a name="ln-17"></a>          <span class="c">!! using the forward (explicit) euler method.</span>
 <a name="ln-18"></a>          <span class="k">interface</span>
-<a name="ln-19"></a><span class="k">            function </span><span class="n">f</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">t</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">dy</span><span class="p">)</span>
+<a name="ln-19"></a><span class="k">            function </span><span class="n">f</span><span class="p">(</span><span class="n">U</span><span class="p">,</span><span class="n">t</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">dU</span><span class="p">)</span>
 <a name="ln-20"></a>            <span class="c">!! function \(\mathbf{F}\) of the system</span>
-<a name="ln-21"></a>              <span class="kt">real</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">y</span><span class="p">(:)</span>
-<a name="ln-22"></a>            <span class="c">!! value of the unknown function \(\mathbf{y}(t)\)</span>
+<a name="ln-21"></a>              <span class="kt">real</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">U</span><span class="p">(:)</span>
+<a name="ln-22"></a>            <span class="c">!! value of the unknown function \(\mathbf{U}(t)\)</span>
 <a name="ln-23"></a>              <span class="kt">real</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">t</span>
 <a name="ln-24"></a>            <span class="c">!! independent variable \(t\)</span>
-<a name="ln-25"></a>              <span class="kt">real</span> <span class="kd">::</span> <span class="n">dy</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+<a name="ln-25"></a>              <span class="kt">real</span> <span class="kd">::</span> <span class="n">dU</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">U</span><span class="p">))</span>
 <a name="ln-26"></a>            <span class="c">!! derivative of \(\mathbf{y}\)</span>
 <a name="ln-27"></a>            <span class="k">end function</span>
 <a name="ln-28"></a><span class="k">          end interface</span>
 <a name="ln-29"></a><span class="k">          </span><span class="kt">real</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">t</span><span class="p">(</span><span class="mi">0</span><span class="p">:)</span>
 <a name="ln-30"></a>          <span class="c">!! array of times \( t_0,t_1,\dots,t_N \)where the numerical solution</span>
 <a name="ln-31"></a>          <span class="c">!! will be evaluated.</span>
-<a name="ln-32"></a>          <span class="kt">real</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">y0</span><span class="p">(:)</span>
-<a name="ln-33"></a>          <span class="c">!! initial conditions \(\mathbf{y}(t_0)\)</span>
-<a name="ln-34"></a>          <span class="kt">real</span> <span class="kd">::</span> <span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="nb">ubound</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">size</span><span class="p">(</span><span class="n">y0</span><span class="p">))</span>
-<a name="ln-35"></a>          <span class="c">!! solution array \(y_j(t_i)\) such that the</span>
+<a name="ln-32"></a>          <span class="kt">real</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">U0</span><span class="p">(:)</span>
+<a name="ln-33"></a>          <span class="c">!! initial conditions \(\mathbf{U}(t_0)\)</span>
+<a name="ln-34"></a>          <span class="kt">real</span> <span class="kd">::</span> <span class="n">U</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="nb">ubound</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">size</span><span class="p">(</span><span class="n">U0</span><span class="p">))</span>
+<a name="ln-35"></a>          <span class="c">!! solution array \(U_j(t_i)\) such that the</span>
 <a name="ln-36"></a>          <span class="c">!! the row \(i\) and column \(j\) stands for the</span>
-<a name="ln-37"></a>          <span class="c">!! \(j\)th component of the vector solution \(\mathbf{y}\) at time \(t_i\).</span>
+<a name="ln-37"></a>          <span class="c">!! \(j\)th component of the vector solution \(\mathbf{U}\) at time \(t_i\).</span>
 <a name="ln-38"></a>          <span class="kt">integer</span> <span class="kd">::</span> <span class="n">N</span><span class="p">,</span> <span class="n">i</span>
 <a name="ln-39"></a>          <span class="n">N</span> <span class="o">=</span> <span class="nb">ubound</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<a name="ln-40"></a>          <span class="n">y</span><span class="p">(</span><span class="mi">0</span><span class="p">,:)</span> <span class="o">=</span> <span class="n">y0</span>
+<a name="ln-40"></a>          <span class="n">U</span><span class="p">(</span><span class="mi">0</span><span class="p">,:)</span> <span class="o">=</span> <span class="n">U0</span>
 <a name="ln-41"></a>          <span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span>
-<a name="ln-42"></a>            <span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="p">,:)</span> <span class="o">=</span> <span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,:)</span> <span class="o">+</span> <span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">-</span><span class="n">t</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="n">F</span><span class="p">(</span><span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,:),</span><span class="n">t</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<a name="ln-42"></a>            <span class="n">U</span><span class="p">(</span><span class="n">i</span><span class="p">,:)</span> <span class="o">=</span> <span class="n">U</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,:)</span> <span class="o">+</span> <span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">-</span><span class="n">t</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="n">F</span><span class="p">(</span><span class="n">U</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,:),</span><span class="n">t</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
 <a name="ln-43"></a>          <span class="k">end do</span>
 <a name="ln-44"></a><span class="k">        end function</span>
 <a name="ln-45"></a>

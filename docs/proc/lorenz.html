@@ -193,7 +193,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-function lorenz(y, t) result(dy)
+function lorenz(U, t) result(dU)
     
     
    
@@ -203,16 +203,29 @@ function lorenz(y, t) result(dy)
 
 
     
-    <p>function for defining derivative in the <a href="https://en.wikipedia.org/wiki/Lorenz_system">Lorenz system</a>
+    <p>function for defining derivative in the 
+ <a href="https://en.wikipedia.org/wiki/Lorenz_system">Lorenz system</a>
  written as:
  <script type="math/tex; mode=display">
- \frac{d\mathbf{y}}{dt}=\mathbf{F}\left(\mathbf{y},t\right)
+ \frac{d\mathbf{U}}{dt}=\mathbf{F}\left(\mathbf{U},t\right)
  </script>
  where:
  <script type="math/tex; mode=display">
- f_1 = a \left( y_2 - y_1 \right) \\
- f_2 = y_1 \left( b - y_3 \right) - y_2 \\
- f_3 = y_1 y_2 - cy_3
+ \mathbf{U}\left(t\right) = 
+ \begin{pmatrix}
+ x\left(t\right)\\
+ y\left(t\right)\\
+ z\left(t\right)
+ \end{pmatrix}
+ </script>
+ and
+ <script type="math/tex; mode=display">
+ \mathbf{F}=
+ \begin{pmatrix}
+  a \left( U_2 - U_1 \right) \\
+  U_1 \left( b - U_3 \right) - U_2 \\
+  U_1 U_2 - cU_3
+ \end{pmatrix}
  </script>
 </p>
     
@@ -235,12 +248,12 @@ function lorenz(y, t) result(dy)
   
 <tr>
   
-  <td><span class="anchor" id="variable-y~9"></span>real,</td>
+  <td><span class="anchor" id="variable-u~5"></span>real,</td>
   <td>intent(in)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>y</strong>(:)</td><td></td>
+  <td><strong>U</strong>(:)</td><td></td>
   
 </tr>
 
@@ -269,8 +282,8 @@ function lorenz(y, t) result(dy)
     
     
     
-   <h3>Return Value <small><span class="anchor" id="variable-dy"></span>real
-  (size(y))</small></h3>
+   <h3>Return Value <small><span class="anchor" id="variable-du"></span>real
+  (size(U))</small></h3>
     
     
     
