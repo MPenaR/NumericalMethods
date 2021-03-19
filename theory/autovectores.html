@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="./style_notes.css">
+    <link rel="stylesheet" type="text/css" href="../style_notes.css">
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
     <title>Autovalores</title>
 </head>
 <body>
 <h1>Autovalores y autovectores.</h1> 
 <p>Dada una matriz cuadrada real \(\mathbf{A}\), un autovector \(\mathbf{v}\) es un vector distinto del vector nulo que cumple:
-    \[\mathbf{A}\mathbf{v}=\lambda\mathbf{v}\]
+</p>
+<div class="formula">
+    \[
+    \label{eq:def_eig}
+    \mathbf{A}\mathbf{v}=\lambda\mathbf{v}
+    \tag{1}
+    \]
+</div>
+<p>
     para algún valor real \(\lambda\).
     
     Es decir, es un vector que al ser multiplicado por la matriz \(\mathbf{A}\) es transformado en un vector proporcional a si mismo, \(\lambda\mathbf{v}\).
@@ -18,21 +26,36 @@
 </p>
 
 
-<p>Si operamos en la ecuación (BLA) obtenemos otra forma de definir a los autovectores. Son las soluciones no triviales del sistema
-    \[\left(\mathbf{A}−\lambda\mathbf{I}\right)\mathbf{v}=0\]
-    para ciertos \(\lambda\). Es decir, para ciertos valores de \(\lambda\) (los llamados autovalores) el sistema (BLA) será compatible indeterminado, y por lo tanto admitirá infinitas soluciones \(\mathbf{v}\), distintas de la solución trivial \(\mathbf{0}\), que serán los autovectores asociados al autovalor \(\lambda\).
+<p>Si operamos en la ecuación (\ref{eq:def_eig}) obtenemos otra forma de definir a los autovectores. Son las soluciones no triviales del sistema
+</p>
+<div class="formula">
+    \[
+    \label{system}
+    \left(\mathbf{A}−\lambda\mathbf{I}\right)\mathbf{v}=0
+    \tag{2}
+    \]
+</div>
+<p>   
+    para ciertos \(\lambda\). Es decir, para ciertos valores de \(\lambda\) (los llamados autovalores) el sistema (\ref{system}) será compatible indeterminado, y por lo tanto admitirá infinitas soluciones \(\mathbf{v}\), distintas de la solución trivial \(\mathbf{0}\), que serán los autovectores asociados al autovalor \(\lambda\).
 </p>    
 
-<p>El sistema (BLA) será indeterminado si y solo si
-    \[\det\left(\mathbf{A}-\lambda\mathbf{I}\right)=0\]
+<p>El sistema (\ref{system}) será indeterminado si y solo si</p>
+<div class="formula">
+    \[
+    \label{det}
+    \det\left(\mathbf{A}-\lambda\mathbf{I}\right)=0
+    \tag{3}
+    \]
+</div>
+<p>
     por lo que el método de cálculo de autovalores y autovectores dado en álgebra consiste en:
     <ol>
-        <li>calcular los \(\lambda_i\) autovalores como las soluciones de la ecuación BLA.</li>
+        <li>calcular los \(\lambda_i\) autovalores como las soluciones de la ecuación (\ref{det}).</li>
         <li>para cada \(\lambda_i\) buscar las soluciones distintas del vector nulo, del sistema indeterminado \(\left(\mathbf{A} - \lambda_i\mathbf{I}\right)\mathbf{v} = \mathbf{0}\)</li>
     </ol>
 </p>
 <p>
-    El método anterior puede funcionar para matrices pequeñas, pero para matrices grandes supone un problema. En primer lugar, si la matriz \(\mathbf{A}\) es una matriz \(N\times N\), la ecuacion BLA será una ecuación de grado \(N\). Para \(N\ge5\) no existe la formula general de las soluciónes de esa ecuación en función de sus coeficientes. En segundo lugar, si \(N\) es muy grande, calcular su determinante para poder obtener la eucación será muy costoso.
+    El método anterior puede funcionar para matrices pequeñas, pero para matrices grandes supone un problema. En primer lugar, si la matriz \(\mathbf{A}\) es una matriz \(N\times N\), la ecuacion (\ref{det}) será una ecuación de grado \(N\). Para \(N\ge5\) no existe la formula general de las soluciónes de esa ecuación en función de sus coeficientes. En segundo lugar, si \(N\) es muy grande, calcular su determinante para poder obtener la eucación será muy costoso.
 </p>
 
 <p>
@@ -95,7 +118,7 @@
     \[\boxed{
     \lim_{n\to\infty}\mathbf{u}_n=\mathbf{v}_1}
     \]
-    es decir, la sucesión de vectores unitarios obtenida a partir de $\mathbf{u}_0$, multiplicando por la matriz $\mathbf{A}$ y normalizando, tiende al autovector asociado al autovalor de módulo máximo a medida que \(n\) tiende a infinito..        
+    es decir, la sucesión de vectores unitarios obtenida a partir de \(\mathbf{u}_0\), multiplicando por la matriz \(\mathbf{A}\) y normalizando, tiende al autovector asociado al autovalor de módulo máximo a medida que \(n\) tiende a infinito..        
 </p>
-
+<h2>Método de la potencia inversa.</h2>
 </body>
