@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="./style_notes.css">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+    <title>Autovalores</title>
+</head>
+<body>
+<h1>Autovalores y autovectores.</h1> 
+<p>Dada una matriz cuadrada real \(\mathbf{A}\), un autovector \(\mathbf{v}\) es un vector distinto del vector nulo que cumple:
+    \[\mathbf{A}\mathbf{v}=\lambda\mathbf{v}\]
+    para algún valor real \(\lambda\).
+    
+    Es decir, es un vector que al ser multiplicado por la matriz \(\mathbf{A}\) es transformado en un vector proporcional a si mismo, \(\lambda\mathbf{v}\).
+</p>
+<p>
+    La constante de proporcinalidad \(\mathbf{\lambda}\) se conoce como autovalor asociado al autovector \(\mathbf{v}\).
+</p>
+
+
+<p>Si operamos en la ecuación (BLA) obtenemos otra forma de definir a los autovectores. Son las soluciones no triviales del sistema
+    \[\left(\mathbf{A}−\lambda\mathbf{I}\right)\mathbf{v}=0\]
+    para ciertos \(\lambda\). Es decir, para ciertos valores de \(\lambda\) (los llamados autovalores) el sistema (BLA) será compatible indeterminado, y por lo tanto admitirá infinitas soluciones \(\mathbf{v}\), distintas de la solución trivial \(\mathbf{0}\), que serán los autovectores asociados al autovalor \(\lambda\).
+</p>    
+
+<p>El sistema (BLA) será indeterminado si y solo si
+    \[\det\left(\mathbf{A}-\lambda\mathbf{I}\right)=0\]
+    por lo que el método de cálculo de autovalores y autovectores dado en álgebra consiste en:
+    <ol>
+        <li>calcular los \(\lambda_i\) autovalores como las soluciones de la ecuación BLA.</li>
+        <li>para cada \(\lambda_i\) buscar las soluciones distintas del vector nulo, del sistema indeterminado \(\left(\mathbf{A} - \lambda_i\mathbf{I}\right)\mathbf{v} = \mathbf{0}\)</li>
+    </ol>
+</p>
+<p>
+    El método anterior puede funcionar para matrices pequeñas, pero para matrices grandes supone un problema. En primer lugar, si la matriz \(\mathbf{A}\) es una matriz \(N\times N\), la ecuacion BLA será una ecuación de grado \(N\). Para \(N\ge5\) no existe la formula general de las soluciónes de esa ecuación en función de sus coeficientes. En segundo lugar, si \(N\) es muy grande, calcular su determinante para poder obtener la eucación será muy costoso.
+</p>
+
+<p>
+    En este tema se explicará el método de la potencia, el cual nos permite hayar el autovector asociado al autovalor de módulo máximo mediante un proceso iterativo, y el método de la potencia inversa, que, modificando el método de la potencia; es capaz de darnos el autovector asociado al autovalor mas cercano a un cierto valor.
+</p>
+
+<h2>Método de la potencia.</h2>
+<p>
+    Sea \(\mathbf{A}\) una matriz diagonalizable de tamaño \(N\) y sean \(\lambda_1,\lambda_2,\dots,\lambda_N\) sus autovalores. Podemos suponer sin pérdida de generalidad que los autovalores están ordenados de mayor a menor módulo, es decir:
+    \[|\lambda_1|\ge|\lambda_2|\ge\dots\ge|\lambda_N|\]
+    Si se cumple que \(|\lambda_1|>|\lambda_2|\) se dirá que la matriz posee un autovalor de módulo máximo que se denotará por \(\lambda_\mathrm{max}=\lambda_1\).
+</p>
+
+<p>
+    El método de la potencia es un método iterativo para calcular el  autovector asociado a este autovalor máximo que se basa en el hecho de que si la matriz es diagonalizable, los autovectores forman una base ortonormal (ortogonales y de módulo unitario) del espacio espacio vectorial \(\mathbb{R}^N\).
+</p>
+
+<p>
+    Sea \(\mathbf{u}_0\in\mathbb{R}^N\) un vector cualquiera, y sean \(\mathbf{v}_1,\mathbf{v}_2,\dots,\mathbf{v}_N\) los autovectores de la matriz \(\mathbf{A}\). Puesto que los autovectores forman una base de \(\mathbb{R}^N\) podemos expresar al vector \(\mathbf{u}_0\) en esa base como:
+    \[
+    \mathbf{u}_0=q_1\mathbf{v}_1 + q_2\mathbf{v}_2 + \dots + q_N\mathbf{v}_N=\sum_{i=1}^Nq_i\mathbf{v}_i
+    \]
+</p>
+
+<p>
+    Si se multiplica la matriz \(\mathbf{A}\) por el vector \(\mathbf{u}_0\) se obtiene:
+    \[
+    \mathbf{A}\mathbf{u}=q_1\lambda_1\mathbf{v}_1 + q_2\lambda_2\mathbf{v}_2 + \dots + q_N\lambda_N\mathbf{v}_N=\sum_{i=1}^Nq_i\lambda_i\mathbf{v}_i
+    \]
+    donde se ha usado el hecho de que los vectores \(\mathbf{v}_i\) son autovectores de la matriz \(\mathbf{A}\).    
+</p>
+<p>
+    Teniendo en cuenta que la base de vectores es ortonormal, la norma 2 será:
+    \[
+    \Vert\mathbf{A}\mathbf{u}_0\Vert_2=\sqrt{\left(q_1\lambda_1\right)^2+\left(q_2\lambda_2\right)^2+\dots+\left(q_N\lambda_N\right)^2 }=\sqrt{\sum_{i=1}^N\left(q_i\lambda_i\right)^2}
+    \]    
+</p>
+<p>
+    Se llamará \(\mathbf{u}_1\) al vector \(\mathbf{A}\mathbf{u}_0\) normalizado, es decir:
+    \[
+    \mathbf{u}_1=\frac{\mathbf{A}\mathbf{u}_0}{\Vert\mathbf{A}\mathbf{u}_0\Vert_2}=\frac{q_1\lambda_1\mathbf{v}_1 + q_2\lambda_2\mathbf{v}_2 + \dots + q_N\lambda_N\mathbf{v}_N}{\sqrt{\left(q_1\lambda_1\right)^2+\left(q_2\lambda_2\right)^2+\dots+\left(q_N\lambda_N\right)^2 }}=\frac{\sum_{i=1}^Nq_i\lambda_i\mathbf{v}_i}{\sqrt{\sum_{i=1}^N\left(q_i\lambda_i\right)^2}}
+    \]
+</p>
+<p>
+    Si repetimos el proceso se obtiene:
+    \[\mathbf{A}\mathbf{u}_1=\frac{\mathbf{A}^2 \mathbf{u_0}}{\Vert\mathbf{A}\mathbf{u}_0\Vert_2}=\frac{q_1\lambda^2_1\mathbf{v}_1 + q_2\lambda^2_2\mathbf{v}_2 + \dots + q_N\lambda^2_N\mathbf{v}_N}{\sqrt{\left(q_1\lambda_1\right)^2+\left(q_2\lambda_2\right)^2+\dots+\left(q_N\lambda_N\right)^2 }}=\frac{\sum_{i=1}^Nq_i\lambda^2_i\mathbf{v}_i}{\sqrt{\sum_{i=1}^N\left(q_i\lambda_i\right)^2}}\]
+    y para el módulo
+    \[\Vert\mathbf{A}\mathbf{u}_1\Vert_2=\frac{\Vert\mathbf{A}^2 \mathbf{u_0}\Vert_2}{\Vert\mathbf{A}\mathbf{u}_0\Vert_2}=\frac{\sqrt{\left(q_1\lambda^2_1\right)^2+\left(q_2\lambda^2_2\right)^2+\dots+\left(q_N\lambda^2_N\right)^2 }}{\sqrt{\left(q_1\lambda_1\right)^2+\left(q_2\lambda_2\right)^2+\dots+\left(q_N\lambda_N\right)^2 }}=\frac{\sqrt{\sum_{i=1}^N\left(q_i\lambda^2_i\right)^2}}{\sqrt{\sum_{i=1}^N\left(q_i\lambda_i\right)^2}}\]    
+</p>
+<p>
+    Con lo que
+    \[\mathbf{u}_2=\frac{\mathbf{A}\mathbf{u}_1}{\Vert\mathbf{A}\mathbf{u}_1\Vert_2}=\frac{\frac{\mathbf{A}^2 \mathbf{u_0}}{\Vert\mathbf{A}\mathbf{u}_0\Vert_2}}{\frac{\Vert\mathbf{A}^2 \mathbf{u_0}\Vert_2}{\Vert\mathbf{A}\mathbf{u}_0\Vert_2}}=\frac{\mathbf{A}^2 \mathbf{u_0}}{\Vert\mathbf{A}^2 \mathbf{u_0}\Vert_2}=\frac{q_1\lambda^2_1\mathbf{v}_1 + q_2\lambda^2_2\mathbf{v}_2 + \dots + q_N\lambda^2_N\mathbf{v}_N}{\sqrt{\left(q_1\lambda^2_1\right)^2+\left(q_2\lambda^2_2\right)^2+\dots+\left(q_N\lambda^2_N\right)^2 }}=\frac{\sum_{i=1}^Nq_i\lambda^2_i\mathbf{v}_i}{\sqrt{\sum_{i=1}^N\left(q_1\lambda^2_1\right)^2 }}\]
+    y en general se tiene que
+    \[
+    \mathbf{u}_n = \frac{q_1\lambda^n_1\mathbf{v}_1 + q_2\lambda^n_2\mathbf{v}_2 + \dots + q_N\lambda^n_N\mathbf{v}_N}{\sqrt{\left(q_1\lambda^n_1\right)^2+\left(q_2\lambda^n_2\right)^2+\dots+\left(q_N\lambda^n_N\right)^2 }}=\frac{\sum_{i=1}^Nq_i\lambda^n_i\mathbf{v}_i}{\sqrt{\sum_{i=1}^N\left(q_1\lambda^n_1\right)^2 }}
+    \]    
+</p>
+<p>
+    Por último, teniendo en cuenta que \(\lambda_1=\lambda_\mathrm{max}\) se tiene que \(\vert\frac{\lambda_i}{\lambda_1}\vert\lt 1\), para todo \(i\gt 1\), por lo tanto, podemos asegurar que siempre que \(q_1\neq0\), es decir, siempre que nuestro vector inicial \(\mathbf{u}_0\) tenga una componente según \(\mathbf{v}_1\) no nula, se tendrá que
+    \[\boxed{
+    \lim_{n\to\infty}\mathbf{u}_n=\mathbf{v}_1}
+    \]
+    es decir, la sucesión de vectores unitarios obtenida a partir de $\mathbf{u}_0$, multiplicando por la matriz $\mathbf{A}$ y normalizando, tiende al autovector asociado al autovalor de módulo máximo a medida que \(n\) tiende a infinito..        
+</p>
+
+</body>
