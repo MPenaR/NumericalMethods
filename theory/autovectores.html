@@ -118,7 +118,29 @@
     \[\boxed{
     \lim_{n\to\infty}\mathbf{u}_n=\mathbf{v}_1}
     \]
-    es decir, la sucesión de vectores unitarios obtenida a partir de \(\mathbf{u}_0\), multiplicando por la matriz \(\mathbf{A}\) y normalizando, tiende al autovector asociado al autovalor de módulo máximo a medida que \(n\) tiende a infinito..        
+    es decir, la sucesión de vectores unitarios obtenida a partir de \(\mathbf{u}_0\), multiplicando por la matriz \(\mathbf{A}\) y normalizando, tiende al autovector asociado al autovalor de módulo máximo a medida que \(n\) tiende a infinito. 
 </p>
 <h2>Método de la potencia inversa.</h2>
+<p>El método de la potencia sólo sirve para calcular el autovector asociado al autovalor de máximo módulo absoluto de una matriz \(\mathbf{A}\), sin embargo, como vamos a ver, se puede aplicar este método a una matriz dependiente de \(\mathbf{A}\) de forma que obtengamos el autovector deseado.</p>
+<p>Supongamos que \(\mathbf{A}\) es una matriz invertible, diagonalizable con \(N\) autovalores \(\lambda_i\) y autovectores asociados \(\mathbf{v}_i\). En ese caso se tiene que:</p>
+<div class="formula">
+    \[
+    \mathbf{A}\mathbf{v}_i = \lambda_i\mathbf{v}_i
+    \]
+</div>
+<p>Si premultiplicamos por la matriz inversa de \(\mathbf{A}\) y dividimos por \(\lambda_i\) se obtiene:</p>
+<div>
+    \[
+    \frac{1}{\lambda_i}\mathbf{v}_i=\mathbf{A}\mathbf{v}_i
+    \]
+</div>
+<p>Lo que acabamos de demostrar es que la matriz \(\mathbf{A}^{-1}\) tiene los mismos autovectores que la matriz \(\mathbf{A}\), con la diferencia que el autovalor asociado a cada autovector \(\mathbf{v}_i\) en este caso será \(1/\lambda_i\).</p>
+<p>Vamos a analizar lo que le ocurre a la matriz \(\mathbf{A}-\mu\mathbf{I}\), siendo \(\mu\) una constante cualquiera. Si multiplicamos esa matriz por un autovector \(\mathbf{v}_i\) de la matriz \(\mathbf{A}\) obtenemos:</p>
+<div class="formula">
+\[
+\left(\mathbf{A}-\mu\mathbf{I}\right)\mathbf{v}_i=\mathbf{A}\mathbf{v}_i-\mu\mathbf{I}\mathbf{v}_i=\lambda_i\mathbf{v}_i-\mu\mathbf{v}_i=\left(\lambda_i-\mu\right)\mathbf{v}_i
+\]
+</div>
+<p>Es decir, acabamos de demostrar que la matriz \(\mathbf{A}-\mu\mathbf{I}\) tiene los mismos autovectores que la matriz \(\mathbf{A}\) y sus autovalores asociados son \(\lambda_i-\mu\).</p>
+<p>Juntando los dos resultados anteriores se demuestra fácilmente que la matriz \(\mathbf{B}_\mu = \left(\mathbf{A}-\mu\mathbf{I}\right)^{-1}\) tendrá los mismos autovectores que la matriz \(\mathbf{A}\) y sus autovalores asociados serán \(\frac{1}{\lambda_i-\mu}\). Este resultado nos será muy útil, pues significa que, escogiendo un valor de \(\mu\) suficientemente cercano a uno de los autovalores de \(\mathbf{A}\), podremos hacer que el autovalor correspondiente de la matriz \(\mathbf{B}_\mu\) sea tan grande como nosotros queramos. De este modo, aplicando el método de la potencia a la matriz \(\mathbf{B}_\mu\) obtendremos el autovector de la matriz \(\mathbf{A}\) asociado al autovalor \(\lambda_i\) más cercano a \(\mu\).</p>
 </body>
