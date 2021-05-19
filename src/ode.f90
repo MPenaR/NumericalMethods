@@ -9,14 +9,14 @@ module ode
       implicit none
       contains
 
-        function forward_euler(f,t,U0) result(U)
+        function forward_euler(F,t,U0) result(U)
           !! function for integrating vector first order ODEs of the form:
           !! \[
           !! \frac{d\mathbf{U}}{dt}=\mathbf{F}\left(\mathbf{U},t\right)
           !! \]
           !! using the forward (explicit) euler method.
           interface
-            function f(U,t) result(dU)
+            function F(U,t) result(dU)
             !! function \(\mathbf{F}\) of the system
               real, intent(in) :: U(:)
             !! value of the unknown function \(\mathbf{U}(t)\)
@@ -43,14 +43,14 @@ module ode
           end do
         end function
 
-        function Runge_Kutta2(f,t,U0) result(U)
+        function Runge_Kutta2(F,t,U0) result(U)
           !! function for integrating vector first order ODEs of the form:
           !! \[
           !! \frac{d\mathbf{U}}{dt}=\mathbf{F}\left(\mathbf{U},t\right)
           !! \]
           !! using the Runke-Kutta (2) method.
           interface
-            function f(U,t) result(dU)
+            function F(U,t) result(dU)
             !! function \(\mathbf{F}\) of the system
               real, intent(in) :: U(:)
             !! value of the unknown function \(\mathbf{U}(t)\)
