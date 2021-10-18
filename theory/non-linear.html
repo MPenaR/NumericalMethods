@@ -73,6 +73,7 @@
 </div>
 <p>es decir, el error \(e_n=\left| x-x_n\right|\) cometido al asumir como solución aproximada el punto medio del intervalo \(I_n\) es como máximo la mitad de la medida de dicho intervalo. Si se hubiese parado en el intervalo siguiente \(I_{n+1}\), el error sería \(e_{n+1}<\frac{b-a}{2^{n+2}}=\frac{1}{2}\frac{b-a}{2^{n+1}}\), por lo que se dice que es un método lineal, pues \(e_{n+1}=\mathcal{O}\left(e_{n}\right)\), es decir, el error en una iteración es comparable al error en la iteración anterior.
 </p>
+<div class="plot" id="test" align="center"></div>
 <h2>Método de Newton-Raphson.</h2>
 <p>Si la función \(f\) es derivable y se conoce una forma de calcular esta derivada, se puede utilizar el método de Newton-Raphson para encontrar la solución. A diferencia del método de la bisección, este método no convergerá siempre, pero de converger, lo hará mucho mas rápido.
 </p>
@@ -242,4 +243,8 @@ f_N\left(x_1,x_2,\dots,x_N\right)=0
 </div>
 <p>Del mismo modo que en el caso escalar, el método de Newton-Raphson vectorial también presenta convergencia de orden cuadrático.
 </p>
+
+
+
+<script src="./nlinear.js"></script>
 </body>
