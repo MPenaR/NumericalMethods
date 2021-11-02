@@ -142,7 +142,7 @@ module linear_solvers
         real :: x(size(b))
       !! Solution vector **x**
 
-      real :: L(size(A,1),size(A,2)), U(size(A,1), size(A,2)), Ap(size(A,1),size(A,2))
+      real :: L(size(A,1),size(A,2)), U(size(A,1), size(A,2))
 
       call factor_LU(A,L,U)
 
