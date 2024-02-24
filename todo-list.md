@@ -1,5 +1,7 @@
+# ToDo list
+
 - solucionar lo de las ecuaciones numeradas.
-- cambiar lo de que es || || en la demostración del criterio de convergencia en iteravitos.
+- cambiar lo de que es || || en la demostración del criterio de convergencia en iterativos.
 - añadir métodos mas complejos que el euler explicito
 - animaciones autovectores
 - animaciones no lineales
