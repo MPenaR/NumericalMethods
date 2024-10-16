@@ -1,7 +1,7 @@
 src_dir: ./src/
 output_dir: ./docs
 project: Numerical Methods
-summary: Code for the numerical methods.
+summary: This repository contains the fortran subroutines I prepared for a course on numerical methods. They try to be at the same time efficient and self documenting. When both criteria are in conflict the second one is chosen.
 author: Manuel Pena
 github: https://github.com/MPenaR
 project_download:http://dmaia.upm.es/docentes/manuel-pena/archivos/codes.zip

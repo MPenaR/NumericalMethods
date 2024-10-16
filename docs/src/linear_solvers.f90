@@ -51,31 +51,7 @@ module linear_solvers
   end function
 
 
-  subroutine make_U(M)
-    !! Takes the extended matrix M = (A|b)
-    !! and makes it upper triangular.
-    real, intent(inout) :: M(:,:)
-      !! Extended matrix (A|b)
-    integer ::  N, i, j, imax
-    real :: Q
 
-    real :: temp(size(M,2))
-
-    N = size(M,1)
-    do j = 1, N-1
-      ! row swapping for stability
-      imax = MAXLOC(abs(M(j:N,j)),1) + (j - 1)
-      temp = M(j,:)
-      M(j,:) = M(imax,:)
-      M(imax,:) = temp
-      ! triangularization of column j
-      do i = j+1, N
-          Q = M(i,j)/M(j,j)
-          M(i,:) = M(i,:) - Q*M(j,:)
-      end do
-    end do
-
-  end subroutine
 
 
 
@@ -166,7 +142,7 @@ module linear_solvers
         real :: x(size(b))
       !! Solution vector **x**
 
-      real :: L(size(A,1),size(A,2)), U(size(A,1), size(A,2)), Ap(size(A,1),size(A,2))
+      real :: L(size(A,1),size(A,2)), U(size(A,1), size(A,2))
 
       call factor_LU(A,L,U)
 

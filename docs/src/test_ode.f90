@@ -15,8 +15,8 @@ program test_ode
 
   integer, parameter :: N = 1000;
   real :: Tf, dT
-  real :: t(0:N), y(0:N,3)
-  integer :: i, u
+  real :: t(0:N), U(0:N,3), U0(3)
+  integer :: i, file_unit
 
   Tf = 10
   dT = Tf/N
@@ -24,14 +24,15 @@ program test_ode
   do i =0, N
     t(i) = i*dT
   end do
+  U0 = [1., 1., 1.]
+  U = forward_euler(lorenz, t, U0)
 
-  y = forward_euler(lorenz, t, [ 1.,1.,1.])
-
-  open(file='datos.dat',newunit=u)
+  open(file='datos.dat',newunit=file_unit)
+  write(file_unit, '(4A9)')  't', 'x(t)', 'y(t)', 'z(t)'
   do i = 0, N
-    write(u,*) t(i), y(i,1), y(i,2), y(i,3)
+    write(file_unit, '(4(F9.4))') t(i), U(i,1), U(i,2), U(i,3)
   end do
-  close(u)
+  close(file_unit)
 
 
 contains

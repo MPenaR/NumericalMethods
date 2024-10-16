@@ -10,7 +10,7 @@
     <meta name="author" content="Manuel Pena" >
     <link rel="icon" href="../favicon.png">
 
-    <title>f_vec &ndash; Numerical Methods</title>
+    <title>Runge_Kutta2 &ndash; Numerical Methods</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -62,7 +62,7 @@
 
     <div class="container">
   <div class="row">
-    <h1>f_vec
+    <h1>Runge_Kutta2
       <small>Function</small>
       
     </h1>
@@ -74,21 +74,21 @@
 
             <li class="list-inline-item" id="statements"><i class="fa fa-list-ol"></i>
               <a data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
-                 title=" 1.2% of total for procedures.">6 statements</a>
+                 title=" 4.1% of total for procedures.">20 statements</a>
             </li>
 
             <li class="list-inline-item" id="source-file">
               <i class="fa fa-code"></i>
-              <a href="../src/test_non_linear_solvers.f90"> Source File</a>
+              <a href="../src/ode.f90"> Source File</a>
             </li>
         </ul>
       </div>
       <div class="col">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb justify-content-end mb-0">
-                <li class="breadcrumb-item"><a href='../sourcefile/test_non_linear_solvers.f90.html'>test_non_linear_solvers.f90</a></li>
-                <li class="breadcrumb-item"><a href='../program/test_non_linear_solvers.html'>test_non_linear_solvers</a></li>
-            <li class="breadcrumb-item active" aria-current="page">f_vec</li>
+                <li class="breadcrumb-item"><a href='../sourcefile/ode.f90.html'>ode.f90</a></li>
+                <li class="breadcrumb-item"><a href='../module/ode.html'>ode</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Runge_Kutta2</li>
           </ol>
         </nav>
       </div>
@@ -133,10 +133,15 @@
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2> function f_vec(x) result(y)  
+    <h2>public  function Runge_Kutta2(F, t, U0) result(U)  
 </h2>
     
 
+    <p>function for integrating vector first order ODEs of the form:
+<script type="math/tex; mode=display">
+\frac{d\mathbf{U}}{dt}=\mathbf{F}\left(\mathbf{U},t\right)
+</script>
+using the Runke-Kutta (2) method.</p>
 
 
     <h3>Arguments</h3>
@@ -151,8 +156,27 @@
     </thead>
     <tbody>
         <tr>
+            <td colspan="7">
+              <small>    <h5>
+    public  function F(U, t) result(dU)  
+
+    </h5>
+  <p>function <script type="math/tex">\mathbf{F}</script> of the system</p>
+
+  <h6>Arguments</h6>
+      <table class="table table-striped varlist">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+<th scope="col">Intent</th><th scope="col">Optional</th>        <th scope="col">Attributes</th>
+        <th scope="col"></th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+    </thead>
+    <tbody>
+        <tr>
             <td>
-              <span class="anchor" id="variable-x~3"></span>
+              <span class="anchor" id="variable-u~3"></span>
               real,
             </td>
 <td>intent(in)</td>
@@ -160,9 +184,70 @@
               
             </td>
             <td>::</td>
-            <td><strong>x</strong>(:)</td>
+            <td><strong>U</strong>(:)</td>
             <td>
-                
+                <p>value of the unknown function <script type="math/tex">\mathbf{U}(t)</script>
+</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-t~3"></span>
+              real,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>t</strong></td>
+            <td>
+                <p>independent variable <script type="math/tex">t</script>
+</p>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+
+    <h6>
+    Return Value
+    <small>real, (size(U))</small>
+    </h6>
+    <p>derivative of <script type="math/tex">\mathbf{y}</script>
+</p>
+</small>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-t~4"></span>
+              real,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>t</strong>(0:)</td>
+            <td>
+                <p>array of times <script type="math/tex"> t_0,t_1,\dots,t_N </script>where the numerical solution
+will be evaluated.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="anchor" id="variable-u0~2"></span>
+              real,
+            </td>
+<td>intent(in)</td>
+              <td></td>            <td>
+              
+            </td>
+            <td>::</td>
+            <td><strong>U0</strong>(:)</td>
+            <td>
+                <p>initial conditions <script type="math/tex">\mathbf{U}(t_0)</script>
+</p>
             </td>
         </tr>
     </tbody>
@@ -170,11 +255,13 @@
 
       <h3>Return Value
         <small>
-          <span class="anchor" id="variable-y~3"></span>
-          real, (size(x))
+          <span class="anchor" id="variable-u~4"></span>
+          real, (0:ubound(t,1),size(U0))
         </small>
       </h3>
-      
+      <p>solution array <script type="math/tex">U_j(t_i)</script> such that the
+the row <script type="math/tex">i</script> and column <script type="math/tex">j</script> stands for the
+<script type="math/tex">j</script>th component of the vector solution <script type="math/tex">\mathbf{U}</script> at time <script type="math/tex">t_i</script>.</p>
     <br>
 
 

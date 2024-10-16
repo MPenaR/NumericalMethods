@@ -1,386 +1,175 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-   
-   <meta name="description" content="Code for the numerical methods.">
-    
+      <meta name="description" content="This repository contains the fortran subroutines I prepared for a course on numerical methods. They try to be at the same time efficient and self documenting. When both criteria are in conflict the second one is chosen.">
     <meta name="author" content="Manuel Pena" >
     <link rel="icon" href="./favicon.png">
 
     <title> Numerical Methods </title>
 
-    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="./css/pygments.css" rel="stylesheet">
     <link href="./css/font-awesome.min.css" rel="stylesheet">
     <link href="./css/local.css" rel="stylesheet">
-    
-    <link  href="./tipuesearch/tipuesearch.css" rel="stylesheet">
-    
-    
+      <link  href="./tipuesearch/tipuesearch.css" rel="stylesheet">
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    
-    <script src="./js/jquery-2.1.3.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="./js/svg-pan-zoom.min.js"></script>
-
   </head>
 
   <body>
 
     <!-- Fixed navbar -->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
           <a class="navbar-brand" href="./index.html">Numerical Methods </a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-        
-            <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
-              <a href="#" class="dropdown-toggle"
-              data-toggle="dropdown" role="button"
-              aria-haspopup="true"
-     aria-expanded="false">Contents <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          
-              
-            <li><a href="./lists/files.html">Source Files</a></li>
-        
-        
-        
-            <li><a href="./lists/modules.html">Modules</a></li>
-        
-            
-                                
-            <li><a href="./lists/procedures.html">Procedures</a></li>
-        
-               
-        
-            <li><a href="./lists/programs.html">Programs</a></li>
-        
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="./lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./lists/programs.html">Programs</a>
+                </li>
             </ul>
-            </li>
-
-
-<li class="visible-xs hidden-sm visible-lg"><a href="./lists/files.html">Source Files</a></li>
-
-
-
-<li class="visible-xs hidden-sm visible-lg"><a href="./lists/modules.html">Modules</a></li>
-
-
-
-<li class="visible-xs hidden-sm visible-lg"><a href="./lists/procedures.html">Procedures</a></li>
-
-                             
-
-<li class="visible-xs hidden-sm visible-lg"><a href="./lists/programs.html">Programs</a></li>
-
-          </ul>
-        
-        <form action="./search.html" class="navbar-form navbar-right" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="./search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
         </div>
-<!--
-        <button type="submit" class="btn btn-default">Submit</button>
--->
-        </form>
-        
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
+      </nav>
+    </div>
 
     <div class="container">
-    
-      <!-- Main component for a primary marketing message or call to action -->
-      <div class="jumbotron">
-        <p>Code for the numerical methods.</p>
-        	 
-			 
-          <a class="btn btn-lg btn-danger" style="float:right" href="http://dmaia.upm.es/docentes/manuel-pena/archivos/codes.zip" role="button">Download the Source</a>
-			 
-        </p>
-      </div>
+  <!-- Main component for a primary marketing message or call to action -->
+    <div class="p-5 mb-4 bg-light border rounded-3" id="jumbotron">
+      <p>This repository contains the fortran subroutines I prepared for a course on numerical methods. They try to be at the same time efficient and self documenting. When both criteria are in conflict the second one is chosen.</p>
+        <a class="btn btn-lg btn-danger" style="float:right" href="http://dmaia.upm.es/docentes/manuel-pena/archivos/codes.zip" role="button">Download the Source</a>
+      </p>
+    </div>
 
       <div class="row" id='text'>
-		  
-        <div class="col-md-8">
-		  
+        <div class=col-md-8>
           <h1>Numerical Methods</h1>
           
         </div>
-		  
-        <div class="col-md-4">
-	  <div class="well">
-          <h2>Developer Info</h2>
-          <h4>Manuel Pena</h4>
-          
-          
-			   
-            <div class="text-center"><div class="btn-group" role="group">
-              
-              <a class="btn btn-lg btn-primary" href="mailto:manuel.pena@upm.es"><i class="fa fa-envelope fa-lg"></i></a>
-              
-              
-              
-              <a class="btn btn-lg btn-primary" href="https://github.com/MPenaR"><i class="fa fa-github fa-lg"></i></a>
-				  
-				  
-              
-              
-              
-              
-            </div></div>
-            
-       </div>
-       </div>
-       
+          <div class="col-md-4">
+            <div class="card card-body bg-light">
+              <h2 class="card-title">Developer Info</h2>
+              <h4 class="card-text">Manuel Pena</h4>
+              <p class="card-text"></p>
+                <div class="text-center"><div class="btn-group" role="group">
+                      <a class="btn btn-lg btn-primary" href="mailto:manuel.pena@upm.es"><i class="fa fa-envelope fa-lg"></i></a>
+                    
+                    <a class="btn btn-lg btn-primary" href="https://github.com/MPenaR"><i class="fa fa-github fa-lg"></i></a>
+                    
+                    
+                    
+                    
+                    
+                    
+                </div></div>
+            </div>
+          </div>
       </div>
-      
-      
-      
-      
-		
-      <div class="row">
-        <div class="col-xs-6 col-sm-4">
+        <div class="row">
+          <hr>
+          <div class="col-xs-6 col-sm-4">
+            <div>
               <h3>Source Files</h3>
+              <ul><li><a href='sourcefile/eigen.f90.html'>eigen.f90</a></li><li><a href='sourcefile/integrals.f90.html'>integrals.f90</a></li><li><a href='sourcefile/linear_solvers.f90.html'>linear_solvers.f90</a></li><li><a href='sourcefile/non_linear_solvers.f90.html'>non_linear_solvers.f90</a></li><li><a href='sourcefile/ode.f90.html'>ode.f90</a></li><li><a href='sourcefile/test_eigen.f90.html'>test_eigen.f90</a></li><li><a href='sourcefile/test_integrals.f90.html'>test_integrals.f90</a></li><li><a href='sourcefile/test_linear_solvers.f90.html'>test_linear_solvers.f90</a></li><li><a href='sourcefile/test_non_linear_solvers.f90.html'>test_non_linear_solvers.f90</a></li><li><a href='sourcefile/test_ode.f90.html'>test_ode.f90</a></li></ul>
+            </div>
+            <div>
               <ul>
-                
-                  
-                    <li><a href='./sourcefile/eigen.f08.html'>eigen.f08</a></li>
-                  
-                
-                  
-                    <li><a href='./sourcefile/integrals.f08.html'>integrals.f08</a></li>
-                  
-                
-                  
-                    <li><a href='./sourcefile/linear_solvers.f08.html'>linear_solvers.f08</a></li>
-                  
-                
-                  
-                    <li><a href='./sourcefile/non_linear_solvers.f08.html'>non_linear_solvers.f08</a></li>
-                  
-                
-                  
-                    <li><a href='./sourcefile/ode.f08.html'>ode.f08</a></li>
-                  
-                
-                  
-                    <li><a href='./sourcefile/test_eigen.f08.html'>test_eigen.f08</a></li>
-                  
-                
-                  
-                    <li><a href='./sourcefile/test_integrals.f08.html'>test_integrals.f08</a></li>
-                  
-                
-                  
-                    <li><a href='./sourcefile/test_linear_solvers.f08.html'>test_linear_solvers.f08</a></li>
-                  
-                
-                  
-                    <li><a href='./sourcefile/test_non_linear_solvers.f08.html'>test_non_linear_solvers.f08</a></li>
-                  
-                
-                  
-                    <li><a href='./sourcefile/test_ode.f08.html'>test_ode.f08</a></li>
-                  
-                
-                  
-                    <li><a href="./lists/files.html"><em>All source files&hellip;</em></a></li>
-                  
-                
-                  
-                
+                <li><a href="./lists/files.html"><em>All source files&hellip;</em></a></li>
               </ul>
+            </div>
           </div>
-          
-		  <div class="col-xs-6 col-sm-4">
+          <div class="col-xs-6 col-sm-4">
+            <div>
               <h3>Modules</h3>
+              <ul><li><a href='module/eigenvectors.html'>eigenvectors</a></li><li><a href='module/integrals.html'>integrals</a></li><li><a href='module/linear_solvers.html'>linear_solvers</a></li><li><a href='module/non_linear_solvers.html'>non_linear_solvers</a></li><li><a href='module/ode.html'>ode</a></li><li><a href='module/utilities.html'>utilities</a></li></ul>
+            </div>
+            <div>
               <ul>
-                
-                  
-                    <li><a href='./module/eigenvectors.html'>eigenvectors</a></li>
-                  
-                
-                  
-                    <li><a href='./module/integrals.html'>integrals</a></li>
-                  
-                
-                  
-                    <li><a href='./module/linear_solvers.html'>linear_solvers</a></li>
-                  
-                
-                  
-                    <li><a href='./module/non_linear_solvers.html'>non_linear_solvers</a></li>
-                  
-                
-                  
-                    <li><a href='./module/ode.html'>ode</a></li>
-                  
-                
-                  
-                    <li><a href='./module/utilities.html'>utilities</a></li>
-                  
-                
+                <li><a href="./lists/modules.html"><em>All modules&hellip;</em></a></li>
               </ul>
+            </div>
           </div>
-          
-          
-		  <div class="col-xs-6 col-sm-4">
+          <div class="col-xs-6 col-sm-4">
+            <div>
               <h3>Procedures</h3>
+              <ul><li><a href='proc/bisection.html'>Bisection</a></li><li><a href='proc/df.html'>df</a></li><li><a href='proc/eigen_inv.html'>eigen_inv</a></li><li><a href='proc/eigen_max.html'>eigen_max</a></li><li><a href='proc/f.html'>f</a></li><li><a href='proc/f~2.html'>f</a></li><li><a href='proc/f_vec.html'>f_vec</a></li><li><a href='proc/factor_lu.html'>factor_LU</a></li><li><a href='proc/forward_euler.html'>forward_euler</a></li><li><a href='proc/g.html'>g</a></li></ul>
+            </div>
+            <div>
               <ul>
-                
-                  
-                    <li><a href='./proc/bisection.html'>Bisection</a></li>
-                  
-                
-                  
-                    <li><a href='./proc/df.html'>df</a></li>
-                  
-                
-                  
-                    <li><a href='./proc/eigen_inv.html'>eigen_inv</a></li>
-                  
-                
-                  
-                    <li><a href='./proc/eigen_max.html'>eigen_max</a></li>
-                  
-                
-                  
-                    <li><a href='./proc/f.html'>f</a></li>
-                  
-                
-                  
-                    <li><a href='./proc/f~2.html'>f</a></li>
-                  
-                
-                  
-                    <li><a href='./proc/f_vec.html'>f_vec</a></li>
-                  
-                
-                  
-                    <li><a href='./proc/factor_lu.html'>factor_LU</a></li>
-                  
-                
-                  
-                    <li><a href='./proc/forward_euler.html'>forward_euler</a></li>
-                  
-                
-                  
-                    <li><a href='./proc/g.html'>g</a></li>
-                  
-                
-                  
-                    <li><a href="./lists/procedures.html"><em>All procedures&hellip;</em></a></li>
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
+                <li><a href="./lists/procedures.html"><em>All procedures&hellip;</em></a></li>
               </ul>
+            </div>
           </div>
-          
-          
-      </div>
-
-    <hr>    
+        </div>
+      <hr>
     </div> <!-- /container -->
     <footer>
       <div class="container">
-      <div class="row">
-        <div class="col-xs-6 col-md-4"><p>&copy; 2020 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a>
-                                          </p></div>
-        <div class="col-xs-6 col-md-4 col-md-push-4">
-          <p class="text-right">
-            Documentation generated by 
-            <a href="https://github.com/cmacmackin/ford">FORD</a>
-            
-          </p>
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              Numerical Methods
+ was developed by Manuel Pena<br>              &copy; 2024 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a>
+</p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+            </p>
+          </div>
         </div>
-        <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> Numerical Methods was developed by Manuel Pena</p></div>
-      </div>
-      <br>
-      </div> <!-- /container -->    
+        <br>
+      </div> <!-- /container -->
     </footer>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
+    <!-- Bootstrap core JavaScript -->
     <!-- Placed at the end of the document so the pages load faster -->
-<!--
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
--->
-    <script src="./js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="./js/ie10-viewport-bug-workaround.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
 
     <!-- MathJax JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
-        jax: ['input/TeX','input/MathML','output/HTML-CSS'],
-        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
-      });
-    </script>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-    
-    <script src="./tipuesearch/tipuesearch_content.js"></script>
-    <script src="./tipuesearch/tipuesearch_set.js"></script>
-    <script src="./tipuesearch/tipuesearch.js"></script>
-    
-    
+             ================================================== -->
+             <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+          });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+          <script src="./tipuesearch/tipuesearch_content.js"></script>
+          <script src="./tipuesearch/tipuesearch_set.js"></script>
+          <script src="./tipuesearch/tipuesearch.js"></script>
+
   </body>
 </html>

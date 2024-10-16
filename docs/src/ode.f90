@@ -9,14 +9,14 @@ module ode
       implicit none
       contains
 
-        function forward_euler(f,t,U0) result(U)
+        function forward_euler(F,t,U0) result(U)
           !! function for integrating vector first order ODEs of the form:
           !! \[
           !! \frac{d\mathbf{U}}{dt}=\mathbf{F}\left(\mathbf{U},t\right)
           !! \]
           !! using the forward (explicit) euler method.
           interface
-            function f(U,t) result(dU)
+            function F(U,t) result(dU)
             !! function \(\mathbf{F}\) of the system
               real, intent(in) :: U(:)
             !! value of the unknown function \(\mathbf{U}(t)\)
@@ -40,6 +40,42 @@ module ode
           U(0,:) = U0
           do i=1,N
             U(i,:) = U(i-1,:) + (t(i)-t(i-1))*F(U(i-1,:),t(i-1))
+          end do
+        end function
+
+        function Runge_Kutta2(F,t,U0) result(U)
+          !! function for integrating vector first order ODEs of the form:
+          !! \[
+          !! \frac{d\mathbf{U}}{dt}=\mathbf{F}\left(\mathbf{U},t\right)
+          !! \]
+          !! using the Runke-Kutta (2) method.
+          interface
+            function F(U,t) result(dU)
+            !! function \(\mathbf{F}\) of the system
+              real, intent(in) :: U(:)
+            !! value of the unknown function \(\mathbf{U}(t)\)
+              real, intent(in) :: t
+            !! independent variable \(t\)
+              real :: dU(size(U))
+            !! derivative of \(\mathbf{y}\)
+            end function
+          end interface
+          real, intent(in) :: t(0:)
+          !! array of times \( t_0,t_1,\dots,t_N \)where the numerical solution
+          !! will be evaluated.
+          real, intent(in) :: U0(:)
+          !! initial conditions \(\mathbf{U}(t_0)\)
+          real :: U(0:ubound(t,1),size(U0))
+          !! solution array \(U_j(t_i)\) such that the
+          !! the row \(i\) and column \(j\) stands for the
+          !! \(j\)th component of the vector solution \(\mathbf{U}\) at time \(t_i\).
+          integer :: N, i
+          real :: U_e(size(U0))
+          N = ubound(t,1)
+          U(0,:) = U0
+          do i=1,N
+            U_e = U(i-1,:) + (t(i)-t(i-1))*F(U(i-1,:),t(i-1))
+            U(i,:) = U(i-1,:) + (t(i)-t(i-1))/2*( F(U(i-1,:),t(i-1)) + F(U_e,t(i)) )
           end do
         end function
 
