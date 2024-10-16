@@ -51,9 +51,21 @@ module linear_solvers
   end function
 
 
+  subroutine make_U(M)
+    !! Makes the matrix M upper triangular
+    real, intent(inout) :: M(:,:)
+    !! Matrix M with maximum range
 
+    integer :: i, j, N
 
-
+    N = size(M,1)
+    do j = 1, N-1
+      do i = j+1, N
+        M(i,j:) = M(i,j:) - (M(i,j) / M(j,j) )*M(j,j:)
+      end do 
+    end do
+  
+  end subroutine
 
 
   function gauss_solve(A,b) result(x)

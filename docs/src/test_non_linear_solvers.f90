@@ -17,6 +17,7 @@ contains
     real :: y
     y = exp(x) - exp(1.)
   end function
+
   function df(x) result(y)
     real, intent(in) :: x
     real :: y
