@@ -1,0 +1,4 @@
+{
+    "fortran-ls.executablePath": "fortls",
+    "fortran-ls.incrementalSync": false
+}

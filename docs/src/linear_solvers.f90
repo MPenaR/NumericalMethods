@@ -18,7 +18,6 @@ module linear_solvers
     integer :: i, N
 
     N = size(U,2)
-
     x(N) = b(N)/U(N,N)
 
     do i=N-1,1,-1
@@ -56,10 +55,15 @@ module linear_solvers
     real, intent(inout) :: M(:,:)
     !! Matrix M with maximum range
 
-    integer :: i, j, N
+    real :: temp(size(M,2))
+    integer :: i, j, N, imax
 
     N = size(M,1)
     do j = 1, N-1
+      imax = maxloc(M( j: , j),1) + (j-1)
+      temp = M(j, :) 
+      M(j,:) = M(imax,:)
+      M(imax,:) = temp  
       do i = j+1, N
         M(i,j:) = M(i,j:) - (M(i,j) / M(j,j) )*M(j,j:)
       end do 
