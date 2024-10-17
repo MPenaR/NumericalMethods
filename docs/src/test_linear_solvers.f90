@@ -1,4 +1,4 @@
-program test
+program test_linear_solvers
   !! Program to show the usage of the *linear_solvers* module
   use linear_solvers
   implicit none
